@@ -15,9 +15,9 @@ class CreateNotaTable extends Migration
     {
         Schema::create('nota', function (Blueprint $table) {
             $table->id();
-            $table->string('acao');
-            $table->foreignId('tarefa');
-            $table->dateTime('data');
+            $table->text('titulo');
+            $table->text('conteudo');
+            $table->foreignId('usuario');
             $table->timestamps();
         });
     }
