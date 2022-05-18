@@ -15,7 +15,6 @@ class TarefaFactory extends Factory
     {
         return [
             //
-            'id' => $this->fake->randomNumber(),
             'titulo' => $this->faker->word(),
             'descricao' => $this->fake->sentence(),
             'datacriacao' => $this->fake->dateTime(),
