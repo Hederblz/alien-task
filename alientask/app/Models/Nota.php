@@ -10,7 +10,8 @@ class Nota extends Model
     use HasFactory;
     protected $fillable =[
         'titulo',
-        'conteudo'
+        'conteudo',
+        'user_id'
     ];
 
 }
