@@ -13,4 +13,4 @@ class Marcador extends Model
         'titulo',
      ];
  }
-}
+
