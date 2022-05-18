@@ -15,7 +15,6 @@ class HistoricoFactory extends Factory
     {
         return [
             //
-            'id' => $this->fake->randomNumber(),
             'acao' => $this->fake->word(),
             'data' => $this->fake->dateTime(),
         ];

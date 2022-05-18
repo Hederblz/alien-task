@@ -15,7 +15,6 @@ class NotaFactory extends Factory
     {
         return [
             //
-            'id' => $this->fake->randomNumber(),
             'titulo' => $this->fake->word(),
             'conteudo' => $this->fake->paragraphs(),
         ];
