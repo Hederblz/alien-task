@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Marcador_has_Tarefa extends Model
 {
     use HasFactory;
-    protected $fillable[
+    protected $fillable = [ 
         'Marcador_id',
         'Tarefa_id'
     ];
