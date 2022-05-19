@@ -17,12 +17,10 @@ O <b>Alien Task</b> é um projeto da disciplina de Projeto e prática 2 do IFPE 
   <li>HTML</li>
   <li>CSS</li>
   <li>Javascript</li>
-  <li>JQuery</li>
-  <li>MYSQL</li>
-  <li>SQL</li>
-  <li>PHP</li>
-  <li>PDO</li>
-  <li>Laravel</li>
+  <li>JQuery - 3.6.0</li>
+  <li>MYSQL - 8.0.29</li>
+  <li>PHP - 7.4</li>
+  <li>Laravel - 9.x</li>
   <li>API-Google charts</li>
   </ul>
   <br>
