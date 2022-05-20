@@ -15,8 +15,8 @@ class NotaFactory extends Factory
     {
         return [
             //
-            'titulo' => $this->fake->word(),
-            'conteudo' => $this->fake->paragraphs(),
+            'titulo' => $this->faker->word(),
+            'conteudo' => $this->faker->paragraphs(),
         ];
     }
 }

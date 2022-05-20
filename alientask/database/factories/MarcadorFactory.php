@@ -15,8 +15,8 @@ class MarcadorFactory extends Factory
     {
         return [
             //
-            'titulo' => $this->fake->word(),
-            'cor' => $this->fake->hexColor(),
+            'titulo' => $this->faker->word(),
+            'cor' => $this->faker->hexColor(),
         ];
     }
 }

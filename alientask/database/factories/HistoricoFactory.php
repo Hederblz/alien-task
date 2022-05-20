@@ -15,8 +15,8 @@ class HistoricoFactory extends Factory
     {
         return [
             //
-            'acao' => $this->fake->word(),
-            'data' => $this->fake->dateTime(),
+            'acao' => $this->faker->word(),
+            'data' => $this->faker->dateTime(),
         ];
     }
 }

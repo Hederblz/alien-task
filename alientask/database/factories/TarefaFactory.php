@@ -16,12 +16,12 @@ class TarefaFactory extends Factory
         return [
             //
             'titulo' => $this->faker->word(),
-            'descricao' => $this->fake->sentence(),
-            'datacriacao' => $this->fake->dateTime(),
-            'datainicio' => $this->fake->dateTime(),
-            'datafinalprevista' => $this->fake->dateTime(),
-            'dataconclusao' => $this->fake->dateTime(),
-            'estado' => $this->fake->word(),
+            'descricao' => $this->faker->sentence(),
+            'datacriacao' => $this->faker->dateTime(),
+            'datainicio' => $this->faker->dateTime(),
+            'datafinalprevista' => $this->faker->dateTime(),
+            'dataconclusao' => $this->faker->dateTime(),
+            'estado' => $this->faker->word(),
         ];
     }
 }
