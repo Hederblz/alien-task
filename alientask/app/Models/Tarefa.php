@@ -16,6 +16,7 @@ class Tarefa extends Model
         'data_inicio',
         'data_final_prevista',
         'data_conclusao',
+        'estado',
         'user_id'
     ];
 
