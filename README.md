@@ -1,5 +1,5 @@
 # Alien Task
-O Alen é um projeto da disciplina de Projeto e prática 2 do IFPE - Igarassu, que consiste em uma aplicação web com funções de gerenciamento de tarefas para pessoas que queiram gerenciar seu dia dia.
+O Alien Task é um projeto da disciplina de Projeto e prática 2 do IFPE - Igarassu, que consiste em uma aplicação web com funções de gerenciamento de tarefas para pessoas que queiram gerenciar seu dia dia.
 <br><br>
 <span>Funcionalidades:</span>
 <ul>
