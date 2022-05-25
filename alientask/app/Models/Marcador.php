@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Marcador extends Model
 {
     use HasFactory;
+    protected $table = 'marcadores';
     protected $fillable = [
         'titulo',
         'cor'
