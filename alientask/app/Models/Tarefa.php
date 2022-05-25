@@ -9,15 +9,18 @@ class Tarefa extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'titulo',
+        'descricao',
+        'data_criacao',
+        'data_inicio',
+        'data_final_prevista',
+        'data_conclusao',
+        'user_id'
+    ];
 
     public function dono()
     {
-        return 0;
-    }
-
-    public function historicoTarefa()
-    {
-        return 0;
+        return $this->belongsTo(User::class, 'user_id'); //Tarefa pertence ao Usuario;
     }
 }
