@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             TarefaSeeder::class,
-            MarcadorSeeder::class
+            MarcadorSeeder::class,
+            NotaSeeder::class
         ]);
     }
 }
