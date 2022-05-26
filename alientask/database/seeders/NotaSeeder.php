@@ -19,7 +19,7 @@ class NotaSeeder extends Seeder
         
         for ($i = 0; $i < 5; $i++) {
             Nota::factory()->create([
-                'user_id'=> User::all()->id
+                'user_id'=> User::all()->random()->id
             ]);
         }
     }
