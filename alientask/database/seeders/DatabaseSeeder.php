@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TarefaSeeder::class,
             MarcadorSeeder::class,
-            NotaSeeder::class
+            NotaSeeder::class,
+            HistoricoSeeder::class
         ]);
     }
 }
