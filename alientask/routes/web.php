@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,5 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::post('/add-nota',[NotaController::class,'store']);
 require __DIR__.'/auth.php';
