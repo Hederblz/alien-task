@@ -37,7 +37,7 @@ class NotaController extends Controller
     public function store(Request $request)
     {
         Nota::create([
-            'titulo' => $request->title,
+            'titulo' => $request->titulo,
             'conteudo' => $request->conteudo,
             'user_id' => Auth::user()->id
     ]);
