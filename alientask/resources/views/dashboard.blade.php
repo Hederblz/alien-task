@@ -10,17 +10,17 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table>
-                        @foreach(Auth::user()-> notas as $nota)
+                        @foreach(Auth::user()->notas as $nota)
                         <tr>
-                            <td>{{$nota -> title}}</td>
-                            <td>{{$nota -> conteudo}}</td>
+                            <td>{{$nota->titulo}}</td>
+                            <td>{{$nota->conteudo}}</td>
                         </tr>
                         @endforeach
                         <form action="add-nota" method="POST">
                             @csrf
                             <input type="text" name="titulo" placeholder="titulo">
                             <input type="text" name="conteudo" placeholder="conteudo">
-                            <input type="subimit" value ="add">
+                            <input type="submit" value ="add">
                         </form>
                     </table>
                 </div>
