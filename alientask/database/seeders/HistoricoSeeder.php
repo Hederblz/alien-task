@@ -17,10 +17,8 @@ class HistoricoSeeder extends Seeder
     public function run()
     {
         //
-        for ($i = 0; $i < 5; $i++) {
-            Historico::factory()->create([
-                'tarefa_id'=> Tarefa::all()->random()->id
-            ]);
-        }
+        Historico::factory()
+        ->count(10)
+        ->create();
     }
 }

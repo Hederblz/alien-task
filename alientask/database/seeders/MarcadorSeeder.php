@@ -15,8 +15,8 @@ class MarcadorSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 10; $i++) {
-            Marcador::factory()->create();
-        }
+        Marcador::factory()
+       ->count(10)
+       ->create();
     }
 }

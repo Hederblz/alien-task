@@ -16,11 +16,9 @@ class NotaSeeder extends Seeder
      */
     public function run()
     {
-        
-        for ($i = 0; $i < 5; $i++) {
-            Nota::factory()->create([
-                'user_id'=> User::all()->random()->id
-            ]);
-        }
+
+        Nota::factory()
+        ->count(10)
+        ->create();
     }
 }
