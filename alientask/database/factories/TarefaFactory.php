@@ -22,9 +22,8 @@ class TarefaFactory extends Factory
             'descricao' => $this->faker->sentence(),
             'data_criacao' => $this->faker->date(),
             'data_conclusao' => $this->faker->date(),
-            'estado' => $this->faker->word(),
+            'concluida' => $this->faker->boolean(),
             'user_id' => User::all()->random()->id
-
         ];
     }
 }

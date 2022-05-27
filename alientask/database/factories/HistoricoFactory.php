@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Nota;
 use App\Models\Tarefa;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,10 +21,11 @@ class HistoricoFactory extends Factory
     {
         return [
             //
-            'titulo' => $this->faker->sentence(),
             'acao' => $this->faker->sentence(),
-            'data' => $this->faker->dateTime(),
-            'user_id' => Tarefa::all()->random()->id
+            'data' => $this->faker->date(),
+            'tarefa_id' => Tarefa::all()->random()->id,
+            'user_id' => User::all()->random()->id,
+            'nota_id' => Nota::all()->random()->id
         ];
     }
 }
