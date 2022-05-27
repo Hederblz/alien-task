@@ -14,10 +14,21 @@ class Historico extends Model
         'acao',
         'data',
         'tarefa_id',
+        'nota_id'
     ];
 
     public function dono()
     {
-        return $this->belongsTo(User::class, 'tarefa_id'); //Historico pertence a Tarefa;
+        return $this->belongsTo(User::class, 'user_id'); //Historico pertence a usuario;
+    }
+
+    public function tarefas()
+    {
+        return $this->hasMany(Tarefa::class, 'tarefa_id'); //Historico possui tarefas;
+    }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class, 'nota_id'); //Historico possui notas;
     }
 }

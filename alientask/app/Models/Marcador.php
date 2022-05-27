@@ -11,6 +11,18 @@ class Marcador extends Model
     protected $table = 'marcadores';
     protected $fillable = [
         'titulo',
-        'cor'
+        'cor',
+        'tarefa_id',
+        'user_id'
     ];
+
+    public function dono()
+    {
+        return $this->belongsTo(User::class, 'user_id'); //Marcador pertence a user;
+    }
+
+    public function tarefas()
+    {
+        return $this->belongsToMany(Tarefa::class, 'marcador_id'); //Marcador pertence a tarefas;
+    }
 }

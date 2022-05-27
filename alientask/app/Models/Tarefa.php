@@ -16,12 +16,18 @@ class Tarefa extends Model
         'data_inicio',
         'data_final_prevista',
         'data_conclusao',
-        'estado',
+        'concluida',
+        'marcador_id',
         'user_id'
     ];
 
     public function dono()
     {
         return $this->belongsTo(User::class, 'user_id'); //Tarefa pertence ao Usuario;
+    }
+
+    public function marcadores()
+    {
+        return $this->hasMany(Marcador::class, 'tarefa_id'); //Tarefa possui marcadores;
     }
 }

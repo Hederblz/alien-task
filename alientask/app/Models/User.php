@@ -44,7 +44,22 @@ class User extends Authenticatable
     ];
 
     public function tarefas(){
-        return $this->hasMany(Tarefa::class, 'user_id');
+        return $this->hasMany(Tarefa::class, 'user_id'); //Usuario possui tarefas;
+    }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class, 'user_id'); //Usuario possui notas;
+    }
+
+    public function historico()
+    {
+        return $this->hasOne(Historico::class, 'user_id'); //Usuario possui um historico;
+    }
+
+    public function marcadores()
+    {
+        return $this->hasMany(Marcador::class, 'user_id'); //Usuario possui marcadores;
     }
 
 }

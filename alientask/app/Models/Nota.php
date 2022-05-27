@@ -9,12 +9,19 @@ class Nota extends Model
 {
     use HasFactory;
      protected $fillable  = [
-         'titulo',
+        'titulo',
          'conteudo',
+         'marcador_id',
          'user_id'
      ];
-     public function nota(){
+
+     public function dono(){
 
         return $this->belongsTo(User::class, 'user_id'); //Nota pertence ao Usuario;
+     }
+
+     public function marcadores()
+     {
+         return $this->hasMany(Marcador::class, 'marcador_id'); //Nota possui marcadores;
      }
 }
