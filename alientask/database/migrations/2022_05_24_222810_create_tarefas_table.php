@@ -21,7 +21,8 @@ return new class extends Migration
             $table->dateTime('data_inicio')->nullable();
             $table->dateTime('data_final_prevista')->nullable();
             $table->dateTime('data_conclusao');
-            $table->string('estado')->default('pendente');
+            $table->boolean('concluida')->default(0);
+            $table->foreignId('marcador_id')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });

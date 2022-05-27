@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('acao');
             $table->dateTime('data');
+            $table->foreignId('user_id');
             $table->foreignId('tarefa_id');
+            $table->foreignId('nota_id');
             $table->timestamps();
         });
     }

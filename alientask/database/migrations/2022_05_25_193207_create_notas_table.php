@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('conteudo');
             $table->foreignId('user_id');
             $table->timestamps();
-
         });
     }
 
