@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\NotaController;
+use App\Http\Controllers\TarefaController;
+use App\Models\Tarefa;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +24,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/add-nota',[NotaController::class,'store']);
+Route::resource('tarefas', TarefaController::class);
+
+Route::resource('notas', NotaController::class);
+//Condensa todos os métodos do controller;
+
 require __DIR__.'/auth.php';
