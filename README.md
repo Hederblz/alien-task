@@ -5,7 +5,7 @@ O Alien Task é um projeto da disciplina de Projeto e prática 2 do IFPE - Igara
 <ul>
   <li>Criação de perfil de usuário.</li>
   <li>Criação de tarefas a serem concluídas.</li>
-  <li>Conclusão de tarfeas apenas com um clique.</li>
+  <li>Conclusão de tarefas apenas com um clique.</li>
   <li>Cronômetro para as tarefas.</li>
   <li>Anotações</li>
   </ul>
