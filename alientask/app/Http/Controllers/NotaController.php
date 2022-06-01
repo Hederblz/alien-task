@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nota;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class NotaController extends Controller
@@ -15,7 +16,7 @@ class NotaController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
 
     /**
