@@ -60,4 +60,15 @@ class RegisteredUserController extends Controller
         User::findOrFail($id)->delete();
         return redirect('/');
     }
+
+    public function update(Request $request ,$id){
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->telefone = $request->telefone;
+        $user->password = Hash::make($request->password);
+        $user->update();
+        return redirect('/dashboard');
+    }
+
 }

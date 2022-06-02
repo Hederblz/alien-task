@@ -12,5 +12,15 @@
                 @csrf
                 <button type="submit">DELETAR</button>
             </form>
+
+            <form action="{{route('userupdate', Auth::user()->id)}}" method="POST">
+                @method('PUT')
+                @csrf
+                <input type="text" name="name" placeholder="name">
+                <input type="text" name="email" placeholder="email">
+                <input type="text" name="telefone" placeholder="telefone">
+                <input type="password" name="password" placeholder="password">
+                <button type="submit">mudar</button>
+            </form>
 </body>
 </html>

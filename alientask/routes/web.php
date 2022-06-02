@@ -33,4 +33,6 @@ Route::resource('notas', NotaController::class);
 
 Route::delete('/{id}', [RegisteredUserController::class, 'destroy'])->name('userdestroy');
 
+Route::put('/{id}', [RegisteredUserController::class, 'update'])->name('userupdate');
+
 require __DIR__.'/auth.php';
