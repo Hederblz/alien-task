@@ -81,7 +81,7 @@ class NotaController extends Controller
      * @param  \App\Models\Nota  $nota
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nota $nota)
+    public function update(Request $request, Nota $nota,$id)
     {
         $nota= Nota::findOrFail($id);
         $nota->titulo = $request->titulo;
