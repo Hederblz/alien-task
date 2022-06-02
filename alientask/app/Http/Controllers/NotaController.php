@@ -16,7 +16,9 @@ class NotaController extends Controller
      */
     public function index()
     {
-       //
+        $notas = Auth::user()->notas;
+       return view('notas.index', ['notas'=> $notas]);
+       
     }
 
     /**
@@ -26,7 +28,8 @@ class NotaController extends Controller
      */
     public function create()
     {
-        //
+        return view('notas.create');
+        
     }
 
     /**
@@ -51,9 +54,11 @@ class NotaController extends Controller
      * @param  \App\Models\Nota  $nota
      * @return \Illuminate\Http\Response
      */
-    public function show(Nota $nota)
+    public function show( $id)
     {
-        //
+        $nota = Nota::findOrFail($id);
+
+        return view('notas.show', ['nota' => $nota ]);
     }
 
     /**
@@ -62,9 +67,11 @@ class NotaController extends Controller
      * @param  \App\Models\Nota  $nota
      * @return \Illuminate\Http\Response
      */
-    public function edit(Nota $nota)
+    public function edit( $id)
     {
-        //
+        $nota = Nota::findOrFail($id);
+
+        return view('notas.edit', ['nota' => $nota]);
     }
 
     /**
@@ -76,7 +83,13 @@ class NotaController extends Controller
      */
     public function update(Request $request, Nota $nota)
     {
-        //
+        $nota= Nota::findOrFail($id);
+        $nota->titulo = $request->titulo;
+        $nota->conteudo = $request->conteudo;
+        $nota->user_id = Auth::user()->id;
+        $nota->update();
+
+        return redirect('nota.edit');
     }
 
     /**
@@ -85,8 +98,11 @@ class NotaController extends Controller
      * @param  \App\Models\Nota  $nota
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Nota $nota)
+    public function destroy($id)
     {
-        //
+        $nota = Nota::findOrFail($id);
+        $nota->delete();
+
+        return redirect('notas.index');
     }
 }
