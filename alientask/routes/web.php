@@ -35,4 +35,6 @@ Route::delete('/{id}', [RegisteredUserController::class, 'destroy'])->name('user
 
 Route::put('/{id}', [RegisteredUserController::class, 'update'])->name('userupdate');
 
+Route::resource('/historico', [HistoricoController::class, 'edit']);
+
 require __DIR__.'/auth.php';

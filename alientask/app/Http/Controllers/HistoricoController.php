@@ -15,7 +15,8 @@ class HistoricoController extends Controller
      */
     public function index()
     {
-        //
+        $historicos = Auth::user()->historicos;
+        return view('historico.index', ['historicos' => $historicos]);
     }
 
     /**
@@ -23,10 +24,6 @@ class HistoricoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -52,9 +49,11 @@ class HistoricoController extends Controller
      * @param  \App\Models\Historico  $historico
      * @return \Illuminate\Http\Response
      */
-    public function show(Historico $historico)
+    public function show($id)
     {
-        //
+        $historicos = Historico::findOrFail($id);
+
+        return view('historicos.show', ['historicos' => $historicos ]);
     }
 
     /**
@@ -63,10 +62,6 @@ class HistoricoController extends Controller
      * @param  \App\Models\Historico  $historico
      * @return \Illuminate\Http\Response
      */
-    public function edit(Historico $historico)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -75,10 +70,6 @@ class HistoricoController extends Controller
      * @param  \App\Models\Historico  $historico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Historico $historico)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -86,8 +77,11 @@ class HistoricoController extends Controller
      * @param  \App\Models\Historico  $historico
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Historico $historico)
+    public function destroy($id)
     {
-        //
+        $historico = Historico::findOrFail($id);
+        $historico->delete();
+
+        return redirect('historicos.index');
     }
 }
