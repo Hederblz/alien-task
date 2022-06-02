@@ -43,6 +43,7 @@ class TarefaController extends Controller
         $tarefa->data_inicio = $request->data_inicio;
         $tarefa->data_final_prevista = $request->data_final_prevista;
         $tarefa->marcador_id = $request->marcador_id;
+        $tarefa->user_id = Auth::user()->id;
 
         $tarefa->save();
 

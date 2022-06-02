@@ -18,7 +18,6 @@ class NotaController extends Controller
     {
         $notas = Auth::user()->notas;
        return view('notas.index', ['notas'=> $notas]);
-       
     }
 
     /**
@@ -29,7 +28,6 @@ class NotaController extends Controller
     public function create()
     {
         return view('notas.create');
-        
     }
 
     /**
@@ -86,7 +84,6 @@ class NotaController extends Controller
         $nota= Nota::findOrFail($id);
         $nota->titulo = $request->titulo;
         $nota->conteudo = $request->conteudo;
-        $nota->user_id = Auth::user()->id;
         $nota->update();
 
         return redirect('nota.edit');
