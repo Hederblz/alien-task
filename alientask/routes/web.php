@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\UserController;
@@ -35,6 +36,12 @@ Route::delete('/{id}', [RegisteredUserController::class, 'destroy'])->name('user
 
 Route::put('/{id}', [RegisteredUserController::class, 'update'])->name('userupdate');
 
-Route::resource('/historico', [HistoricoController::class, 'edit']);
+Route::get('/historico/index', [HistoricoController::class, 'index'])->name('historicoindex');
+
+Route::post('/historico/store', [HistoricoController::class, 'store'])->name('historicostore');
+
+Route::get('/historico/show/{id}', [HistoricoController::class, 'show'])->name('historicoshow');
+
+Route::delete('/historico/{id}', [HistoricoController::class, 'destroy'])->name('historicodestroy');
 
 require __DIR__.'/auth.php';
