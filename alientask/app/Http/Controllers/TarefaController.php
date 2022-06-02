@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TarefaController extends Controller
 {
@@ -14,7 +15,8 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        //
+        $tarefas = Auth::user()->tarefas;
+        return view('tarefas.index', ['tarefas' => $tarefas]);
     }
 
     /**
@@ -24,7 +26,7 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        //
+        return view('tarefas.create');
     }
 
     /**
@@ -35,7 +37,16 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tarefa = new Tarefa();
+        $tarefa->titulo = $request->titulo;
+        $tarefa->descricao = $request->descricao;
+        $tarefa->data_inicio = $request->data_inicio;
+        $tarefa->data_final_prevista = $request->data_final_prevista;
+        $tarefa->marcador_id = $request->marcador_id;
+
+        $tarefa->save();
+
+        return redirect('tarefa.index');
     }
 
     /**
@@ -44,9 +55,11 @@ class TarefaController extends Controller
      * @param  \App\Models\Tarefa  $tarefa
      * @return \Illuminate\Http\Response
      */
-    public function show(Tarefa $tarefa)
+    public function show($id)
     {
-        //
+        $tarefas = Tarefa::findOrFail($id);
+
+        return view('tarefas.show', ['tarefas' => $tarefas ]);
     }
 
     /**
@@ -55,9 +68,11 @@ class TarefaController extends Controller
      * @param  \App\Models\Tarefa  $tarefa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tarefa $tarefa)
+    public function edit($id)
     {
-        //
+        $tarefa = Tarefa::findOrFail($id);
+
+        return view('tarefas.edit', ['tarefa' => $tarefa]);
     }
 
     /**
@@ -67,9 +82,18 @@ class TarefaController extends Controller
      * @param  \App\Models\Tarefa  $tarefa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tarefa $tarefa)
+    public function update(Request $request, $id)
     {
-        //
+        $tarefa = Tarefa::findOrFail($id);
+        $tarefa->titulo = $request->titulo;
+        $tarefa->descricao = $request->descricao;
+        $tarefa->data_inicio = $request->data_inicio;
+        $tarefa->data_final_prevista = $request->data_final_prevista;
+        $tarefa->marcador_id = $request->marcador_id;
+
+        $tarefa->update();
+
+        return redirect('tarefa.edit');
     }
 
     /**
@@ -78,8 +102,11 @@ class TarefaController extends Controller
      * @param  \App\Models\Tarefa  $tarefa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tarefa $tarefa)
+    public function destroy($id)
     {
-        //
+        $tarefa = Tarefa::findOrFail($id);
+        $tarefa->delete();
+
+        return redirect('tarefas.index');
     }
 }
