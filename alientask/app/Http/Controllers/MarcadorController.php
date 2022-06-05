@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marcador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MarcadorController extends Controller
 {
@@ -13,7 +15,8 @@ class MarcadorController extends Controller
      */
     public function index()
     {
-        //
+        $marcadores = Auth::user()->marcadores;
+        return view('marcador.index', ['marcadores' => $marcadores]);
     }
 
     /**
@@ -23,7 +26,7 @@ class MarcadorController extends Controller
      */
     public function create()
     {
-        //
+        return view('marcador.create');
     }
 
     /**
@@ -34,7 +37,14 @@ class MarcadorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Marcador::create([
+            'titulo' => $request->titulo,
+            'cor' => $request->cor,
+            'tarefa_id' => $request->tarefa_id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect('marcador.index');
     }
 
     /**
@@ -45,7 +55,9 @@ class MarcadorController extends Controller
      */
     public function show($id)
     {
-        //
+        $marcadores = Marcador::findOrFail($id);
+
+        return view('marcador.show', ['marcadores' => $marcadores]);
     }
 
     /**
@@ -56,7 +68,9 @@ class MarcadorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marcadores = Marcador::findOrFail($id);
+
+        return view('marcador.edit', ['marcadores' => $marcadores]);
     }
 
     /**
@@ -66,9 +80,16 @@ class MarcadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Marcador $marcador, $id)
     {
-        //
+        $marcador = Marcador::findOrFail($id);
+        $marcador->titulo = $request->titulo;
+        $marcador->cor = $request->cor;
+        $marcador->tarefa_id = $request->tarefa_id;
+
+        $marcador->update();
+
+        return redirect('marcador.edit');
     }
 
     /**
@@ -79,6 +100,9 @@ class MarcadorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $marcador = Marcador::findOrFail($id);
+        $marcador->delete();
+
+        return redirect('marcador.index');
     }
 }

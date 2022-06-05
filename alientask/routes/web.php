@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HistoricoController;
+use App\Http\Controllers\MarcadorController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,8 @@ Route::resource('tarefas', TarefaController::class);
 Route::resource('notas', NotaController::class);
 //Condensa todos os métodos do controller;
 
+Route::resource('marcador', MarcadorController::class);
+
 Route::delete('/{id}', [RegisteredUserController::class, 'destroy'])->name('userdestroy');
 
 Route::put('/{id}', [RegisteredUserController::class, 'update'])->name('userupdate');
@@ -44,4 +47,4 @@ Route::get('/historico/show/{id}', [HistoricoController::class, 'show'])->name('
 
 Route::delete('/historico/{id}', [HistoricoController::class, 'destroy'])->name('historicodestroy');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
