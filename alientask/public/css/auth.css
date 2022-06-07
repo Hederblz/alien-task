@@ -1,0 +1,18 @@
+#submit
+{
+    padding: .8rem 2rem .8rem 2rem;
+    width: 395px;
+    margin-top: .5rem;
+    border-radius: 8px;
+    outline: none;
+    border-color: transparent;
+    background: #FFF;
+    color: rgba(148, 0, 211, .8);
+    transition: background 1s, color .5s;
+}
+
+#submit:hover
+{
+    background: rgba(148, 0, 211, 1);
+    color: #FFF;
+}

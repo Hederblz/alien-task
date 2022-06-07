@@ -31,13 +31,14 @@ Route::get('/dashboard', function () {
 Route::resource('tarefas', TarefaController::class);
 
 Route::resource('notas', NotaController::class);
-//Condensa todos os métodos do controller;
 
 Route::resource('marcador', MarcadorController::class);
 
 Route::delete('/{id}', [RegisteredUserController::class, 'destroy'])->name('userdestroy');
+//@TODO: ALTERAR DEPOIS;
 
 Route::put('/{id}', [RegisteredUserController::class, 'update'])->name('userupdate');
+//@TODO: ALTERAR DEPOIS;
 
 Route::get('/historico/index', [HistoricoController::class, 'index'])->name('historicoindex');
 
