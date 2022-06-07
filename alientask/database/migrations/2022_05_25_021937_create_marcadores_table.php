@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('titulo');
             $table->string('cor');
-            $table->foreignId('tarefa_id');
+            $table->foreignId('tarefa_id')->nullable();
             $table->foreignId('user_id');
         });
     }
