@@ -1,43 +1,66 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
 
-@section('title', 'Registrar-se')
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-@section('style', 'auth')
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-@section('content')
+            <!-- Name -->
+            <div>
+                <x-label for="name" :value="__('Name')" />
 
-<section class="container" id="top">
-    <a href="/">
-        <ion-icon name="planet-outline" id="logo"></ion-icon>
-    </a>
-</section>
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            </div>
 
-<section class="container bg-purple-clip">
-    <h2 style="padding: 1rem">Registrar-se</h2>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-        <div class="form-group">
-            <label for="name">Nome:</label>
-            <input type="text" name="name" id="name" class="form-control" required>
-        </div>
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="email" :value="__('Email')" />
 
-        <div class="form-group">
-        <label for="exampleInputEmail1">Email:</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
-      </div>
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            </div>
 
-      <div class="form-group">
-        <label for="exampleInputPassword1">Senha:</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
-        <small id="emailHelp" class="form-text" style="color: #FFF">
-            Não insira senhas fáceis como: "1234"...</small>
-      </div>
+            <!--Telephone field-->
+            <div class="mt-4">
+                <x-label for="telephone" :value="__('telephone')" />
 
-      <button type="submit" id="submit">Registrar-se</button>
-    </form>
-</section>
+                <x-input id="telephone" class="block mt-1 w-full" type="tel" name="telefone" :value="old('telefone')" required />
+            </div>
+            
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
 
-<section class="container bg-purple">
-    &nbsp; {{--Código para renderizar espaço vazio--}}
-</section>
-@endsection
+                <x-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="new-password" />
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mt-4">
+                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                <x-input id="password_confirmation" class="block mt-1 w-full"
+                                type="password"
+                                name="password_confirmation" required />
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
+
+                <x-button class="ml-4">
+                    {{ __('Register') }}
+                </x-button>
+            </div>
+        </form>
+    </x-auth-card>
+</x-guest-layout>

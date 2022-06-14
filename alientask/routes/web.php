@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\MarcadorController;
@@ -47,5 +48,8 @@ Route::post('/historico/store', [HistoricoController::class, 'store'])->name('hi
 Route::get('/historico/show/{id}', [HistoricoController::class, 'show'])->name('historicoshow');
 
 Route::delete('/historico/{id}', [HistoricoController::class, 'destroy'])->name('historicodestroy');
+
+// Seção de autenticação ->
+Route::post('/loginuser', [AuthenticatedSessionController::class, 'store'])->name('loginuser');
 
 require __DIR__ . '/auth.php';
