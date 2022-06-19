@@ -20,9 +20,7 @@ class HistoricoFactory extends Factory
     public function definition()
     {
         return [
-            //
             'acao' => $this->faker->sentence(),
-            'data' => $this->faker->date(),
             'tarefa_id' => Tarefa::all()->random()->id,
             'user_id' => User::all()->random()->id,
             'nota_id' => Nota::all()->random()->id

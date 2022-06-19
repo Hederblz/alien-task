@@ -11,17 +11,26 @@ class Nota extends Model
      protected $fillable  = [
         'titulo',
          'conteudo',
-         'marcador_id',
+         'marcadores',
          'user_id'
      ];
 
+     protected $casts = [
+      'marcadores' => 'array'
+  ];
+
      public function dono(){
 
-        return $this->belongsTo(User::class, 'user_id'); //Nota pertence ao Usuario;
+        return $this->belongsTo(User::class, 'user_id');
      }
 
      public function marcadores()
      {
-         return $this->hasMany(Marcador::class, 'marcador_id'); //Nota possui marcadores;
+         return $this->hasMany(Marcador::class);
+     }
+
+     public function historico()
+     {
+        return $this->morphMany(Historico::class, 'registravel');
      }
 }

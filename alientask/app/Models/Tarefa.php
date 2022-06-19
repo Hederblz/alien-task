@@ -12,22 +12,29 @@ class Tarefa extends Model
     protected $fillable = [
         'titulo',
         'descricao',
-        'data_criacao',
-        'data_inicio',
         'data_final_prevista',
         'data_conclusao',
         'concluida',
-        'marcador_id',
-        'user_id'
+        'marcadores',
+        'user_id',
+    ];
+
+    protected $casts = [
+        'marcadores' => 'array'
     ];
 
     public function dono()
     {
-        return $this->belongsTo(User::class, 'user_id'); //Tarefa pertence ao Usuario;
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function marcadores()
     {
-        return $this->hasMany(Marcador::class, 'tarefa_id'); //Tarefa possui marcadores;
+        return $this->hasMany(Marcador::class);
+    }
+
+    public function historico()
+    {
+       return $this->morphMany(Historico::class, 'registravel_id');
     }
 }

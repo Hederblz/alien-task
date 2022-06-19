@@ -21,7 +21,6 @@ class MarcadorFactory extends Factory
         return [
             'titulo' => $this->faker->word(),
             'cor' => $this->faker->hexColor(),
-            'tarefa_id' => Tarefa::all()->random()->id,
             'user_id' => User::all()->random()->id
         ];
     }

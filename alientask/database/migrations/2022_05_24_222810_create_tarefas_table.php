@@ -17,12 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descricao')->nullable();
-            $table->dateTime('data_criacao');
-            $table->dateTime('data_inicio')->nullable();
             $table->dateTime('data_final_prevista')->nullable();
-            $table->dateTime('data_conclusao');
+            $table->dateTime('data_conclusao')->nullable();
             $table->boolean('concluida')->default(0);
-            $table->foreignId('marcador_id')->nullable();
+            $table->json('marcadores')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });

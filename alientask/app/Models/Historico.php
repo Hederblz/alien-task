@@ -12,9 +12,8 @@ class Historico extends Model
     protected $fillable = [
         'user_id',
         'acao',
-        'data',
-        'tarefa_id',
-        'nota_id'
+        'registravel_id',
+        'registravel_type',
     ];
 
     public function dono()
@@ -22,13 +21,8 @@ class Historico extends Model
         return $this->belongsTo(User::class, 'user_id'); //Historico pertence a usuario;
     }
 
-    public function tarefas()
+    public function registravel()
     {
-        return $this->hasMany(Tarefa::class, 'tarefa_id'); //Historico possui tarefas;
-    }
-
-    public function notas()
-    {
-        return $this->hasMany(Nota::class, 'nota_id'); //Historico possui notas;
+        return $this->morphTo();
     }
 }

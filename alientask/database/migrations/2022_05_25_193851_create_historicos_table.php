@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('historicos', function (Blueprint $table) {
             $table->id();
             $table->string('acao');
-            $table->dateTime('data');
             $table->foreignId('user_id');
-            $table->foreignId('tarefa_id');
-            $table->foreignId('nota_id');
+            $table->morphs('registravel_id');
+            $table->string('registravel_type');
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Marcador;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +21,6 @@ class TarefaFactory extends Factory
         return [
             'titulo' => $this->faker->sentence(),
             'descricao' => $this->faker->sentence(),
-            'data_criacao' => $this->faker->date(),
             'data_conclusao' => $this->faker->date(),
             'concluida' => $this->faker->boolean(),
             'user_id' => User::all()->random()->id

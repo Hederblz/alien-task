@@ -22,10 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             UserSeeder::class,
-            NotaSeeder::class,
             TarefaSeeder::class,
-            MarcadorSeeder::class,
-            HistoricoSeeder::class
+            NotaSeeder::class,
         ]);
     }
 }
