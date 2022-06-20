@@ -62,4 +62,8 @@ class User extends Authenticatable
         return $this->hasMany(Marcador::class, 'user_id'); //Usuario possui marcadores;
     }
 
+    public function logs() {
+        return $this->hasMany(Log::class, 'user_id');
+    }
+
 }
