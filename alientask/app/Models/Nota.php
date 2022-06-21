@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Nota extends Model
 {
     use HasFactory;
+    
      protected $fillable  = [
         'titulo',
          'conteudo',
@@ -16,8 +17,8 @@ class Nota extends Model
      ];
 
      protected $casts = [
-      'marcadores' => 'array'
-  ];
+        'marcadores' => 'array'
+    ];
 
      public function dono(){
 
@@ -28,9 +29,5 @@ class Nota extends Model
      {
          return $this->hasMany(Marcador::class);
      }
-
-     public function historico()
-     {
-        return $this->morphMany(Historico::class, 'registravel');
-     }
+     
 }

@@ -16,7 +16,7 @@ class MarcadorController extends Controller
     public function index()
     {
         $marcadores = Auth::user()->marcadores;
-        return view('marcador.index', ['marcadores' => $marcadores]);
+        return view('marcadores.index', compact($marcadores));
     }
 
     /**
@@ -26,7 +26,7 @@ class MarcadorController extends Controller
      */
     public function create()
     {
-        return view('marcador.create');
+        return view('marcadores.index');
     }
 
     /**
@@ -37,65 +37,61 @@ class MarcadorController extends Controller
      */
     public function store(Request $request)
     {
-        Marcador::create([
-            'titulo' => $request->titulo,
-            'cor' => $request->cor,
-            'tarefa_id' => $request->tarefa_id,
-            'user_id' => Auth::user()->id
-        ]);
+        $marcador = new Marcador();
+        $marcador->titulo = $request->titulo;
+        $marcador->cor = $request->cor;
+        $marcador->user_id = Auth::user()->id;
+        $marcador->save();
 
-        return redirect('marcador.index');
+        return redirect('marcadores.index')
+        ->with('msg', 'Marcador ' . $marcador->titulo . ' criado com sucesso!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Marcador  $marcador
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Marcador $marcador)
     {
-        $marcadores = Marcador::findOrFail($id);
-
-        return view('marcador.show', ['marcadores' => $marcadores]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Marcador  $marcador
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $marcadores = Marcador::findOrFail($id);
-
-        return view('marcador.edit', ['marcadores' => $marcadores]);
+        $marcador = Marcador::findOrFail($id);
+        return view('marcadores.edit', compact($marcador));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Marcador  $marcador
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marcador $marcador, $id)
+    public function update(Request $request, $id)
     {
         $marcador = Marcador::findOrFail($id);
         $marcador->titulo = $request->titulo;
-        $marcador->cor = $request->cor;
-        $marcador->tarefa_id = $request->tarefa_id;
-
+        $marcador->cor;
         $marcador->update();
 
-        return redirect('marcador.edit');
+        return redirect('marcadores.index')
+        ->with('msg', 'Marcador ' . $marcador->titulo . ' atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Marcador  $marcador
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -103,6 +99,7 @@ class MarcadorController extends Controller
         $marcador = Marcador::findOrFail($id);
         $marcador->delete();
 
-        return redirect('marcador.index');
+        return redirect('marcadores.index')
+        ->with('msg', 'Marcador ' . $marcador->titulo . ' excluído com sucesso!');
     }
 }

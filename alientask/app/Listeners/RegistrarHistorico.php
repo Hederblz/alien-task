@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\UserEvent;
 use App\Models\Historico;
+use App\Models\Log;
 use App\Models\Nota;
 use App\Models\Tarefa;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -44,7 +45,7 @@ class RegistrarHistorico
             $type = 'marcador';
         }
 
-        Historico::create([
+        Log::create([
             'user_id' => $event->user->id,
             'acao' => $event->action,
             'registravel_id' => $event->registravel->id,

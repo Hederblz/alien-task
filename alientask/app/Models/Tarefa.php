@@ -32,9 +32,5 @@ class Tarefa extends Model
     {
         return $this->hasMany(Marcador::class);
     }
-
-    public function historico()
-    {
-       return $this->morphMany(Historico::class, 'registravel_id');
-    }
+    
 }

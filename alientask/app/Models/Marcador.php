@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Marcador extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'titulo',
         'cor',
@@ -25,8 +25,8 @@ class Marcador extends Model
         return $this->belongsToMany(Tarefa::class);
     }
 
-    public function historico()
+    public function notas()
     {
-        return $this->morphMany(Historico::class, 'registravel');
+        return $this->belongsToMany(Nota::class);
     }
 }

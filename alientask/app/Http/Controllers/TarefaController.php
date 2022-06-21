@@ -107,6 +107,21 @@ class TarefaController extends Controller
     {
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->delete();
+        
+        return redirect('tarefas.index');
+    }
+    
+    public function check($id)
+    {
+        $tarefa = Tarefa::findOrFail($id);
+        if(!$tarefa->concluida)
+        {
+            $tarefa->concluida = 1;
+        }
+        else
+        {
+            $tarefa->concluida = 0;
+        }
 
         return redirect('tarefas.index');
     }

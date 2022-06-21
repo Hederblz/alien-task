@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descricao')->nullable();
-            $table->dateTime('data_final_prevista')->nullable();
-            $table->dateTime('data_conclusao')->nullable();
+            $table->date('data_final_prevista')->nullable();
+            $table->date('data_conclusao')->nullable();
             $table->boolean('concluida')->default(0);
             $table->json('marcadores')->nullable();
             $table->foreignId('user_id');

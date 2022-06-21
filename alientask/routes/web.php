@@ -29,27 +29,34 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('tarefas', TarefaController::class);
+Route::middleware('auth')->group(function()
+{
+    Route::get('/tarefasindex', [TarefaController::class, 'index'])->name('tarefas-index');
+    Route::get('/tarefasshow/{id}', [TarefaController::class, 'show'])->name('tarefas-show');
+    Route::get('/tarefascreate', [TarefaController::class, 'create'])->name('tarefas-create');
+    Route::get('/tarefasedit/{id}', [TarefaController::class, 'edit'])->name('tarefas-edit');
 
-Route::resource('notas', NotaController::class);
+    Route::post('/tarefasstore', [TarefaController::class, 'store'])->name('tarefas-store');
+    Route::patch('/tarefasupdate/{id}', [TarefaController::class, 'update'])->name('tarefas-update');
+    Route::patch('/tarefaschek/{id}', [TarefaController::class, 'check'])->name('tarefas-check');
+    Route::delete('/tarefasdestroy/{id}', [TarefaController::class, 'destroy'])->name('tarefas-destroy');
 
-Route::resource('marcador', MarcadorController::class);
 
-Route::delete('/{id}', [RegisteredUserController::class, 'destroy'])->name('userdestroy');
-//@TODO: ALTERAR DEPOIS;
+    Route::get('/notasindex', [NotaController::class, 'index'])->name('notas-index');
+    Route::get('/notasshow/{id}', [NotaController::class, 'show'])->name('notas-show');
+    Route::get('/notascreate', [NotaController::class, 'create'])->name('notas-create');
+    Route::get('/notasedit', [NotaController::class, 'edit'])->name('notas-edit');
 
-Route::put('/{id}', [RegisteredUserController::class, 'update'])->name('userupdate');
-//@TODO: ALTERAR DEPOIS;
+    Route::post('/notasstore', [NotaController::class, 'store'])->name('notas-store');
+    Route::patch('/notasupdate/{id}', [NotaController::class, 'update'])->name('notas-update');
+    Route::delete('/notasdelete/{id}', [NotaController::class, 'destroy'])->name('notas-destroy');
 
-Route::get('/historico/index', [HistoricoController::class, 'index'])->name('historicoindex');
 
-Route::post('/historico/store', [HistoricoController::class, 'store'])->name('historicostore');
-
-Route::get('/historico/show/{id}', [HistoricoController::class, 'show'])->name('historicoshow');
-
-Route::delete('/historico/{id}', [HistoricoController::class, 'destroy'])->name('historicodestroy');
-
-// Seção de autenticação ->
-Route::post('/loginuser', [AuthenticatedSessionController::class, 'store'])->name('loginuser');
+    Route::get('/marcadoresindex', [MarcadorController::class, 'index'])->name('marcadores-index');
+    
+    Route::post('/marcadoresstore', [MarcadorController::class, 'store'])->name('marcadores-store');
+    Route::patch('/marcadoresupdate/{id}', [MarcadorController::class, 'update'])->name('marcadores-update');
+    Route::delete('/marcadoresdestroy', [MarcadorController::class, 'destroy'])->name('marcadores-destroy');
+});
 
 require __DIR__ . '/auth.php';

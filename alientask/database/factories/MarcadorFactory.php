@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Tarefa;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,9 +17,7 @@ class MarcadorFactory extends Factory
     public function definition()
     {
         return [
-            'titulo' => $this->faker->word(),
-            'cor' => $this->faker->hexColor(),
-            'user_id' => User::all()->random()->id
+            //
         ];
     }
 }

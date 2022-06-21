@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('marcadores', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('titulo');
-            $table->string('cor');
+            $table->string('titulo', 700);
+            $table->string('cor')->nullable();
             $table->foreignId('user_id');
+            $table->timestamps();
         });
     }
 
