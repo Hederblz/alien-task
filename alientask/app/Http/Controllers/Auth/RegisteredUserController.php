@@ -56,19 +56,32 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    public function destroy($id){
-        User::findOrFail($id)->delete();
-        return redirect('/');
-    }
-
-    public function update(Request $request ,$id){
-        $user = User::findOrFail($id);
+    
+    public function updateData(Request $request){
+        $user = Auth::user()->id;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->telefone = $request->telefone;
         $user->password = Hash::make($request->password);
         $user->update();
-        return redirect('/dashboard');
+
+        return redirect('dashboard');
     }
 
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user()->id;
+        $user->password = Hash::make($request->password);
+        $user->update();
+
+        return redirect('user.show')->with('msg', 'Senha alterada com sucesso!');
+    }
+
+    public function destroy($id){
+        $user = Auth::user()->id;
+        $user->delete();
+
+        return redirect('dashboard')->with('msg', 'Conta excluída com sucesso!');
+    }
+    
 }
