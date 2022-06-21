@@ -8,6 +8,7 @@ use App\Http\Controllers\NotaController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\UserController;
 use App\Models\Tarefa;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $tarefas = Auth::user()->tarefas;
+    return view('dashboard', ['tarefas' => $tarefas]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function()
