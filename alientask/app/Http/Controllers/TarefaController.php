@@ -90,7 +90,7 @@ class TarefaController extends Controller
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->update();
 
-        return redirect('dashboard')->with('msg', 'Tarefa atualizda com sucesso!');
+        return redirect('dashboard')->with('msg', 'Tarefa atualizada com sucesso!');
     }
 
     /**
@@ -121,5 +121,23 @@ class TarefaController extends Controller
        $tarefa->update();
 
        return redirect('dashboard');
+    }
+
+    public function trancar($id)
+    {
+        $tarefa = Tarefa::findOrFail($id);
+        if(!$tarefa->trancada)
+        {
+            $tarefa->trancada = 1;
+            $tarefa->update();
+            return redirect('dashboard')->with('msg', 'Tarefa ' . $tarefa->titulo . ' trancada.');
+        }
+        else
+        {
+            $tarefa->trancada = 0;
+            $tarefa->update();
+            return redirect('dashboard')->with('msg', 'Tarefa ' . $tarefa->titulo . ' destrancada.');
+        }
+
     }
 }

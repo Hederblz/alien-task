@@ -9,11 +9,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <h2>Criar tarefa</h2>
                     <form action="{{route('tarefas-store')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="titulo">Título</label>
-                        <input type="text" name="titulo" id="ttulo" class="form-control" required>
+                        <input type="text" name="titulo" id="titulo" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="descricao">Descricao</label>
@@ -23,7 +24,7 @@
                         <label for="data_final_prevista">Data final prevista(opcional)</label>
                         <input type="date" name="data_final_prevista" id="data_final_prevista" class="form-control">
                     </div>
-                    <button type="submit">Criar tarefa</button>
+                    <button type="submit" class="btn" id="add">Criar tarefa</button>
                     </form>
                 </div>
             </div>

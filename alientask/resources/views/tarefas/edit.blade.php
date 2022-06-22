@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                <form action="{{route('tarefas-update', Auth::user()->id)}}" method="POST">
+                <form action="{{route('tarefas-update', $tarefa->id)}}" method="POST">
                 @method('PATCH')
                 @csrf
                 <div class="form-group">
@@ -18,11 +18,11 @@
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
-                    <textarea name="descricao" id="descricao" class="form-control" value="{{$tarefa->descricao}}"></textarea>
+                    <input type="text" name="descricao" id="descricao" value="{{$tarefa->descricao}}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="data_final_prevista">Data final prevista(opcional)</label>
-                    <input type="data" name="data_final_prevista" id="data_final_prevista" class="form-control" value="{{$tarefa->data_final_prevista}}">
+                    <input type="date" name="data_final_prevista" id="data_final_prevista" class="form-control" value="{{$tarefa->data_final_prevista}}">
                 </div>
                 <button type="submit" class="btn btn-success">Alterar</button>
                 </form>

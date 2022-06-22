@@ -28,7 +28,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     $tarefas = Auth::user()->tarefas;
-    return view('dashboard', ['tarefas' => $tarefas]);
+    $notas = Auth::user()->notas;
+    return view('dashboard', ['tarefas' => $tarefas, 'notas' => $notas]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function()
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function()
     Route::post('/tarefasstore', [TarefaController::class, 'store'])->name('tarefas-store');
     Route::patch('/tarefasupdate/{id}', [TarefaController::class, 'update'])->name('tarefas-update');
     Route::patch('/tarefaschek/{id}', [TarefaController::class, 'check'])->name('tarefas-check');
+    Route::patch('/tarefastrancar/{id}', [TarefaController::class, 'trancar'])->name('tarefas-trancar');
     Route::delete('/tarefasdestroy/{id}', [TarefaController::class, 'destroy'])->name('tarefas-destroy');
 
 

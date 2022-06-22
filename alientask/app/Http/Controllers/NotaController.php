@@ -43,7 +43,7 @@ class NotaController extends Controller
             'conteudo' => $request->conteudo,
             'user_id' => Auth::user()->id
     ]);
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('msg', 'Nota criada com sucesso!');
     }
 
     /**
@@ -56,7 +56,7 @@ class NotaController extends Controller
     {
         $nota = Nota::findOrFail($id);
 
-        return view('notas.show', ['nota' => $nota ]);
+        return view('notas.show', ['nota' => $nota]);
     }
 
     /**
@@ -86,7 +86,7 @@ class NotaController extends Controller
         $nota->conteudo = $request->conteudo;
         $nota->update();
 
-        return redirect('nota.edit');
+        return redirect('dashboard')->with('msg', 'Nota atualizada com sucesso!');
     }
 
     /**
@@ -100,6 +100,6 @@ class NotaController extends Controller
         $nota = Nota::findOrFail($id);
         $nota->delete();
 
-        return redirect('notas.index');
+        return redirect('dashboard')->with('msg', 'Nota excluída com sucesso!');
     }
 }

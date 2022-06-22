@@ -1407,13 +1407,41 @@ select {
   border-radius: 16px;
 }
 
-#task
-.btn
+#msg
 {
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  background: rgba(148, 0, 211, .6);
+  padding: 1rem;
+  border-radius: 10px;
+  color: #FFF;
 }
 
 #msg
+span
 {
-  background: rgba(127, 255, 0, .6);
+  font-size: 1em;
+}
+
+#msg
+#close
+{
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+#add
+{
+  background: #9400D3;
+  color: #FFF;
+  margin: .5rem;
+}
+
+#text,
+#note
+{
+  word-wrap: break-word;
 }
