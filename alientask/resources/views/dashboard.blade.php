@@ -11,10 +11,23 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2>Tarefas</h2>
                     @if ($tarefas->count() > 0)
-                    @foreach ($tarefas as $tarefa)
-
-                    @endforeach
-                        
+                    <ul>
+                        @foreach ($tarefas as $tarefa)
+                        <li>{{$tarefa->titulo}}</li>
+                        <li>{{$tarefa->descricao}}</li>
+                        <li>{{$tarefa->data_final_prevista}}</li>
+                        @endforeach
+                        <li><a href="{{route('tarefas-edit', $tarefa->id)}}">Editar</a></li>
+                        <li>
+                            <form action="{{route('tarefas-destroy', $tarefa->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                            </form>
+                        </li>
+                    </ul>
+                    @else
+                    <h2>Você ainda não possui tarefas. <a href="{{route('tarefas-create')}}" class="btn btn-success">Criar tarefa</a></h2>
                     @endif
                 </div>
             </div>

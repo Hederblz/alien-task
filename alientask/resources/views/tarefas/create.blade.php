@@ -23,10 +23,7 @@
                         <label for="data_final_prevista">Data final prevista(opcional)</label>
                         <input type="date" name="data_final_prevista" id="data_final_prevista" class="form-control">
                     </div>
-                    <div class="form-group"></div>
-                    @if ($)
-                        
-                    @endif
+                    <button type="submit">Criar tarefa</button>
                     </form>
                 </div>
             </div>
