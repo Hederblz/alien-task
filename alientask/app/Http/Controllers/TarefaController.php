@@ -41,12 +41,11 @@ class TarefaController extends Controller
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
         $tarefa->data_final_prevista = $request->data_final_prevista;
-        $tarefa->marcadores = $request->marcadores;
+        $tarefa->etiquetas = $request->etiquetas;
         $tarefa->user_id = Auth::user()->id;
-
         $tarefa->save();
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with('msg', 'Tarefa criada com sucesso!');
     }
 
     /**
@@ -87,13 +86,11 @@ class TarefaController extends Controller
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
-        $tarefa->data_inicio = $request->data_inicio;
         $tarefa->data_final_prevista = $request->data_final_prevista;
-        $tarefa->marcador_id = $request->marcador_id;
-
+        $tarefa->etiquetas = $request->etiquetas;
         $tarefa->update();
 
-        return redirect('tarefa.edit');
+        return redirect('dashboard')->with('msg', 'Tarefa atualizda com sucesso!');
     }
 
     /**
@@ -107,21 +104,22 @@ class TarefaController extends Controller
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->delete();
         
-        return redirect('tarefas.index');
+        return redirect('dashboard')->with('msg', 'Tarefa excluída com sucesso!');
     }
     
     public function check($id)
     {
-        $tarefa = Tarefa::findOrFail($id);
-        if(!$tarefa->concluida)
-        {
-            $tarefa->concluida = 1;
-        }
-        else
-        {
-            $tarefa->concluida = 0;
-        }
+       $tarefa = Tarefa::findOrFail($id);
+       if(!$tarefa->concluida)
+       {
+        $tarefa->concluida = 1;
+       }
+       else
+       {
+        $tarefa->concluida = 0;
+       }
+       $tarefa->update();
 
-        return redirect('tarefas.index');
+       return redirect('dashboard');
     }
 }

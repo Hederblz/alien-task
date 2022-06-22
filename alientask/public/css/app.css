@@ -5,6 +5,12 @@
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
 
+/* MEXER NO FINAL */
+/* MEXER NO FINAL */
+/* MEXER NO FINAL */
+/* MEXER NO FINAL */
+
+
 *,
 ::before,
 ::after {
@@ -1390,3 +1396,24 @@ select {
   }
 }
 
+/* INICIO */
+
+#task
+{
+  align-items: center;
+  padding: 2rem;
+  justify-content: space-evenly;
+  margin: .5rem;
+  border-radius: 16px;
+}
+
+#task
+.btn
+{
+  align-items: center;
+}
+
+#msg
+{
+  background: rgba(127, 255, 0, .6);
+}
