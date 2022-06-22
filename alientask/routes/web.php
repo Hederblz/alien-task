@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function()
 
     Route::post('/notasstore', [NotaController::class, 'store'])->name('notas-store');
     Route::patch('/notasupdate/{id}', [NotaController::class, 'update'])->name('notas-update');
+    Route::patch('/notastrancar/{id}', [NotaController::class, 'trancar'])->name('notas-trancar');
     Route::delete('/notasdelete/{id}', [NotaController::class, 'destroy'])->name('notas-destroy');
 
 

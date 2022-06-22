@@ -83,25 +83,37 @@
                                 <div class="row">
                                     @if($notas->count() > 0)
                                     @foreach ($notas as $nota)
-                                    <div class="col shadow" id="note">
-                                        <div class="row">
-                                            <h3>{{$nota->titulo}}</h3>
+                                    <div class="card shadow" style="width: 20rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{$nota->titulo}}</h5>
+                                            <p class="card-text">{{$nota->conteudo}}</p>
+                                            <div class="row">
+            
+                                                <div class="col">
+                                                    <form action="{{route('notas-trancar', $tarefa->id)}}" method="post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        @if (!$tarefa->trancada)
+                                                        <button type="submit" class="btn btn-secondary" id="add"><ion-icon name="lock-open-outline"></ion-icon></button>
+                                                        @else
+                                                        <button type="submit" class="btn btn-secondary"><ion-icon name="lock-closed-outline"></ion-icon></button>
+                                                        @endif
+                                                    </form>
+                                                </div>
+            
+                                                <div class="col">
+                                                    <a href="{{route('notas-edit', $tarefa->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
+                                                </div>
+                    
+                                                <div class="col">
+                                                    <form action="{{route('tarefas-destroy', $tarefa->id)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <p>{{$nota->conteudo}}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <a href="{{route('notas-edit', $nota->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
-                                    </div>
-        
-                                    <div class="col">
-                                        <form action="{{route('notas-destroy', $nota->id)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>
-                                        </form>
                                     </div>
                                     @endforeach
                                     @else

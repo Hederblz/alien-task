@@ -81,8 +81,15 @@ class NotaController extends Controller
      */
     public function update(Request $request, Nota $nota,$id)
     {
-        $nota= Nota::findOrFail($id);
-        $nota->titulo = $request->titulo;
+        $nota = Nota::findOrFail($id);
+        if(empty($request->titulo))
+        {
+            $nota->titulo = 'Nota sem titulo';
+        }
+        else
+        {
+            $nota->titulo = $request->titulo;
+        }
         $nota->conteudo = $request->conteudo;
         $nota->update();
 
@@ -101,5 +108,22 @@ class NotaController extends Controller
         $nota->delete();
 
         return redirect('dashboard')->with('msg', 'Nota excluída com sucesso!');
+    }
+
+    public function trancar($id)
+    {
+        $nota = Nota::findOrFail($id);
+        if(!$nota->trancada)
+        {
+            $nota->trancada = 1;
+            $nota->update();
+            return redirect('dashboard')->with('msg', 'Tarefa ' . $nota->titulo . ' trancada.');
+        }
+        else
+        {
+            $nota->trancada = 0;
+            $nota->update();
+            return redirect('dashboard')->with('msg', 'Tarefa ' . $nota->titulo . ' destrancada.');
+        }
     }
 }
