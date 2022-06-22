@@ -40,14 +40,13 @@ class TarefaController extends Controller
         $tarefa = new Tarefa();
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
-        $tarefa->data_inicio = $request->data_inicio;
         $tarefa->data_final_prevista = $request->data_final_prevista;
-        $tarefa->marcador_id = $request->marcador_id;
+        $tarefa->marcadores = $request->marcadores;
         $tarefa->user_id = Auth::user()->id;
 
         $tarefa->save();
 
-        return redirect('tarefa.index');
+        return redirect('dashboard');
     }
 
     /**

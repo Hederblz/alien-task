@@ -12,22 +12,21 @@ class Nota extends Model
      protected $fillable  = [
         'titulo',
          'conteudo',
-         'marcadores',
+         'etiquetas',
          'user_id'
      ];
 
      protected $casts = [
-        'marcadores' => 'array'
+        'etiquetas' => 'array'
     ];
 
      public function dono(){
 
         return $this->belongsTo(User::class, 'user_id');
      }
-
-     public function marcadores()
-     {
-         return $this->hasMany(Marcador::class);
-     }
      
+     public function etiquetas()
+     {
+      return $this->hasMany(Etiqueta::class);
+     }
 }

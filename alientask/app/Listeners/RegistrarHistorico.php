@@ -42,7 +42,7 @@ class RegistrarHistorico
         }
         else
         {
-            $type = 'marcador';
+            $type = 'etiqueta';
         }
 
         Log::create([

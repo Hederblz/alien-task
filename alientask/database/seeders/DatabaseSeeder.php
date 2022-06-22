@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TarefaSeeder::class,
             NotaSeeder::class,
+            EtiquetaSeeder::class
         ]);
     }
 }

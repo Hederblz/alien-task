@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('marcadores', function (Blueprint $table) {
+        Schema::create('etiquetas', function (Blueprint $table) {
             $table->id();
             $table->string('titulo', 700);
-            $table->string('cor')->nullable();
+            $table->string('cor')->default('#9400D3'); //Código da cor DarkViolet;
             $table->foreignId('user_id');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('marcadores');
+        Schema::dropIfExists('etiquetas');
     }
 };

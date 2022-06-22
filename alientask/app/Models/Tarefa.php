@@ -15,12 +15,12 @@ class Tarefa extends Model
         'data_final_prevista',
         'data_conclusao',
         'concluida',
-        'marcadores',
+        'etiquetas',
         'user_id',
     ];
 
     protected $casts = [
-        'marcadores' => 'array'
+        'etiquetas' => 'array'
     ];
 
     public function dono()
@@ -28,9 +28,9 @@ class Tarefa extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function marcadores()
+    public function etiquetas()
     {
-        return $this->hasMany(Marcador::class);
+        return $this->hasMany(Etiqueta::class);
     }
     
 }

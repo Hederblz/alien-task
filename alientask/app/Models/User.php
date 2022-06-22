@@ -52,9 +52,9 @@ class User extends Authenticatable
         return $this->hasMany(Nota::class, 'user_id');
     }
 
-    public function marcadores()
+    public function etiquetas()
     {
-        return $this->hasMany(Marcador::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function logs() {

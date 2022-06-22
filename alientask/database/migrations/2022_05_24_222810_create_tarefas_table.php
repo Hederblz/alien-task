@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('data_final_prevista')->nullable();
             $table->date('data_conclusao')->nullable();
             $table->boolean('concluida')->default(0);
-            $table->json('marcadores')->nullable();
+            $table->json('etiquetas')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });
