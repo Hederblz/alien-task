@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\EtiquetaController;
 use App\Http\Controllers\HistoricoController;
 use App\Http\Controllers\MarcadorController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\TarefaController;
 use App\Http\Controllers\UserController;
+use App\Models\Etiqueta;
 use App\Models\Tarefa;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +31,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     $tarefas = Auth::user()->tarefas;
     $notas = Auth::user()->notas;
-    return view('dashboard', ['tarefas' => $tarefas, 'notas' => $notas]);
+    $etiquetas = Auth::user()->etiquetas;
+    return view('dashboard', ['tarefas' => $tarefas, 'notas' => $notas, 'etiquetas' => $etiquetas]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function()
@@ -49,19 +52,22 @@ Route::middleware('auth')->group(function()
     Route::get('/notasindex', [NotaController::class, 'index'])->name('notas-index');
     Route::get('/notasshow/{id}', [NotaController::class, 'show'])->name('notas-show');
     Route::get('/notascreate', [NotaController::class, 'create'])->name('notas-create');
-    Route::get('/notasedit', [NotaController::class, 'edit'])->name('notas-edit');
+    Route::get('/notasedit/{id}', [NotaController::class, 'edit'])->name('notas-edit');
 
     Route::post('/notasstore', [NotaController::class, 'store'])->name('notas-store');
     Route::patch('/notasupdate/{id}', [NotaController::class, 'update'])->name('notas-update');
     Route::patch('/notastrancar/{id}', [NotaController::class, 'trancar'])->name('notas-trancar');
-    Route::delete('/notasdelete/{id}', [NotaController::class, 'destroy'])->name('notas-destroy');
+    Route::delete('/notasdestroy/{id}', [NotaController::class, 'destroy'])->name('notas-destroy');
 
 
-    Route::get('/marcadoresindex', [MarcadorController::class, 'index'])->name('marcadores-index');
-    
-    Route::post('/marcadoresstore', [MarcadorController::class, 'store'])->name('marcadores-store');
-    Route::patch('/marcadoresupdate/{id}', [MarcadorController::class, 'update'])->name('marcadores-update');
-    Route::delete('/marcadoresdestroy', [MarcadorController::class, 'destroy'])->name('marcadores-destroy');
+    Route::get('/etiquetasindex', [EtiquetaController::class, 'index'])->name('etiquetas-index');
+    Route::get('/etiquetascreate', [EtiquetaController::class, 'create'])->name('etiquetas-create');
+    Route::get('/etiquetasedit/{id}', [EtiquetaController::class, 'edit'])->name('etiquetas-edit');
+
+    Route::post('/etiquetasstore', [EtiquetaController::class, 'store'])->name('etiquetas-store');
+    Route::patch('/etiquetasupdate/{id}', [EtiquetaController::class, 'update'])->name('etiquetas-update');
+    Route::delete('/etiquetasdestroy/{id}', [EtiquetaController::class, 'destroy'])->name('etiquetas-destroy');
+
 });
 
 require __DIR__ . '/auth.php';

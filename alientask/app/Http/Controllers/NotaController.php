@@ -27,7 +27,8 @@ class NotaController extends Controller
      */
     public function create()
     {
-        return view('notas.create');
+        $etiquetas = Auth::user()->etiquetas;
+        return view('notas.create', ['etiquetas' => $etiquetas]);
     }
 
     /**
@@ -38,11 +39,11 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
-        Nota::create([
-            'titulo' => $request->titulo,
-            'conteudo' => $request->conteudo,
-            'user_id' => Auth::user()->id
-    ]);
+        $nota = new Nota();
+        $nota->titulo = $request->titulo;
+        $nota->conteudo = $request->conteudo;
+        $nota->etiquetas = $request->etiquetas;
+        $nota->user_id = Auth::user()->id;
         return redirect('/dashboard')->with('msg', 'Nota criada com sucesso!');
     }
 
@@ -65,11 +66,12 @@ class NotaController extends Controller
      * @param  \App\Models\Nota  $nota
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $nota = Nota::findOrFail($id);
+        $etiquetas = Auth::user()->etiquetas;
 
-        return view('notas.edit', ['nota' => $nota]);
+        return view('notas.edit', ['nota' => $nota, 'etiquetas' => $etiquetas]);
     }
 
     /**
@@ -105,7 +107,16 @@ class NotaController extends Controller
     public function destroy($id)
     {
         $nota = Nota::findOrFail($id);
-        $nota->delete();
+        if(!$nota->trancada)
+        {
+            $nota->delete();
+            return redirect('dashboard')->with('msg', 'Nota excluída com sucesso!');
+        }
+        else
+        {
+            return redirect('dashboard')
+            ->with('msg', 'Não foi possível excluir a nota ' . $nota->titulo . ' pois está trancada.');
+        }
 
         return redirect('dashboard')->with('msg', 'Nota excluída com sucesso!');
     }
@@ -116,14 +127,13 @@ class NotaController extends Controller
         if(!$nota->trancada)
         {
             $nota->trancada = 1;
-            $nota->update();
-            return redirect('dashboard')->with('msg', 'Tarefa ' . $nota->titulo . ' trancada.');
         }
         else
         {
             $nota->trancada = 0;
-            $nota->update();
-            return redirect('dashboard')->with('msg', 'Tarefa ' . $nota->titulo . ' destrancada.');
         }
+        $nota->update();
+
+        return redirect('dashboard');
     }
 }

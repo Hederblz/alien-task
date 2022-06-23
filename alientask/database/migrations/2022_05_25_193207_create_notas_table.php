@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo')->nullable();
             $table->text('conteudo');
+            $table->boolean('trancada')->default(0);
             $table->json('etiquetas')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();

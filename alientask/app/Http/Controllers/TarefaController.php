@@ -26,7 +26,8 @@ class TarefaController extends Controller
      */
     public function create()
     {
-        return view('tarefas.create');
+        $etiquetas = Auth::user()->etiquetas;
+        return view('tarefas.create', ['etiquetas' => $etiquetas]);
     }
 
     /**
@@ -40,7 +41,6 @@ class TarefaController extends Controller
         $tarefa = new Tarefa();
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
-        $tarefa->data_final_prevista = $request->data_final_prevista;
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->user_id = Auth::user()->id;
         $tarefa->save();
@@ -56,9 +56,7 @@ class TarefaController extends Controller
      */
     public function show($id)
     {
-        $tarefas = Tarefa::findOrFail($id);
-
-        return view('tarefas.show', ['tarefas' => $tarefas ]);
+       //
     }
 
     /**
@@ -70,8 +68,9 @@ class TarefaController extends Controller
     public function edit($id)
     {
         $tarefa = Tarefa::findOrFail($id);
+        $etiquetas = Auth::user()->etiquetas;
 
-        return view('tarefas.edit', ['tarefa' => $tarefa]);
+        return view('tarefas.edit', ['tarefa' => $tarefa, 'etiquetas' => $etiquetas]);
     }
 
     /**
@@ -86,7 +85,6 @@ class TarefaController extends Controller
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
-        $tarefa->data_final_prevista = $request->data_final_prevista;
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->update();
 
@@ -102,9 +100,17 @@ class TarefaController extends Controller
     public function destroy($id)
     {
         $tarefa = Tarefa::findOrFail($id);
-        $tarefa->delete();
+        if(!$tarefa->trancada)
+        {
+            $tarefa->delete();
+            return redirect('dashboard')->with('msg', 'Tarefa excluída com sucesso!');
+        }
+        else
+        {
+            return redirect('dashboard')
+            ->with('msg', 'Não foi possível excluir a tarefa ' . $tarefa->titulo . ' pois está trancada.');
+        }
         
-        return redirect('dashboard')->with('msg', 'Tarefa excluída com sucesso!');
     }
     
     public function check($id)

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('etiquetas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo', 700);
+            $table->string('titulo');
             $table->string('cor')->default('#9400D3'); //Código da cor DarkViolet;
             $table->foreignId('user_id');
             $table->timestamps();

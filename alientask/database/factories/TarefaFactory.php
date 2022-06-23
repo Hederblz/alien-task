@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Etiqueta;
 use App\Models\Marcador;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,6 +24,7 @@ class TarefaFactory extends Factory
             'descricao' => $this->faker->sentence(),
             'data_conclusao' => $this->faker->date(),
             'concluida' => $this->faker->boolean(),
+            'trancada' => $this->faker->boolean(),
             'user_id' => User::all()->random()->id
         ];
     }

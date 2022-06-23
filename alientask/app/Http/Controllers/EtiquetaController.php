@@ -42,7 +42,7 @@ class EtiquetaController extends Controller
         $etiqueta->user_id = Auth::user()->id;
         $etiqueta->save();
 
-        return redirect()->back()
+        return redirect('dashboard')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
     }
 
@@ -54,8 +54,7 @@ class EtiquetaController extends Controller
      */
     public function show($id)
     {
-        $etiqueta = Etiqueta::findOrFail($id);
-        return view('etiquetas.show', ['etiqueta' => $etiqueta]);
+        //
     }
 
     /**
@@ -84,7 +83,7 @@ class EtiquetaController extends Controller
         $etiqueta->cor = $request->cor;
         $etiqueta->update();
         
-        return redirect('etiquetas.index')
+        return redirect('dashboard')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' alterada com sucesso!');
     }
     
@@ -99,7 +98,7 @@ class EtiquetaController extends Controller
         $etiqueta = Etiqueta::findOrFail($id);
         $etiqueta->delete();
 
-        return redirect('etiquetas.index')
+        return redirect('dashboard')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' excluída com sucesso!');
     }
 }

@@ -17,8 +17,8 @@ class Nota extends Model
      ];
 
      protected $casts = [
-        'etiquetas' => 'array'
-    ];
+      'etiquetas' => 'array'
+     ];
 
      public function dono(){
 

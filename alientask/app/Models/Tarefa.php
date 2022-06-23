@@ -16,6 +16,7 @@ class Tarefa extends Model
         'data_conclusao',
         'concluida',
         'etiquetas',
+        'trancada',
         'user_id',
     ];
 

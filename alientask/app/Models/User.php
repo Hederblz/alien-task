@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function etiquetas()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasMany(Etiqueta::class, 'user_id');
     }
 
     public function logs() {

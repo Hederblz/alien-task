@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Etiqueta;
 use App\Models\Marcador;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,6 +22,7 @@ class NotaFactory extends Factory
         return [
             'titulo' => $this->faker->sentence(),
             'conteudo' => $this->faker->text(),
+            'trancada' => $this->faker->boolean(),
             'user_id' => User::all()->random()->id
         ];
     }

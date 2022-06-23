@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Painel inicial') }}
+            {{ __('Criação de notas') }}
         </h2>
     </x-slot>
 
@@ -13,14 +13,24 @@
                     <form action="{{route('notas-store')}}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="titulo">Título</label>
+                        <label for="titulo">Título(opcional)</label>
                         <input type="text" name="titulo" id="titulo" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="conteudo">Conteúdo</label>
-                        <textarea class="form-control" name="conteudo" id="conteudo" rows="10"></textarea>
+                        <textarea name="conteudo" id="conteudo" rows="10" class="form-control"></textarea>
                     </div>
-                    <button type="submit" class="btn" id="add">Criar tarefa</button>
+                    <div class="form-group">
+                        @if ($etiquetas->count() > 0)
+                            @foreach ($etiquetas as $etiqueta)
+                            <div class="row form-group">
+                                <label for="etiqueta">{{$etiqueta->titulo}}</label>
+                                <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
+                            </div>
+                            @endforeach
+                        @endif
+                    </div>
+                    <button type="submit" class="btn btn-secondary" id="add">Criar nota</button>
                     </form>
                 </div>
             </div>
