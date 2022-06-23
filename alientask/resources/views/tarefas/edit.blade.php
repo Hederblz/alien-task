@@ -24,6 +24,18 @@
                     <label for="data_final_prevista">Data final prevista(opcional)</label>
                     <input type="date" name="data_final_prevista" id="data_final_prevista" class="form-control" value="{{$tarefa->data_final_prevista}}">
                 </div>
+                <div class="form-group">
+                    <h2>Etiquetas</h2>
+                    @foreach ($etiquetas as $etiqueta)
+                    @php
+                     $jsonDecode = json_decode($etiqueta)   
+                    @endphp
+                    <div class="row form-group">
+                    <label for="etiquetas" style="background: {{$etiqueta['cor']}}; color: #FFF;">{{$etiqueta['titulo']}}</label>
+                    <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
+                    </div>
+                    @endforeach
+                </div>
                 <button type="submit" class="btn btn-success">Alterar</button>
                 </form>
                 </div>

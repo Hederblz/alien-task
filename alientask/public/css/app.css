@@ -1445,3 +1445,61 @@ span
 {
   word-wrap: break-word;
 }
+
+#card
+{
+  border-radius: 16px;
+}
+
+#label
+{
+  border-radius: 16px;
+  word-break: break-all;
+  margin: .5rem;
+}
+
+#task-label
+{
+  width: auto;
+  border-radius: 16px;
+  flex-direction: column;
+  word-break: keep-all;
+  margin: .5rem;
+}
+
+@media only screen and (max-width: 800px)
+{
+  #task-label
+  {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+#labels-row
+{
+  grid-template-columns: repeat(3, 1fr);
+}
+
+#create-etiqueta
+{
+  margin: 1rem;
+  background: #9400D3;
+  border-radius: 16px;
+  padding: 1rem;
+  color: #FFF;
+  justify-content: space-around;
+}
+
+#create-etiqueta
+.btn
+{
+  margin: .5rem;
+  background: #FFF;
+  color: #9400D3;
+}
+
+#close-etiqueta-create
+{
+  font-size: 2em;
+}
