@@ -108,6 +108,19 @@ class EtiquetaController extends Controller
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' excluída com sucesso!');
     }
 
+    public function simpleStore(Request $request)
+    {
+        $user = Auth::user();
+        $etiqueta = new Etiqueta();
+        $etiqueta->titulo = $request->titulo;
+        $etiqueta->cor = $request->cor;
+        $etiqueta->user_id = $user->id;
+        $etiqueta->save();
+        $this->incrementarEtiquetaCriada($user->id);
+        return redirect()->back()
+        ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
+    }
+
     // ATRIBUTES
 
     public function incrementarEtiquetaCriada($id)

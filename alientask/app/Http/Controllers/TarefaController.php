@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 
 class TarefaController extends Controller
 {
@@ -43,6 +45,7 @@ class TarefaController extends Controller
         $tarefa = new Tarefa();
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
+        $tarefa->data_final_prevista = $request->data_final_prevista;
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->user_id = $user->id;
         $tarefa->save();
@@ -89,6 +92,7 @@ class TarefaController extends Controller
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
+        $tarefa->data_final_prevista = $request->data_final_prevista;
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->update();
         $this->incrementarTarefaEditada($user->id);
@@ -127,6 +131,7 @@ class TarefaController extends Controller
        if(!$tarefa->concluida)
        {
         $tarefa->concluida = 1;
+        $tarefa->data_conclusao = date('Y-m-d');
         $this->incrementarTarefaConcluida($user->id);
        }
        else

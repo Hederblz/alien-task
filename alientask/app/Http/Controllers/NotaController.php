@@ -107,7 +107,7 @@ class NotaController extends Controller
         $nota->conteudo = $request->conteudo;
         $nota->update();
         $this->incrementarNotaEditada($user->id);
-        return redirect('notas-index')->with('msg', 'Nota atualizada com sucesso!');
+        return redirect()->route('notas-index')->with('msg', "Nota $nota->titulo atualizada com sucesso.");
     }
 
     /**
@@ -124,11 +124,11 @@ class NotaController extends Controller
         {
             $nota->delete();
             $this->incrementarNotaExcluida($user->id);
-            return redirect('notas-index')->with('msg', 'Nota excluída com sucesso!');
+            return redirect()->route('notas-index')->with('msg', 'Nota excluída com sucesso!');
         }
         else
         {
-            return redirect('notas.index')
+            return redirect()->route('notas-index')
             ->with('msg', 'Não foi possível excluir a nota ' . $nota->titulo . ' pois está trancada.');
         }
     }
@@ -146,7 +146,7 @@ class NotaController extends Controller
         }
         $nota->update();
 
-        return redirect('notas-index');
+        return redirect()->route('notas-index');
     }
 
     // ATRIBUTES
