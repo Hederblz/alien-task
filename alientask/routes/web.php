@@ -3,11 +3,9 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EtiquetaController;
-use App\Http\Controllers\HistoricoController;
-use App\Http\Controllers\MarcadorController;
 use App\Http\Controllers\NotaController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TarefaController;
-use App\Http\Controllers\UserController;
 use App\Models\Etiqueta;
 use App\Models\Tarefa;
 use Illuminate\Support\Facades\Auth;
@@ -29,10 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $tarefas = Auth::user()->tarefas;
-    $notas = Auth::user()->notas;
-    $etiquetas = Auth::user()->etiquetas;
-    return view('dashboard', ['tarefas' => $tarefas, 'notas' => $notas, 'etiquetas' => $etiquetas]);
+    return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function()
@@ -67,6 +62,11 @@ Route::middleware('auth')->group(function()
     Route::post('/etiquetasstore', [EtiquetaController::class, 'store'])->name('etiquetas-store');
     Route::patch('/etiquetasupdate/{id}', [EtiquetaController::class, 'update'])->name('etiquetas-update');
     Route::delete('/etiquetasdestroy/{id}', [EtiquetaController::class, 'destroy'])->name('etiquetas-destroy');
+
+    Route::get('/profileshow/{id}', [ProfileController::class, 'show'])->name('profile-show');
+    Route::get('/profileconfigs/{id}', [ProfileController::class, 'configs'])->name('profile-configs');
+    Route::get('/profileupdate/{id}', [ProfileController::class, 'updateData'])->name('profile-updateData');
+    Route::get('/profilestatistics/{id}', [ProfileController::class, 'statistics'])->name('profile-statistics');
 
 });
 

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Painel inicial') }}
+            {{ __('Qual o seu próximo objetivo?') }}
         </h2>
     </x-slot>
     
@@ -40,7 +40,7 @@
                     </div>
                     <button type="submit" class="btn" id="add">Criar tarefa</button>
                     </form>
-                    <div class="container-fluid" id="create-etiqueta">
+                    <div class="container-fluid">
                         <h2>Criar etiqueta</h2>
                         <form action="{{route('etiquetas-store')}}" method="post">
                             @csrf
