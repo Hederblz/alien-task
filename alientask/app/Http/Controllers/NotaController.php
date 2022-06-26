@@ -39,12 +39,23 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $nota = new Nota();
-        $nota->titulo = $request->titulo;
+        if(empty($request->titulo))
+        {
+            $nota->titulo = 'Nota sem titulo';
+        }
+        else
+        {
+            $nota->titulo = $request->titulo;
+        }
         $nota->conteudo = $request->conteudo;
         $nota->etiquetas = $request->etiquetas;
-        $nota->user_id = Auth::user()->id;
-        return redirect('/dashboard')->with('msg', 'Nota criada com sucesso!');
+        $nota->user_id = $user->id;
+        $nota->save();
+        $this->incrementarNotaCriada($user->id);
+        return redirect()->route('notas-index')
+       ->with('msg', 'Nota excluída com sucesso.');
     }
 
     /**
@@ -83,6 +94,7 @@ class NotaController extends Controller
      */
     public function update(Request $request, Nota $nota,$id)
     {
+        $user = Auth::user();
         $nota = Nota::findOrFail($id);
         if(empty($request->titulo))
         {
@@ -94,8 +106,8 @@ class NotaController extends Controller
         }
         $nota->conteudo = $request->conteudo;
         $nota->update();
-
-        return redirect('dashboard')->with('msg', 'Nota atualizada com sucesso!');
+        $this->incrementarNotaEditada($user->id);
+        return redirect('notas-index')->with('msg', 'Nota atualizada com sucesso!');
     }
 
     /**
@@ -106,19 +118,19 @@ class NotaController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user();
         $nota = Nota::findOrFail($id);
         if(!$nota->trancada)
         {
             $nota->delete();
-            return redirect('dashboard')->with('msg', 'Nota excluída com sucesso!');
+            $this->incrementarNotaExcluida($user->id);
+            return redirect('notas-index')->with('msg', 'Nota excluída com sucesso!');
         }
         else
         {
-            return redirect('dashboard')
+            return redirect('notas.index')
             ->with('msg', 'Não foi possível excluir a nota ' . $nota->titulo . ' pois está trancada.');
         }
-
-        return redirect('dashboard')->with('msg', 'Nota excluída com sucesso!');
     }
 
     public function trancar($id)
@@ -134,6 +146,29 @@ class NotaController extends Controller
         }
         $nota->update();
 
-        return redirect('dashboard');
+        return redirect('notas-index');
+    }
+
+    // ATRIBUTES
+
+    public function incrementarNotaCriada($id)
+    {
+        $user = User::findOrFail($id);
+        $user->notas_criadas++;
+        $user->update();
+    }
+
+    public function incrementarNotaEditada($id)
+    {
+        $user = User::findOrFail($id);
+        $user->notas_editadas++;
+        $user->update();
+    }
+
+    public function incrementarNotaExcluida($id)
+    {
+        $user = User::findOrFail($id);
+        $user->notas_excluidas++;
+        $user->update();
     }
 }

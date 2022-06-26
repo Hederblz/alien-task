@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,14 +39,15 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $tarefa = new Tarefa();
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
         $tarefa->etiquetas = $request->etiquetas;
-        $tarefa->user_id = Auth::user()->id;
+        $tarefa->user_id = $user->id;
         $tarefa->save();
-
-        return redirect('dashboard')->with('msg', 'Tarefa criada com sucesso!');
+        $this->incrementarTarefaCriada($user->id);
+        return redirect()->route('tarefas-index')->with('msg', 'Tarefa criada com sucesso!');
     }
 
     /**
@@ -67,8 +69,9 @@ class TarefaController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
         $tarefa = Tarefa::findOrFail($id);
-        $etiquetas = Auth::user()->etiquetas;
+        $etiquetas = $user->etiquetas;
 
         return view('tarefas.edit', ['tarefa' => $tarefa, 'etiquetas' => $etiquetas]);
     }
@@ -82,13 +85,14 @@ class TarefaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->titulo = $request->titulo;
         $tarefa->descricao = $request->descricao;
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->update();
-
-        return redirect('dashboard')->with('msg', 'Tarefa atualizada com sucesso!');
+        $this->incrementarTarefaEditada($user->id);
+        return redirect()->route('tarefas-index')->with('msg', 'Tarefa atualizada com sucesso!');
     }
 
     /**
@@ -99,26 +103,31 @@ class TarefaController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user();
         $tarefa = Tarefa::findOrFail($id);
         if(!$tarefa->trancada)
         {
             $tarefa->delete();
-            return redirect('dashboard')->with('msg', 'Tarefa excluída com sucesso!');
+            $this->incrementarTarefaExcluida($user->id);
+            return redirect()->route('tarefas-index')
+            ->with('msg', "Tarefa excluída com sucesso.");
         }
         else
         {
-            return redirect('dashboard')
-            ->with('msg', 'Não foi possível excluir a tarefa ' . $tarefa->titulo . ' pois está trancada.');
+            return redirect()->route('tarefas-index')
+            ->with('msg', "Não foi possivel excluir a tarefa $tarefa->titulo pois etá trancada.");
         }
         
     }
     
     public function check($id)
     {
+       $user = Auth::user();
        $tarefa = Tarefa::findOrFail($id);
        if(!$tarefa->concluida)
        {
         $tarefa->concluida = 1;
+        $this->incrementarTarefaConcluida($user->id);
        }
        else
        {
@@ -126,7 +135,7 @@ class TarefaController extends Controller
        }
        $tarefa->update();
 
-       return redirect('dashboard');
+       return redirect()->route('tarefas-index');
     }
 
     public function trancar($id)
@@ -136,14 +145,45 @@ class TarefaController extends Controller
         {
             $tarefa->trancada = 1;
             $tarefa->update();
-            return redirect('dashboard')->with('msg', 'Tarefa ' . $tarefa->titulo . ' trancada.');
+            return redirect()->route('tarefas-index')->with('msg', 'Tarefa ' . $tarefa->titulo . ' trancada.');
         }
         else
         {
             $tarefa->trancada = 0;
             $tarefa->update();
-            return redirect('dashboard')->with('msg', 'Tarefa ' . $tarefa->titulo . ' destrancada.');
+            return redirect()->route('tarefas-index')->with('msg', 'Tarefa ' . $tarefa->titulo . ' destrancada.');
         }
 
     }
+
+    //ATRIBUTES
+
+    public function incrementarTarefaCriada($id)
+    {
+        $user = User::findOrFail($id);
+        $user->tarefas_criadas++;
+        $user->update();
+    }
+
+    public function incrementarTarefaEditada($id)
+    {
+        $user = User::findOrFail($id);
+        $user->tarefas_editadas++;
+        $user->update();
+    }
+
+    public function incrementarTarefaConcluida($id)
+    {
+        $user = User::findOrFail($id);
+        $user->tarefas_concluidas++;
+        $user->update();
+    }
+
+    public function incrementarTarefaExcluida($id)
+    {
+        $user = User::findOrFail($id);
+        $user->tarefas_excluidas++;
+        $user->update();
+    }
+
 }

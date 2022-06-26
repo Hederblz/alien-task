@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Etiqueta;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,9 @@ class EtiquetaController extends Controller
      */
     public function index()
     {
-        return view('etiquetas.index');
+        $user = Auth::user();
+        $etiquetas = $user->etiquetas;
+        return view('etiquetas.index', ['etiquetas' => $etiquetas]);
     }
 
     /**
@@ -36,13 +39,14 @@ class EtiquetaController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $etiqueta = new Etiqueta();
         $etiqueta->titulo = $request->titulo;
         $etiqueta->cor = $request->cor;
-        $etiqueta->user_id = Auth::user()->id;
+        $etiqueta->user_id = $user->id;
         $etiqueta->save();
-
-        return redirect('dashboard')
+        $this->incrementarEtiquetaCriada($user->id);
+        return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
     }
 
@@ -78,11 +82,12 @@ class EtiquetaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = Auth::user();
         $etiqueta = Etiqueta::findOrFail($id);
         $etiqueta->titulo = $request->titulo;
         $etiqueta->cor = $request->cor;
         $etiqueta->update();
-        
+        $this->incrementarEtiquetaEditada($user->id);        
         return redirect('dashboard')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' alterada com sucesso!');
     }
@@ -95,10 +100,34 @@ class EtiquetaController extends Controller
      */
     public function destroy($id)
     {
+        $user = Auth::user();
         $etiqueta = Etiqueta::findOrFail($id);
         $etiqueta->delete();
-
+        $this->incrementarEtiquetaExcluida($user->id);
         return redirect('dashboard')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' excluída com sucesso!');
+    }
+
+    // ATRIBUTES
+
+    public function incrementarEtiquetaCriada($id)
+    {
+        $user = User::findOrFail($id);
+        $user->etiquetas_criadas++;
+        $user->update();
+    }
+
+    public function incrementarEtiquetaEditada($id)
+    {
+        $user = User::findOrFail($id);
+        $user->etiquetas_editadas++;
+        $user->update();
+    }
+
+    public function incrementarEtiquetaExcluida($id)
+    {
+        $user = User::findOrFail($id);
+        $user->etiquetas_excluidas++;
+        $user->update();
     }
 }
