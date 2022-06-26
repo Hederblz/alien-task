@@ -1418,6 +1418,7 @@ select {
   padding: 1rem;
   border-radius: 10px;
   color: #FFF;
+  word-break: break-all;
 }
 
 #msg
@@ -1427,7 +1428,8 @@ span
 }
 
 #msg
-#close
+#close,
+#closealert
 {
   font-size: 1.5em;
   cursor: pointer;

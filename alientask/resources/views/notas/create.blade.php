@@ -24,7 +24,7 @@
                         @if ($etiquetas->count() > 0)
                             @foreach ($etiquetas as $etiqueta)
                             <div class="row form-group">
-                                <label for="etiqueta">{{$etiqueta->titulo}}</label>
+                                <label for="etiqueta" style="background-color: {{$etiqueta->cor}}; color: #FFF;">{{$etiqueta->titulo}}</label>
                                 <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
                             </div>
                             @endforeach

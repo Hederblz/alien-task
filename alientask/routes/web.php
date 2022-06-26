@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function()
     Route::get('/etiquetasedit/{id}', [EtiquetaController::class, 'edit'])->name('etiquetas-edit');
 
     Route::post('/etiquetasstore', [EtiquetaController::class, 'store'])->name('etiquetas-store');
+    Route::post('/etiquetassimplestore', [EtiquetaController::class, 'simpleStore'])->name('etiquetas-simple-store');
     Route::patch('/etiquetasupdate/{id}', [EtiquetaController::class, 'update'])->name('etiquetas-update');
     Route::delete('/etiquetasdestroy/{id}', [EtiquetaController::class, 'destroy'])->name('etiquetas-destroy');
 
@@ -67,6 +68,10 @@ Route::middleware('auth')->group(function()
     Route::get('/profileconfigs/{id}', [ProfileController::class, 'configs'])->name('profile-configs');
     Route::get('/profileupdate/{id}', [ProfileController::class, 'updateData'])->name('profile-updateData');
     Route::get('/profilestatistics/{id}', [ProfileController::class, 'statistics'])->name('profile-statistics');
+
+    Route::get('/timer', function(){
+        return view('timer');
+    })->name('timer');
 
 });
 

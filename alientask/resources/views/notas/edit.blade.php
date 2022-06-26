@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Painel inicial') }}
+            {{ __('Editor de notas') }}
         </h2>
     </x-slot>
 
@@ -17,27 +17,38 @@
                     <label for="titulo">Título</label>
                     <input type="text" name="titulo" name="titulo" class="form-control" value="{{$nota->titulo}}">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="conteudo">Conteúdo</label>
-                <textarea class="form-control" name="conteudo" id="conteudo" rows="10" required></textarea>
-            </div>
-            <div class="form-group">
-                <h2>Etiquetas</h2>
-                @foreach ($etiquetas as $etiqueta)
-                @php
+                <div class="form-group">
+                    <label for="conteudo">Conteúdo</label>
+                    <textarea class="form-control" name="conteudo" id="conteudo" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <h2>Etiquetas</h2>
+                    @foreach ($etiquetas as $etiqueta)
+                    @php
                 $jsonDecode = json_decode($etiqueta)   
                @endphp
                <div class="row form-group">
-               <label for="etiquetas" style="background: {{$etiqueta['cor']}}; color: #FFF;">{{$etiqueta['titulo']}}</label>
-               <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
-               </div>
+                   <label id="checklabel" for="etiquetas" style="background: {{$etiqueta['cor']}}; color: #FFF; padding: .5rem;">{{$etiqueta['titulo']}}</label>
+                   <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
+                </div>
                 @endforeach
+                <button type="submit" class="btn btn-success">Alterar</button>
             </div>
-            <button type="submit" class="btn btn-success">Alterar</button>
-            </form>
-            </div>
-            </div>
-        </div>
+        </form>
     </div>
+</div>
+</div>
+</div>
+</div>
+<style>
+    #etiqueta:checked
+    {
+        background-color: #9400D3;
+    }
+
+    #checklabel
+    {
+        border-radius: 10px;
+    }
+</style>
 </x-app-layout>

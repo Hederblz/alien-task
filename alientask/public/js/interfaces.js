@@ -9,5 +9,9 @@ $(document).ready(function() {
 
     $("#close-etiqueta-create").click(function(){
         $("#etiqueta-create").slideUp()
-    })
+    });
+
+    $("#closealert").click(function(){
+        $(".alert").slideUp();
+    });
 });

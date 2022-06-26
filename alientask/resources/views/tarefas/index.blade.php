@@ -22,9 +22,33 @@
                     @if ($tarefas->count() > 0)
                     @foreach ($tarefas as $tarefa)
                         <div class="row shadow" id="task">
+                            @php
+                                $dataFinalPrevista = \Carbon\Carbon::parse($tarefa->data_final_prevista);
+                                $dataConclusao = \Carbon\Carbon::parse($tarefa->data_conclusao);
+                                $hoje = \Carbon\Carbon::parse(date('d-m-Y'));
+                                $amanha = \Carbon\Carbon::parse(date('d-m-Y', strtotime('+1 day')));
+                                $intervalo = $dataConclusao->diff($dataFinalPrevista);
+                            @endphp
+                            @if (strtotime($dataFinalPrevista) == strtotime($hoje) && !$tarefa->concluida)
+                            <div class="container alert" id="msg">
+                                <span class="msg">A data final para essa tarefa é Hoje!</span>
+                                <ion-icon name="close-circle-outline" class="shadow" id="closealert"></ion-icon>
+                            </div>
+                            @elseif(strtotime($dataFinalPrevista) == strtotime($amanha) && !$tarefa->concluida)
+                            <div class="container alert" id="msg">
+                                <span class="msg">A data final para essa tarefa é Amanhã!</span>
+                                <ion-icon name="close-circle-outline" class="shadow" id="closealert"></ion-icon>
+                            </div>
+                            @elseif(strtotime($dataConclusao) > strtotime($dataFinalPrevista) && !$tarefa->concluida)
+                            <div class="container alert" id="msg">
+                                <span class="msg">Esta tarefa está atrasada em {{$intervalo->m}} meses, e {{$intervalo->d}} dias!</span>
+                                <ion-icon name="close-circle-outline" class="shadow" id="closealert"></ion-icon>
+                            </div>
+                            @endif
                             <div class="col" id="text">
                                 @if ($tarefa->etiquetas)
                                 <div class="row">
+                                    
                                     @foreach ($tarefa->etiquetas as $etiqueta)
                                     @php
                                         $jsonDecode = json_decode($etiqueta, true);
@@ -38,11 +62,15 @@
                                 @endif
                                 <h3>{{$tarefa->titulo}}</h3>
                                 <p>{{$tarefa->descricao}}</p>
-                                <span>{{$tarefa->data_final_prevista}}</span>
+                                <div class="row">
+                                <span>Data final prevista: {{\Carbon\Carbon::parse($tarefa->data_final_prevista)->format('d-m-Y')}}</span>
+                                @if($tarefa->concluida)
+                                <span>Data de conclusão: {{\Carbon\Carbon::parse($tarefa->data_conclusao)->format('d-m-Y')}}</span>
+                                @endif
+                                </div>
                             </div>
 
                             <div class="row">
-
                                 <div class="col">
                                     <form action="{{route('tarefas-check', $tarefa->id)}}" method="post">
                                         @csrf
@@ -90,6 +118,19 @@
                             <p>Você ainda não possui tarefas.  <a href="{{route('tarefas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar tarefa</a></p>
                         </div>
                         @endif
+                        <h2>Criar etiqueta</h2>
+                    <form action="{{route('etiquetas-simple-store')}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" name="titulo" id="titulo" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cor">Cor</label>
+                        <input type="color" name="cor" id="cor" class="form-control">
+                    </div>
+                    <button type="submit" class="btn" id="add">Criar etiqueta</button>
+                    </form>
                 </div>
             </div>
         </div>

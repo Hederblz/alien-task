@@ -28,7 +28,7 @@
                         {{ __('Etiquetas') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')">
+                    <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
                         {{ __('Temporizador') }}
                     </x-nav-link>
                 </div>

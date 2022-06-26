@@ -32,7 +32,7 @@
                                 @php
                                     $jsonDecode = json_decode($etiqueta, true);
                                 @endphp
-                                <div class="d-flex" id="task-label" class="col" style="background-color: {{$jsonDecode['cor']}}">
+                                <div class="d-flex" id="task-label" class="col" style="background-color: {{$jsonDecode['cor']}}; color: #FFF;">
                                     <b>{{$jsonDecode['titulo']}}</b>
                                 </div>
                                 @endforeach
@@ -78,6 +78,19 @@
                             <p>Você ainda não possui notas.  <a href="{{route('notas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar nota</a></p>
                         </div>
                     @endif
+                    <h2>Criar etiqueta</h2>
+                    <form action="{{route('etiquetas-simple-store')}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" name="titulo" id="titulo" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cor">Cor</label>
+                        <input type="color" name="cor" id="cor" class="form-control">
+                    </div>
+                    <button type="submit" class="btn" id="add">Criar etiqueta</button>
+                    </form>
                 </div>
             </div>
         </div>

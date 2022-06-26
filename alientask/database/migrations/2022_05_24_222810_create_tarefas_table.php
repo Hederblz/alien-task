@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descricao')->nullable();
+            $table->date('data_final_prevista')->nullable();
             $table->date('data_conclusao')->nullable();
             $table->boolean('concluida')->default(0);
             $table->boolean('trancada')->default(0);
