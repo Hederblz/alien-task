@@ -20,6 +20,18 @@ return new class extends Migration
             $table->string('telefone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->integer('tarefas_criadas')->default(0);
+            $table->integer('tarefas_editadas')->default(0);
+            $table->integer('tarefas_excluidas')->default(0);
+            $table->integer('notas_criadas')->default(0);
+            $table->integer('notas_editadas')->default(0);
+            $table->integer('notas_excluidas')->default(0);
+            $table->integer('etiquetas_criadas')->default(0);
+            $table->integer('etiquetas_editadas')->default(0);
+            $table->integer('etiquetas_excluidas')->default(0);
+            $table->integer('tarefas_concluidas')->default(0);
+            
             $table->rememberToken();
             $table->timestamps();
         });
