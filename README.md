@@ -32,5 +32,5 @@ O Alien Task é um projeto da disciplina de Projeto e prática 2 do IFPE - Igara
   <li>Flávio Batista <a href="https://github.com/FlavioBatistaVS">Perfil do GitHub</a></li>
   <li>Zaqueu Batista <a href="https://github.com/5636b">Perfil do GitHub</a></li>
   <li>Gabriel Barros <a href="https://github.com/GabrielBarros9">Perfil do GitHub</a></li>
-  <li>THierry Matheus <a href="https://github.com/ThierryMatheus">Perfil do GitHub</a></li>
+  <li>Thierry Matheus <a href="https://github.com/ThierryMatheus">Perfil do GitHub</a></li>
   </ul>
