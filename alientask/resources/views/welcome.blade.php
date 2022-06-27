@@ -33,7 +33,7 @@
 
 <body>
 
-    <div class="container w-25 mx-6">
+    <div class="container w-75 mx-6">
 
         <img src="/img/icons/alien.png" class="img-fluid mt-5" alt="Responsive image">
 
@@ -45,15 +45,16 @@
             <div class="col row">
                 @if (Route::has('login'))
                     <div class="col-12 mb-2 rounded">
-                        <button class="btn btn-primary w-100 color border border-collapse"><a
-                                class="text-decoration-none text-white "
-                                href="{{ route('login') }}">Entrar</a></button>
+                        <a href="{{ route('login') }}">
+                            <button
+                                class="btn btn-primary w-100 color border border-collapse text-decoration-none text-white ">Entrar</button>
+                        </a>
                     </div>
                     @if (Route::has('register'))
                         <div class="col-12">
-                            <button class="btn w-100 border border-collapse"><a class="text-decoration-none text-dark"
-                                    href="{{ route('register') }}">Criar
-                                    Conta</a></button>
+                            <a href="{{ route('register') }}"><button
+                                    class="btn w-100 border border-collapse text-decoration-none text-dark">Criar
+                                    Conta</button></a>
                         </div>
                     @endif
                 @endif
