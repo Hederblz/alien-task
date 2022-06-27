@@ -18,8 +18,8 @@
                     <div class="row text-center">
                         <div class="col">
                             <button class="btn btn-success" id="start" onclick="startCron()">Iniciar</button>
-                            <button class="btn btn-warning" id="pause">Pausar</button>
-                            <button class="btn btn-danger" id="stop">Parar</button>
+                            <button class="btn btn-warning" id="pause" onclick=pauseCron()>Pausar</button>
+                            <button class="btn btn-danger" id="stop" onclick="stopCron()">Parar</button>
                         </div>
                     </div>
                   </div>

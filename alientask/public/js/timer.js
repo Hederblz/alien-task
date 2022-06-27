@@ -23,9 +23,25 @@
 
     function stopCron()
     {
+        clearInterval(cron);
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+        document.getElementById("counter").innerText = '00:00:00';
     }
     
     function timer()
     {
-        document.getElementById("counter").innerText = 'teste';
+        if(seconds == 60)
+        {
+            seconds = 0;
+        }
+        if(minutes == 60)
+        {
+            minutes = 0;
+            hours++;
+        }
+        seconds++;
+        var format = (hours < 10 ? '0' + hours : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+        document.getElementById("counter").innerText = format;
     }
