@@ -25,6 +25,10 @@
         .color {
             background: #b400ff;
         }
+        h1{
+            margin-top: -40px;
+            margin-left: 45px;
+        }
     </style>
 
 
@@ -35,7 +39,12 @@
 
     <div class="container w-75 mx-6">
 
-        <img src="/img/icons/alien.png" class="img-fluid mt-5" alt="Responsive image">
+
+        <div>
+
+            <img src="/img/icons/alien.png" class="img-fluid mt-5" alt="Responsive image">
+            <h1 class="texto">Alien Task</h1>
+        </div>
 
         <div class="ml-2 mt-5 texto">
             <h3>Seja produtivo com um gerenciador de tarefas</h3>
