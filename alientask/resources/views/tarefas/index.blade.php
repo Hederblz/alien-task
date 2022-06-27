@@ -103,7 +103,7 @@
                                     <form action="{{route('tarefas-destroy', $tarefa->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>
+                                    <button type="submit" class="btn btn-danger" style="margin: .5rem"><ion-icon name="trash-outline"></ion-icon></button>
                                     </form>
                                 </div>
                             </div>

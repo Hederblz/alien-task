@@ -31,6 +31,10 @@
                     <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
                         {{ __('Temporizador') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
+                        {{ __('Histórico') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -57,7 +61,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -80,7 +84,27 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Página inicial') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('tarefas-index')" :active="request()->routeIs('tarefas-index')">
+                {{ __('Tarefas') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('notas-index')" :active="request()->routeIs('notas-index')">
+                {{ __('Nota') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')">
+                {{ __('Etiquetas') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
+                {{ __('Temporizador') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Histórico') }}
             </x-responsive-nav-link>
         </div>
 
