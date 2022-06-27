@@ -16,10 +16,8 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@600&family=League+Gothic&display=swap');
-
         .texto {
-            font-family: Fira Sans;
+            font-family: 'Nunito';
         }
 
         .color {
@@ -28,6 +26,16 @@
         h1{
             margin-top: -40px;
             margin-left: 45px;
+        }
+
+        img
+        {
+            width: 3rem;
+        }
+
+        .btn
+        {
+            padding: .5rem
         }
     </style>
 
@@ -38,8 +46,6 @@
 <body>
 
     <div class="container w-75 mx-6">
-
-
         <div>
 
             <img src="/img/icons/alien.png" class="img-fluid mt-5" alt="Responsive image">
@@ -56,7 +62,7 @@
                     <div class="col-12 mb-2 rounded">
                         <a href="{{ route('login') }}">
                             <button
-                                class="btn btn-primary w-100 color border border-collapse text-decoration-none text-white ">Entrar</button>
+                                class="btn btn-secondary w-100 color border border-collapse text-decoration-none text-white ">Entrar</button>
                         </a>
                     </div>
                     @if (Route::has('register'))
@@ -69,5 +75,34 @@
                 @endif
             </div>
         </div>
+        <footer class="bg-light text-center text-lg-start fixed">
+            <div class="container p-4">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Alien Task</h5>
+                        <p>
+                            O <b>Alien Task</b> é uma aplicação desenvolvida por estudantes do
+                            curso de informática para internet no <b>IFPE</b> campus Igarassu;
+                            cujo objetivo é ajudar pessoas que queiram tornar seu dia dia mais
+                            organizado e produtivo.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Desenvolvimento</h5>
+                        <p>
+                           O projeto foi desenvolvido na disciplina de projeto e prática II
+                           com a utilização de modelos ágeis de gerênciamento de projeto.
+                           Marcado por diversas spikes e entregas, esse projeto visa mostrar
+                           o esforço coletivo de criação no framework <a href="https://laravel.com/">Laravel</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                &copy; 2022:
+                <a class="text-dark" href="https://mdbootstrap.com/">alientask.com</a>
+              </div>
+        </footer>
     </div>
 </body>
