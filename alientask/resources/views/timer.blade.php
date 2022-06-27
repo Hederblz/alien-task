@@ -11,11 +11,21 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                   <h2>Leve o tempo que precisar</h2>
 
-                  <div class="container">
-                    
+                  <div class="container" id="timer">
+                    <div class="row text-center">
+                        <h1 id="counter">00:00:00</h1>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col">
+                            <button class="btn btn-success" id="start" onclick="startCron()">Iniciar</button>
+                            <button class="btn btn-warning" id="pause">Pausar</button>
+                            <button class="btn btn-danger" id="stop">Parar</button>
+                        </div>
+                    </div>
                   </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="/js/timer.js"></script>
 </x-app-layout>
