@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="conteudo">Conteúdo</label>
-                    <textarea class="form-control" name="conteudo" id="conteudo" rows="10" required></textarea>
+                    <textarea class="form-control" name="conteudo" id="conteudo" rows="10" required style="resize: none;">{{$nota->conteudo}}</textarea>
                 </div>
                 <div class="form-group">
                     <h2>Etiquetas</h2>
@@ -52,4 +52,5 @@
         border-radius: 10px;
     }
 </style>
+<script src="/js/jquery.js"></script>
 </x-app-layout>

@@ -55,7 +55,7 @@ class NotaController extends Controller
         $nota->save();
         $this->incrementarNotaCriada($user->id);
         return redirect()->route('notas-index')
-       ->with('msg', 'Nota excluída com sucesso.');
+       ->with('msg', 'Nota criada com sucesso.');
     }
 
     /**

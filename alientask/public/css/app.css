@@ -1451,6 +1451,33 @@ span
 #card
 {
   border-radius: 16px;
+  max-height: 25rem;
+}
+
+#card::-webkit-scrollbar
+{
+  width: 12px;
+}
+
+#card::-webkit-scrollbar-track
+{
+  background: #FFF;
+}
+
+#card::-webkit-scrollbar-thumb {
+  background-color: #9400D3;
+  border-radius: 16px;
+  border: 3px solid orange;
+}
+
+.card-text
+{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  text-overflow: clip;
+  max-height: 10rem;
+  scrollbar-width: 12px;
+  scrollbar-color: #9400D3;
 }
 
 #label

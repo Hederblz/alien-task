@@ -5,6 +5,8 @@
             {{ __('Tarefas') }}
         </h2>
     </x-slot>
+
+    <x-icon></x-icon>
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -119,19 +121,6 @@
                             <p>Você ainda não possui tarefas.  <a href="{{route('tarefas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar tarefa</a></p>
                         </div>
                         @endif
-                        <h2>Criar etiqueta</h2>
-                    <form action="{{route('etiquetas-simple-store')}}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="titulo">Título</label>
-                        <input type="text" name="titulo" id="titulo" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cor">Cor</label>
-                        <input type="color" name="cor" id="cor" class="form-control">
-                    </div>
-                    <button type="submit" class="btn" id="add">Criar etiqueta</button>
-                    </form>
                 </div>
             </div>
         </div>

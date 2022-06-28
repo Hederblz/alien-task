@@ -12,28 +12,29 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Painel inicial') }}
-                    </x-nav-link>
-
+                    
                     <x-nav-link :href="route('tarefas-index')" :active="request()->routeIs('tarefas-index')">
                         {{ __('Tarefas') }}
                     </x-nav-link>
-
+                    
                     <x-nav-link :href="route('notas-index')" :active="request()->routeIs('notas-index')">
                         {{ __('Notas') }}
                     </x-nav-link>
-
+                    
                     <x-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')">
                         {{ __('Etiquetas') }}
                     </x-nav-link>
-
+                    
                     <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
                         {{ __('Temporizador') }}
                     </x-nav-link>
-
+                    
                     <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
                         {{ __('Histórico') }}
+                    </x-nav-link>
+                    
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Painel de estatisticas') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('perfil')" :active="request()->routeIs('perfil')">
@@ -61,6 +62,7 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
+                            
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
