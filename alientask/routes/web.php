@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TarefaController;
 use App\Models\Etiqueta;
 use App\Models\Tarefa;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -73,6 +74,9 @@ Route::middleware('auth')->group(function()
     Route::get('/timer', function(){
         return view('timer');
     })->name('timer');
+
+    Route::get('/perfilindex', function() {return view('user.index');})->name('perfil');
+    Route::delete('/Perfilindex/{id}', [RegisteredUserController::class, 'destroy'])->name('user-destroy');
 
 });
 

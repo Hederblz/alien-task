@@ -15,6 +15,14 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
+
+    public function index()
+    {
+        $users = User::get(id);
+
+        return view('user.index', compact ('users'));
+    }
+
     /**
      * Display the registration view.
      *
@@ -78,10 +86,13 @@ class RegisteredUserController extends Controller
     }
 
     public function destroy($id){
-        $user = Auth::user()->id;
+
+        if(!$user = User::find($id))
+            return redirect()->route('perfil');
+
         $user->delete();
 
-        return redirect('dashboard')->with('msg', 'Conta excluída com sucesso!');
+        return redirect('/')->with('msg', 'Conta excluída com sucesso!');
     }
     
 }
