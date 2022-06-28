@@ -35,6 +35,10 @@
                     <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
                         {{ __('Histórico') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('perfil')" :active="request()->routeIs('perfil')">
+                        {{ __('Perfil') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -123,7 +127,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Sair') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

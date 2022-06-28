@@ -1,7 +1,8 @@
 <x-app-layout>
+    @section('subtitle', 'Tarefas')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Painel inicial') }}
+            {{ __('Editor de Tarefa') }}
         </h2>
     </x-slot>
 

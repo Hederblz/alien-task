@@ -46,6 +46,12 @@
 <body>
 
     <div class="container w-75 mx-6">
+                    @if (@session('msg'))
+                    <div class="container" id="msg">
+                        <span class="msg">{{session('msg')}}</span>
+                        <ion-icon name="close-circle-outline" class="shadow" id="close"></ion-icon>
+                    </div>
+                    @endif
         <div>
             <a href="/">
                 <img src="/img/icons/alien.png" class="img-fluid mt-5" alt="Responsive image">

@@ -1,4 +1,5 @@
 <x-guest-layout>
+    @section('subtitle', 'Login')
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -40,16 +41,23 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <x-button class="btn btn-secondary w-100 color border border-collapse text-decoration-none text-white ">
+                    {{ __('Log In') }}
+            </x-button>
+
+            <div class="flex justify-content-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                    <a class="underline text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Forgot password?') }}
                     </a>
                 @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
+                
+            </div>
+            
+            <div class="row justify-content-center align-items-center">
+            <a class="btn btn-success w-50" href="{{ route('register') }}">
+                        {{ __('Create new account') }}
+                    </a>
             </div>
         </form>
     </x-auth-card>

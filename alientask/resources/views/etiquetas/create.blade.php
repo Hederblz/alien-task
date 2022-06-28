@@ -1,7 +1,8 @@
 <x-app-layout>
+    @section('subtitle', 'Etiquetas')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Painel inicial') }}
+            {{ __('Criação de Etiqueta') }}
         </h2>
     </x-slot>
 

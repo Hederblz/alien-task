@@ -88,7 +88,7 @@ class EtiquetaController extends Controller
         $etiqueta->cor = $request->cor;
         $etiqueta->update();
         $this->incrementarEtiquetaEditada($user->id);        
-        return redirect('dashboard')
+        return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' alterada com sucesso!');
     }
     
@@ -104,7 +104,7 @@ class EtiquetaController extends Controller
         $etiqueta = Etiqueta::findOrFail($id);
         $etiqueta->delete();
         $this->incrementarEtiquetaExcluida($user->id);
-        return redirect('dashboard')
+        return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' excluída com sucesso!');
     }
 
