@@ -1,118 +1,116 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Alien Task - Torne seus dias mais produtivos</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alien Task - Gerenciador de tarefas</title>
     <x-icon></x-icon>
+     <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <style>
-        .texto {
-            font-family: 'Nunito';
-        }
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
-        .color {
-            background: #b400ff;
-        }
-        h1{
-            margin-top: -40px;
-            margin-left: 45px;
-        }
+        <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+    crossorigin="anonymous">
 
-        img
-        {
-            width: 3rem;
-        }
-
-        .btn
-        {
-            padding: .5rem
-        }
-    </style>
-
-
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </head>
-
 <body>
-
-    <div class="container w-75 mx-6">
-                    @if (@session('msg'))
-                    <div class="container" id="msg">
-                        <span class="msg">{{session('msg')}}</span>
-                        <ion-icon name="close-circle-outline" class="shadow" id="close"></ion-icon>
-                    </div>
-                    @endif
-        <div>
+    <div class="container-fluid">
+        @if (@session('msg'))
+        <div class="container" id="msg">
+            <span class="msg">{{session('msg')}}</span>
+            <ion-icon name="close-circle-outline" class="shadow" id="close"></ion-icon>
+        </div>
+        @endif
+        <div class="container">
+            
             <a href="/">
-                <img src="/img/icons/alien.png" class="img-fluid mt-5" alt="Responsive image">
+                <img src="/img/icons/alien-head.png" class="img-fluid" id="logo" alt="Responsive image">
             </a>
             <h1 class="texto">Alien Task</h1>
         </div>
 
-        <div class="ml-2 mt-5 texto">
-            <h3>Seja produtivo com um gerenciador de tarefas</h3>
+        <div class="container">
+            <h2>Seja produtivo com um gerenciador de tarefas</h2>
         </div>
 
-        <div class="row justify-content-center align-items-center vh-100">
+        {{-- IF BIGGER THAN 400px --}}
+        <div class="container-fluid text-center" id="carousel">
+            <div class="row">
+
+                <div class="col">
+                    <a id="prev">
+                        <span><ion-icon name="chevron-back-outline"></ion-icon></span>
+                    </a>
+                </div>
+
+                <div class="col">
+                    <img class="img-fluid" src="/img/icons/taken-animate.svg" alt="Saia do mundo da procrastinação" id="carouselimage">
+                    <h5 id="slidetitle">Saia do mundo da procrastinação</h5>
+                    <p id="slidephrase">É hora de organizar sua vida</p>
+                </div>
+
+                <div class="col">
+                    <a id="next">
+                        <span><ion-icon name="chevron-forward-outline"></ion-icon></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+         {{-- IF SMALLER THAN 400px --}}
+         <div id="slider">
+            <div class="col text-center">
+                <img src="/img/icons/taken-animate.svg" alt="Saia do mundo da procrastinação">
+                <h5>Saia do mundo da procrastinação</h5>
+                <p>É hora de organizar sua vida</p>
+            </div>
+            <div class="col text-center">
+                <img src="/img/icons/calendar-animate.svg" alt="Cumpra prazos com folga">
+                <h5>Cumpra seus prazos com folga</h5>
+                <p>Aumente sua produtividade</p>
+            </div>
+            <div class="col text-center">
+                <img src="/img/icons/alien-scientist-animate.svg" alt="Compartilhe com os amigos">
+                <h5>Salve seus amigos da procrastinação</h5>
+                <p>Compartilhe o Alien task com eles</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center" id="buttons">
             <div class="col row">
                 @if (Route::has('login'))
-                    <div class="col-12 mb-2 rounded">
+                    <div class="col-12 rounded">
                         <a href="{{ route('login') }}">
-                            <button
-                                class="btn btn-secondary w-100 color border border-collapse text-decoration-none text-white ">Entrar</button>
+                            <button class="btn btn-secondary color border border-collapse text-decoration-none text-white" id="entrar">
+                                Entrar
+                            </button>
                         </a>
                     </div>
                     @if (Route::has('register'))
                         <div class="col-12">
-                            <a href="{{ route('register') }}"><button
-                                    class="btn w-100 border border-collapse text-decoration-none text-dark">Criar
-                                    Conta</button></a>
+                            <a href="{{ route('register') }}">
+                                <button class="btn border-collapse text-decoration-none text-dark" id="registrar">
+                                    Criar Conta
+                                </button>
+                            </a>
                         </div>
                     @endif
                 @endif
             </div>
         </div>
-        <footer class="bg-light text-center text-lg-start fixed">
-            <div class="container p-4">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Alien Task</h5>
-                        <p>
-                            O <b>Alien Task</b> é uma aplicação desenvolvida por estudantes do
-                            curso de informática para internet no <b>IFPE</b> campus Igarassu;
-                            cujo objetivo é ajudar pessoas que queiram tornar seu dia dia mais
-                            organizado e produtivo.
-                        </p>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Desenvolvimento</h5>
-                        <p>
-                           O projeto foi desenvolvido na disciplina de projeto e prática II
-                           com a utilização de modelos ágeis de gerênciamento de projeto.
-                           Marcado por diversas spikes e entregas, esse projeto visa mostrar
-                           o esforço coletivo de criação no framework <a href="https://laravel.com/">Laravel</a>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                &copy; 2022:
-                <a class="text-dark" href="https://mdbootstrap.com/">alientask.com</a>
-              </div>
-        </footer>
+        
     </div>
-    <link rel="stylesheet" href="/css/app.css">
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script src="/js/interfaces.js"></script>
+    <link rel="stylesheet" href="/css/welcome.css">
 </body>
+
+</html>

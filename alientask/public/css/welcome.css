@@ -1,0 +1,85 @@
+body
+{
+    color: #000;
+    font-family: 'Nunito';
+    touch-action: manipulation;
+}
+
+#logo
+{
+    width: 5rem;
+}
+
+#next,
+#prev
+{
+    font-size: clamp(1em, 1.5em, 2em);
+    cursor: pointer;
+}
+
+#carouselimage
+{
+    max-width: 30rem;
+}
+
+#slidetitle,
+#slidephrase
+{
+    font-size: clamp(1em, 1.5em, 2em);
+}
+
+#entrar,
+#registrar
+{
+    width: 100%;
+    margin: .25rem;
+    border-radius: 16px;
+    padding: .5rem;
+}
+
+#slider
+{
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    max-width: 380px;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border-radius: 16px;
+    border: groove 1.5px #9400D3;
+    scroll-snap-type: x proximity;
+}
+
+#buttons
+{
+    padding: 1rem;
+}
+
+#entrar
+{
+    background: #9400D3;
+}
+
+#registrar
+{
+    border: 1.5px groove rgba(0, 0, 0, .4);
+}
+
+#slider
+img
+{
+    width: 380px;
+}
+@media screen and (max-width: 400px) {
+    #carousel
+    {
+        display: none;
+    }
+
+    #slider
+    {
+        display: flex;
+    }
+
+}

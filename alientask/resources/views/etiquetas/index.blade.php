@@ -40,7 +40,7 @@
                           @else
                           <div class="row d-flex justify-content-center text-center">
                             <img src="/img/icons/alien-labels-animate.svg" alt="Não há etiquetas" class="img-fluid" style="width: 800px">
-                            <h4>Hora de classificar os afazeres.php</h4>
+                            <h4>Hora de classificar os afazeres</h4>
                           </div>
                           <div class="row d-flex text-center">
                               <p>Você não possui etiquetas. <a href="#" class="btn" id="add"><ion-icon name="add-outline"></ion-icon>  Criar etiqueta</a></p>

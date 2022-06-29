@@ -29,10 +29,6 @@
                         {{ __('Temporizador') }}
                     </x-nav-link>
                     
-                    <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
-                        {{ __('Histórico') }}
-                    </x-nav-link>
-                    
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Painel de estatisticas') }}
                     </x-nav-link>
