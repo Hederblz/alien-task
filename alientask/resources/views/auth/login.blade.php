@@ -18,7 +18,7 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('E-mail')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
@@ -42,13 +42,13 @@
             </div>
 
             <x-button class="btn btn-secondary w-100 color border border-collapse text-decoration-none text-white ">
-                    {{ __('Log In') }}
+                    {{ __('Entrar') }}
             </x-button>
 
             <div class="flex justify-content-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot password?') }}
+                        {{ __('Esqueceu a senha?') }}
                     </a>
                 @endif
                 
@@ -56,7 +56,7 @@
             
             <div class="row justify-content-center align-items-center">
             <a class="btn btn-success w-50" href="{{ route('register') }}">
-                        {{ __('Create new account') }}
+                        {{ __('Criar uma conta') }}
                     </a>
             </div>
         </form>

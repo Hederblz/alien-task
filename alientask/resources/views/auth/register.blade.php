@@ -22,14 +22,14 @@
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" :value="__('E-mail')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <!--Telephone field-->
             <div class="mt-4">
-                <x-label for="telephone" :value="__('telephone')" />
+                <x-label for="telephone" :value="__('telefoone')" />
 
                 <x-input id="telephone" class="block mt-1 w-full" type="tel" name="telefone" :value="old('telefone')" required />
             </div>
