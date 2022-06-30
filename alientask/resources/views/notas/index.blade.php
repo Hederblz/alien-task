@@ -6,6 +6,13 @@
         </h2>
     </x-slot>
     
+    <style>
+        ion-icon
+        {
+            font-size: 1.2em;
+        }
+    </style>
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -25,7 +32,7 @@
                     <div class="row">
                         @if($notas->count() > 0)
                         @foreach ($notas as $nota)
-                        <div class="card shadow" id="card" style="width: 20rem; margin: 1rem;">
+                        <div class="card shadow" id="card" style="max-width: 25rem">
                             <div class="card-body">
                                 @if ($nota->etiquetas)
                             <div class="row" id="labels-row">
@@ -33,7 +40,7 @@
                                 @php
                                     $jsonDecode = json_decode($etiqueta, true);
                                 @endphp
-                                <div class="d-flex" id="task-label" class="col" style="background-color: {{$jsonDecode['cor']}}; color: #FFF;">
+                                <div class="d-flex" id="task-label" class="col" style="background-color: {{$jsonDecode['cor']}}; color: #FFF; margin:.2rem">
                                     <b>{{$jsonDecode['titulo']}}</b>
                                 </div>
                                 @endforeach
@@ -42,6 +49,10 @@
                                 <h5 class="card-title">{{$nota->titulo}}</h5>
                                 <p class="card-text">{{$nota->conteudo}}</p>
                                 <div class="row">
+
+                                    <div class="col">
+                                        <a href="{{route('notas-show', $nota->id)}}" class="btn btn-secondary" id="add"><ion-icon name="reader-outline"></ion-icon></a>
+                                    </div>
 
                                     <div class="col">
                                         <form action="{{route('notas-trancar', $nota->id)}}" method="post">
@@ -86,9 +97,9 @@
                         <label for="titulo">Título</label>
                         <input type="text" name="titulo" id="titulo" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label for="cor">Cor</label>
+                    <div class="form-group" id="">
                         <input type="color" name="cor" id="cor" class="form-control">
+                        <label for="cor">Cor</label>
                     </div>
                     <button type="submit" class="btn" id="add">Criar etiqueta</button>
                     </form>

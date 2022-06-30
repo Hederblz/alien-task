@@ -1,14 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EtiquetaController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TarefaController;
-use App\Models\Etiqueta;
-use App\Models\Tarefa;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +45,7 @@ Route::middleware('auth')->group(function()
     Route::get('/notasindex', [NotaController::class, 'index'])->name('notas-index');
     Route::get('/notasshow/{id}', [NotaController::class, 'show'])->name('notas-show');
     Route::get('/notascreate', [NotaController::class, 'create'])->name('notas-create');
+    Route::get('/notasshow/{id}', [NotaController::class, 'show'])->name('notas-show');
     Route::get('/notasedit/{id}', [NotaController::class, 'edit'])->name('notas-edit');
 
     Route::post('/notasstore', [NotaController::class, 'store'])->name('notas-store');

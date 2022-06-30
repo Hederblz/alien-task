@@ -105,6 +105,7 @@ class NotaController extends Controller
             $nota->titulo = $request->titulo;
         }
         $nota->conteudo = $request->conteudo;
+        $nota->etiquetas = $request->etiquetas;
         $nota->update();
         $this->incrementarNotaEditada($user->id);
         return redirect()->route('notas-index')->with('msg', "Nota $nota->titulo atualizada com sucesso.");

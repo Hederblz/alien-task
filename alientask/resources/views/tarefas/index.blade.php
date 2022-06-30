@@ -11,17 +11,20 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-6 border-b border-gray-200" id="main">
                     
                     @if (@session('msg'))
-                    <div class="container" id="msg">
+                    <div class="container rounded-pill" id="msg">
                         <span class="msg">{{session('msg')}}</span>
                         <ion-icon name="close-circle-outline" class="shadow" id="close"></ion-icon>
                     </div>
                     @endif
 
                     <h2>Suas Tarefas</h2>
-                    <a href="{{route('tarefas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar tarefa</a>
+                    <a href="{{route('tarefas-create')}}" class="btn" id="add">
+                        <ion-icon name="add-outline"></ion-icon> Criar tarefa
+                    </a>
+                    
                     @if ($tarefas->count() > 0)
                     @foreach ($tarefas as $tarefa)
                         <div class="row shadow" id="task">
@@ -50,14 +53,14 @@
                             @endif
                             <div class="col" id="text">
                                 @if ($tarefa->etiquetas)
-                                <div class="row">
+                                <div class="row" id="task-label-field">
                                     
                                     @foreach ($tarefa->etiquetas as $etiqueta)
                                     @php
                                         $jsonDecode = json_decode($etiqueta, true);
                                         $lineThrough = "text-decoration: line-through";
                                     @endphp
-                                    <div id="task-label" class="col-md" style="background-color: {{$jsonDecode['cor']}}; color: #FFF;">
+                                    <div id="task-label" class="col-md" style="background-color: {{$jsonDecode['cor']}}; color: #FFF; margin: .5rem;">
                                         <b>{{$jsonDecode['titulo']}}</b>
                                     </div>
                                     @endforeach
@@ -73,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row d-flex align-middle">
                                 <div class="col">
                                     <form action="{{route('tarefas-check', $tarefa->id)}}" method="post">
                                         @csrf
@@ -106,8 +109,8 @@
                                     <form action="{{route('tarefas-destroy', $tarefa->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" style="margin: .5rem"><ion-icon name="trash-outline"></ion-icon></button>
-                                    </form>
+                                    <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>
+                                </form>
                                 </div>
                             </div>
                         </div>

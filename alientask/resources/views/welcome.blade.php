@@ -32,7 +32,7 @@
         <div class="container">
             
             <a href="/">
-                <img src="/img/icons/alien-head.png" class="img-fluid" id="logo" alt="Responsive image">
+                <img src="/img/icons/alien-head.png" loading="lazy" class="img-fluid mt-5" id="logo" alt="Responsive image">
             </a>
             <h1 class="texto">Alien Task</h1>
         </div>

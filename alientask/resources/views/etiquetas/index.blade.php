@@ -22,10 +22,10 @@
                     <a href="{{route('etiquetas-create')}}" class="btn" id="add">
                         <ion-icon name="add-outline"></ion-icon> Criar etiqueta
                     </a>
-                    <div class="row" id="labels-row">
+                    <div class="container-fluid" id="labels-row">
                       @if ($etiquetas->count() > 0)
                           @foreach ($etiquetas as $etiqueta)
-                              <div class="card shadow text-center" id="label" style="width: 8em; background-color: {{$etiqueta->cor}}; color:#FFF;">
+                              <div class="shadow text-center" id="label" style="background-color: {{$etiqueta->cor}}; color:#FFF;">
                                 <b>{{$etiqueta->titulo}}</b>
                                 
                                     <a href="{{route('etiquetas-edit', $etiqueta->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>            
@@ -33,7 +33,7 @@
                                     <form action="{{route('etiquetas-destroy', $etiqueta->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" id="destroy"><ion-icon name="trash-outline"></ion-icon></button>
+                                    <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>
                                     </form>
                               </div>
                           @endforeach

@@ -49,6 +49,7 @@ body
     border-radius: 16px;
     border: groove 1.5px #9400D3;
     scroll-snap-type: x proximity;
+    margin: 0 auto;
 }
 
 #buttons
@@ -71,7 +72,7 @@ img
 {
     width: 380px;
 }
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     #carousel
     {
         display: none;

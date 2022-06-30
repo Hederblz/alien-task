@@ -88,7 +88,7 @@ class EtiquetaController extends Controller
         $etiqueta->cor = $request->cor;
         $etiqueta->update();
         $this->incrementarEtiquetaEditada($user->id);        
-        return redirect()->back()
+        return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' alterada com sucesso!');
     }
     

@@ -32,8 +32,10 @@
                      $jsonDecode = json_decode($etiqueta)   
                     @endphp
                     <div class="row form-group">
-                    <label for="etiquetas" style="background: {{$etiqueta['cor']}}; color: #FFF;">{{$etiqueta['titulo']}}</label>
-                    <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
+                        <div class="col d-flex shadow" id="label-check" style="background: {{$etiqueta->cor}}">
+                            <input type="checkbox" name="etiquetas[]" id="etiqueta" value="{{$etiqueta}}">
+                            <label for="etiquetas" style="color: #FFF;">{{$etiqueta['titulo']}}</label>
+                        </div>
                     </div>
                     @endforeach
                 </div>

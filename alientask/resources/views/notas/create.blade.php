@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label for="conteudo">Conteúdo</label>
-                        <textarea name="conteudo" id="conteudo" rows="10" class="form-control"></textarea>
+                        <textarea name="conteudo" id="conteudo" rows="10" class="form-control" style="resize: none"></textarea>
                     </div>
                     <div class="form-group">
                         @if ($etiquetas->count() > 0)

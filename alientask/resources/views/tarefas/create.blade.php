@@ -9,7 +9,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-6 bg-white border-b border-gray-200" id="main">
                     <h2>Criar tarefa</h2>
                     <form action="{{route('tarefas-store')}}" method="post">
                     @csrf
@@ -27,7 +27,8 @@
                     </div>
 
                     <div class="form-group">
-                        <h2>Etiquetas</h2>
+                        <details>
+                            <summary style="font-size: 1.5em">Etiquetas</summary>
                         @if ($etiquetas->count() > 0)
                         @foreach ($etiquetas as $etiqueta)
                         <div class="row form-group">
@@ -38,12 +39,14 @@
                         @else
                         <p>Você não possui etiquetas. <button class="btn etiqueta" id="togglecreate" style="background: #9400D3; color:#FFF;">Criar marcador</button></p>
                         @endif
+                        </details>
+                        
                     </div>
-                    <button type="submit" class="btn" id="add">Criar tarefa</button>
+                    <button type="submit" class="btn" style="background: #9400D3; color: #FFF;">Criar tarefa</button>
                     </form>
                     <div class="container-fluid">
                         <h2>Criar etiqueta</h2>
-                        <form action="{{route('etiquetas-store')}}" method="post">
+                        <form action="{{route('etiquetas-simple-store')}}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="titulo">Título</label>

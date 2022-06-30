@@ -1306,3 +1306,98 @@ select {
   }
 }
 
+#msg
+{
+  background: #9400D3;
+  color: #FFF;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  border-radius: 16px;
+}
+
+#msg
+ion-icon
+{
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+#task
+{
+  border-radius: 16px;
+  margin: .5rem;
+  padding: 1rem;
+}
+
+#main
+{
+  padding: 1rem;
+}
+
+#task
+.btn
+ion-icon
+{
+  font-size: 1.2em;
+}
+
+#add
+{
+  background: #9400D3;
+  color: #FFF;
+}
+
+#task-label
+{
+  border-radius: 16px;
+}
+
+#label
+{
+  margin: .5rem;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  padding: .5rem;
+  display: flex;
+  width: auto;
+}
+
+#label-check
+{
+  align-items: center;
+  border-radius: 16px;
+  margin: .5rem;
+}
+
+#label-check
+label
+{
+  margin: .5rem;
+  font-size: 1em;
+}
+
+@media (max-width:500) {
+  
+  #task-label-field
+  {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+  }
+  
+}
+
+#card
+{
+  margin: .5rem;
+  max-height: 15rem;
+}
+
+.card-text
+{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
