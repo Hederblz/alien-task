@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidNoteException;
 use App\Models\Nota;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -66,7 +67,14 @@ class NotaController extends Controller
      */
     public function show( $id)
     {
-        $nota = Nota::findOrFail($id);
+        try{
+            $nota = Nota::findOrFail($id);
+        }
+        catch(InvalidNoteException $e)
+        {
+            report($e);
+            return false;
+        }
 
         return view('notas.show', ['nota' => $nota]);
     }

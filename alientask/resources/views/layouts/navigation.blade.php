@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('tarefas-index') }}">
                         <x-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
@@ -33,7 +33,7 @@
                         {{ __('Painel de estatisticas') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('perfil')" :active="request()->routeIs('perfil')">
+                    <x-nav-link :href="route('perfil-show', Auth::user()->id)" :active="request()->routeIs('perfil')">
                         {{ __('Perfil') }}
                     </x-nav-link>
                 </div>

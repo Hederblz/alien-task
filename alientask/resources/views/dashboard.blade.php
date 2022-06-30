@@ -1,8 +1,8 @@
 <x-app-layout>
-    @section('subtitle', 'Painel inicial')
+    @section('subtitle', 'Painel de estatísticas')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Painel inicial') }}
+            {{ __('Painel de estatisticas') }}
         </h2>
     </x-slot>
 

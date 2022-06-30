@@ -5,6 +5,8 @@
             {{ __('Notas') }}
         </h2>
     </x-slot>
+
+    <x-icon></x-icon>
     
     <style>
         ion-icon
