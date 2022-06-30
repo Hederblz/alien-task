@@ -10,30 +10,44 @@
                     </a>
                 </div>
 
+                <style>
+                    .nav-icon
+                    {
+                        font-size: clamp(1em, 1.5em, 1.5em);
+                    }
+                </style>
+
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     
                     <x-nav-link :href="route('tarefas-index')" :active="request()->routeIs('tarefas-index')">
+                        <ion-icon name="checkbox-outline" class="nav-icon"></ion-icon>
                         {{ __('Tarefas') }}
                     </x-nav-link>
                     
                     <x-nav-link :href="route('notas-index')" :active="request()->routeIs('notas-index')">
+                        <ion-icon name="document-outline" class="nav-icon"></ion-icon>
                         {{ __('Notas') }}
                     </x-nav-link>
                     
                     <x-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')">
+                        <ion-icon name="bookmark-outline" class="nav-icon"></ion-icon>
                         {{ __('Etiquetas') }}
                     </x-nav-link>
                     
                     <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
+                        <ion-icon name="time-outline" class="nav-icon"></ion-icon>
                         {{ __('Temporizador') }}
                     </x-nav-link>
                     
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <ion-icon name="stats-chart-outline"class="nav-icon"></ion-icon>
                         {{ __('Painel de estatisticas') }}
                     </x-nav-link>
 
+
                     <x-nav-link :href="route('perfil-show', Auth::user()->id)" :active="request()->routeIs('perfil')">
+                        <ion-icon name="person-outline"class="nav-icon"></ion-icon>
                         {{ __('Perfil') }}
                     </x-nav-link>
                 </div>
@@ -45,7 +59,7 @@
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div>
-
+                            
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -53,15 +67,15 @@
                             </div>
                         </button>
                     </x-slot>
-
+                    
                     <x-slot name="content">
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             
-
+                            
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                            onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Sair') }}
                             </x-dropdown-link>
@@ -69,7 +83,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-
+            
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
@@ -81,32 +95,44 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Página inicial') }}
-            </x-responsive-nav-link>
-
+            
             <x-responsive-nav-link :href="route('tarefas-index')" :active="request()->routeIs('tarefas-index')">
+                <ion-icon name="checkbox-outline" class="nav-icon"></ion-icon>
                 {{ __('Tarefas') }}
             </x-responsive-nav-link>
-
+            
             <x-responsive-nav-link :href="route('notas-index')" :active="request()->routeIs('notas-index')">
+                <ion-icon name="document-outline" class="nav-icon"></ion-icon>
                 {{ __('Nota') }}
             </x-responsive-nav-link>
-
+            
             <x-responsive-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')">
+                <ion-icon name="bookmark-outline" class="nav-icon"></ion-icon>
                 {{ __('Etiquetas') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('timer')" :active="request()->routeIs('timer')">
+                <ion-icon name="time-outline" class="nav-icon"></ion-icon>
                 {{ __('Temporizador') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <ion-icon name="stats-chart-outline"class="nav-icon"></ion-icon>
+                {{ __('Painel de estatisticas') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="align-middle d-flex">
+                <ion-icon name="book-outline"></ion-icon>
                 {{ __('Histórico') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('perfil-show', Auth::user()->id)" :active="request()->routeIs('perfil-show')" class="align-middle d-flex">
+                <ion-icon name="person-outline"class="nav-icon"></ion-icon>
+                {{ __('Perfil') }}
             </x-responsive-nav-link>
         </div>
 

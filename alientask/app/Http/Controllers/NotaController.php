@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NotaCriadaEvent;
+use App\Events\UserEvent;
 use App\Exceptions\InvalidNoteException;
 use App\Models\Nota;
 use Illuminate\Http\Request;
@@ -54,7 +56,9 @@ class NotaController extends Controller
         $nota->etiquetas = $request->etiquetas;
         $nota->user_id = $user->id;
         $nota->save();
-        $this->incrementarNotaCriada($user->id);
+        // $this->incrementarNotaCriada($user->id);
+        UserEvent::dispatch($user, 'nota_criada');
+        NotaCriadaEvent::dispatch($user, 'criou', $nota->id);
         return redirect()->route('notas-index')
        ->with('msg', 'Nota criada com sucesso.');
     }

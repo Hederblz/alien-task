@@ -27,7 +27,7 @@
                     
                     @if ($tarefas->count() > 0)
                     @foreach ($tarefas as $tarefa)
-                        <div class="row shadow" id="task">
+                        <div class="row shadow mt-5" id="task">
                             @php
                                 $dataFinalPrevista = \Carbon\Carbon::parse($tarefa->data_final_prevista);
                                 $dataConclusao = \Carbon\Carbon::parse($tarefa->data_conclusao);

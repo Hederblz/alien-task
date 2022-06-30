@@ -14,7 +14,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                   <h2>Leve o tempo que precisar</h2>
 
-                  <div class="container" id="timer">
+                  <div class="container mt-5" id="timer">
                     <div class="row text-center">
                         <h1 id="counter">00:00:00</h1>
                     </div>

@@ -33,5 +33,10 @@ class Tarefa extends Model
     {
         return $this->hasMany(Etiqueta::class);
     }
+
+    public function logs()
+    {
+        return $this->morphMany(Log::class, 'loggable');
+    }
     
 }

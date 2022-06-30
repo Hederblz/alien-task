@@ -20,6 +20,7 @@
                     </div>
                     <div class="row" id="labels-row">
                        <h4>Etiquetas</h4>
+                       @if ($nota->etiquetas)
                        @foreach ($nota->etiquetas as $etiqueta)
                        @php
                            $jsonDecode = json_decode($etiqueta, true);
@@ -28,6 +29,7 @@
                            <b>{{$jsonDecode['titulo']}}</b>
                        </div>
                        @endforeach
+                       @endif
                     </div>
                 </div>
             </div>

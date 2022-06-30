@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
-use App\Events\UsuarioEvent;
-use App\Listeners\RegistrarUsuarioLog;
+use App\Events\NotaCriadaEvent;
+use App\Events\UserEvent;
+use App\Http\Controllers\LogController;
+use App\Listeners\RegisterUserLog;
+use App\Listeners\RegistrarNota;
+use App\Models\Log;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -32,6 +36,10 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+        Event::listen(UserEvent::class, [RegisterUserLog::class, 'handle']);
+        Event::listen(NotaCriadaEvent::class, [RegistrarNota::class, 'handle']);
+        
         //
     }
 
