@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\CrudEvent;
+// use App\Events\CrudEvent;
 use App\Events\NotaCriadaEvent;
+use App\Events\NotaEditadaEvent;
+use App\Events\NotaExcluidaEvent;
 use App\Events\UserEvent;
 use App\Exceptions\InvalidNoteException;
 use App\Models\Nota;
@@ -57,7 +59,7 @@ class NotaController extends Controller
         $nota->etiquetas = $request->etiquetas;
         $nota->user_id = $user->id;
         $nota->save();
-        CrudEvent::dispatch($user, 'criou', 'nota', $nota->titulo);
+        NotaCriadaEvent::dispatch($user, 'criou', 'nota', $nota->titulo);
         return redirect()->route('notas-index')
        ->with('msg', 'Nota criada com sucesso.');
     }
@@ -118,7 +120,7 @@ class NotaController extends Controller
         $nota->conteudo = $request->conteudo;
         $nota->etiquetas = $request->etiquetas;
         $nota->update();
-        CrudEvent::dispatch($user, 'editou', 'nota', $nota->id);
+        NotaEditadaEvent::dispatch($user, 'editou', 'nota', $nota->titulo);
         return redirect()->route('notas-index')->with('msg', "Nota $nota->titulo atualizada com sucesso.");
     }
 
@@ -135,7 +137,7 @@ class NotaController extends Controller
         if(!$nota->trancada)
         {
             $nota->delete();
-            CrudEvent::dispatch($user, 'excluiu', 'nota', $nota->id);
+            NotaExcluidaEvent::dispatch($user, 'excluiu', 'nota', $nota->titulo);
             return redirect()->route('notas-index')->with('msg', 'Nota excluída com sucesso!');
         }
         else

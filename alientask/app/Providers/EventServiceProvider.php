@@ -4,9 +4,12 @@ namespace App\Providers;
 
 use App\Events\CrudEvent;
 use App\Events\NotaCriadaEvent;
+use App\Events\NotaEditadaEvent;
+use App\Events\NotaExcluidaEvent;
 use App\Events\UserEvent;
 use App\Http\Controllers\LogController;
 use App\Listeners\NotaCriada;
+use App\Listeners\NotaListener;
 use App\Listeners\RegisterUserLog;
 use App\Listeners\RegistrarNota;
 use App\Models\Log;
@@ -36,8 +39,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Event::listen(CrudEvent::class, [NotaCriada::class, 'handle']);        
-        //
+        Event::listen(NotaEditadaEvent::class, [NotaListener::class, 'handle']);        
+        Event::listen(NotaCriadaEvent::class, [NotaListener::class, 'handle']);   
+        Event::listen(NotaExcluidaEvent::class, [NotaListener::class, 'handle']);
     }
 
     /**

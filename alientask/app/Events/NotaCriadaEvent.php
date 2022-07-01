@@ -10,12 +10,10 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class CrudEvent
+class NotaCriadaEvent extends NotaEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
-    public $action;
     public $type;
     public $type_title;
     /**
@@ -23,10 +21,9 @@ class CrudEvent
      *
      * @return void
      */
-    public function __construct($user, $action, $type, $type_title)
+    public function __construct($user, $type, $type_title)
     {
-        $this->user = $user;
-        $this->action = $action;
+        parent::__construct($user);
         $this->type = $type;
         $this->type_title = $type_title;
     }
