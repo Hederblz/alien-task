@@ -36,8 +36,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
-        Event::listen(UserEvent::class, [RegisterUserLog::class, 'handle']);
         Event::listen(CrudEvent::class, [NotaCriada::class, 'handle']);        
         //
     }

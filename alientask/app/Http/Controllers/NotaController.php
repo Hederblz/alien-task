@@ -118,7 +118,7 @@ class NotaController extends Controller
         $nota->conteudo = $request->conteudo;
         $nota->etiquetas = $request->etiquetas;
         $nota->update();
-        $this->incrementarNotaEditada($user->id);
+        CrudEvent::dispatch($user, 'editou', 'nota', $nota->id);
         return redirect()->route('notas-index')->with('msg', "Nota $nota->titulo atualizada com sucesso.");
     }
 
@@ -135,7 +135,7 @@ class NotaController extends Controller
         if(!$nota->trancada)
         {
             $nota->delete();
-            $this->incrementarNotaExcluida($user->id);
+            CrudEvent::dispatch($user, 'excluiu', 'nota', $nota->id);
             return redirect()->route('notas-index')->with('msg', 'Nota excluída com sucesso!');
         }
         else
@@ -161,26 +161,4 @@ class NotaController extends Controller
         return redirect()->route('notas-index');
     }
 
-    // ATRIBUTES
-
-    public function incrementarNotaCriada($id)
-    {
-        $user = User::findOrFail($id);
-        $user->notas_criadas++;
-        $user->update();
-    }
-
-    public function incrementarNotaEditada($id)
-    {
-        $user = User::findOrFail($id);
-        $user->notas_editadas++;
-        $user->update();
-    }
-
-    public function incrementarNotaExcluida($id)
-    {
-        $user = User::findOrFail($id);
-        $user->notas_excluidas++;
-        $user->update();
-    }
 }
