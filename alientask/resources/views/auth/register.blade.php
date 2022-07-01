@@ -29,7 +29,7 @@
 
             <!--Telephone field-->
             <div class="mt-4">
-                <x-label for="telephone" :value="__('telefoone')" />
+                <x-label for="telephone" :value="__('telefone')" />
 
                 <x-input id="telephone" class="block mt-1 w-full" type="tel" name="telefone" :value="old('telefone')" required />
             </div>

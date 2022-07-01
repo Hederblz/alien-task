@@ -10,17 +10,14 @@ class Log extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'action',
-        'loggable_id',
-        'loggable_type'
+        'type',
+        'type_title',
+        'user_id'
     ];
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function loggable() {
-        return $this->morphTo();
-    }
 }

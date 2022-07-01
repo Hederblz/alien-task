@@ -30,8 +30,4 @@ class Etiqueta extends Model
         return $this->belongsToMany(Nota::class);
     }
 
-    public function logs()
-    {
-        return $this->morphMany(Log::class, 'loggable');
-    }
 }

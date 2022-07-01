@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\CrudEvent;
 use App\Events\NotaCriadaEvent;
 use App\Events\UserEvent;
 use App\Http\Controllers\LogController;
+use App\Listeners\NotaCriada;
 use App\Listeners\RegisterUserLog;
 use App\Listeners\RegistrarNota;
 use App\Models\Log;
@@ -24,9 +26,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        UsuarioEvent::class => [
-            RegistrarUsuarioLog::class
-        ]
+       
     ];
 
     /**
@@ -38,8 +38,7 @@ class EventServiceProvider extends ServiceProvider
     {
         
         Event::listen(UserEvent::class, [RegisterUserLog::class, 'handle']);
-        Event::listen(NotaCriadaEvent::class, [RegistrarNota::class, 'handle']);
-        
+        Event::listen(CrudEvent::class, [NotaCriada::class, 'handle']);        
         //
     }
 

@@ -10,23 +10,25 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserEvent
+class CrudEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $user;
     public $action;
-
+    public $type;
+    public $type_title;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user, $action)
+    public function __construct($user, $action, $type, $type_title)
     {
-        //
         $this->user = $user;
         $this->action = $action;
+        $this->type = $type;
+        $this->type_title = $type_title;
     }
 
     /**

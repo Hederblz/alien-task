@@ -2,11 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Events\UserEvent;
+use App\Events\CrudEvent;
+use App\Models\Log;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class RegisterUserLog
+class NotaCriada
 {
     /**
      * Create the event listener.
@@ -21,19 +22,19 @@ class RegisterUserLog
     /**
      * Handle the event.
      *
-     * @param  \App\Events\UserEvent  $event
+     * @param  \App\Events\CrudEvent  $event
      * @return void
      */
-    public function handle(UserEvent $event)
+    public function handle(CrudEvent $event)
     {
-        //
         $user = $event->user;
-        if ($event->action == 'nota_criada') {
-            $user->notas_criadas++;
-        }
-        // $action = $event->action;
-
-        // $user->name = $user->name . $action;
+        $log = new Log();
+        $log->action = $event->action;
+        $log->type = $event->type;
+        $log->type_title = $event->type_title;
+        $log->user_id = $user->id;
+        $log->save();
+        $user->notas_criadas++;
         $user->save();
     }
 }

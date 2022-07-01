@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->string('action');
-            $table->foreignId('loggable_id');
-            $table->string('loggable_type');
+            $table->string('type');
+            $table->string('type_title');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
