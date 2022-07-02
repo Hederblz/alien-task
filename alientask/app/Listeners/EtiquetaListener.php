@@ -40,6 +40,7 @@ class EtiquetaListener
                 'user_id' => $user->id
             ]);
             $user->etiquetas_criadas++;
+            $user->save();
         }
 
         if($event instanceof EtiquetaEditadaEvent) {
@@ -50,6 +51,7 @@ class EtiquetaListener
                 'user_id' => $user->id
             ]);
             $user->etiquetas_editadas++;
+            $user->save();
         }
 
         if($event instanceof EtiquetaExcluidaEvent) {
@@ -60,6 +62,7 @@ class EtiquetaListener
                 'user_id' => $user->id
             ]);
             $user->etiquetas_excluidas++;
+            $user->save();
         }
     }
 }

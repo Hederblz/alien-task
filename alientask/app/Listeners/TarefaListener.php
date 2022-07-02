@@ -31,8 +31,8 @@ class TarefaListener
      */
     public function handle(TarefaEvent $event)
     {
+        $user = $event->user;
         if($event instanceof TarefaCriadaEvent) {
-            $user = $event->user;
             Log::create([
                 'action' => config('events.criou'),
                 'type' => config('events.tarefa'),
@@ -40,10 +40,10 @@ class TarefaListener
                 'user_id' => $event->user->id
             ]);
             $user->tarefas_criadas++;
+            $user->save();
         }
 
         if($event instanceof TarefaEditadaEvent) {
-            $user = $event->user;
             Log::create([
                 'action' => config('events.editou'),
                 'type' => config('events.tarefa'),
@@ -51,10 +51,10 @@ class TarefaListener
                 'user_id' => $event->user->id
             ]);
             $user->tarefas_editadas++;
+            $user->save();
         }
 
         if($event instanceof TarefaExcluidaEvent) {
-            $user = $event->user;
             Log::create([
                 'action' => config('events.excluiu'),
                 'type' => config('events.tarefa'),
@@ -62,10 +62,10 @@ class TarefaListener
                 'user_id' => $event->user->id
             ]);
             $user->tarefas_excluidas++;
+            $user->save();
         }
         
         if($event instanceof TarefaConcluidaEvent) {
-            $user = $event->user;
             Log::create([
                 'action' => config('events.concluiu'),
                 'type' => config('events.tarefa'),
@@ -73,6 +73,7 @@ class TarefaListener
                 'user_id' => $event->user->id
             ]);
             $user->tarefas_concluidas++;
+            $user->save();
         }
     }
 }
