@@ -33,8 +33,8 @@ class NotaListener
         $user = $event->user;
         if($event instanceof NotaCriadaEvent) {
             Log::create([
-                'action' => 'criou',
-                'type' => $event->type,
+                'action' => config('events.criou'),
+                'type' => config('events.nota'),
                 'type_title' => $event->type_title,
                 'user_id' => $user->id
             ]);
@@ -44,8 +44,8 @@ class NotaListener
 
         if ($event instanceOf NotaEditadaEvent) {
             Log::create([
-                'action' => 'editou',
-                'type' => $event->type,
+                'action' => config('events.editou'),
+                'type' => config('events.nota'),
                 'type_title' => $event->type_title,
                 'user_id' => $user->id
             ]);
@@ -55,8 +55,8 @@ class NotaListener
 
         if($event instanceof NotaExcluidaEvent) {
             Log::create([
-                'action' => 'excluiu',
-                'type' => $event->type,
+                'action' => config('events.excluiu'),
+                'type' => config('events.nota'),
                 'type_title' => $event->type_title,
                 'user_id' => $user->id
             ]);

@@ -45,6 +45,13 @@
                         {{ __('Painel de estatisticas') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('historico-index')" :active="request()->routeIs('historico-index')">
+                        <ion-icon name="book-outline" class="nav-icon"></ion-icon>
+                        {{ __('Histórico') }}
+                    </x-nav-link>
+
+
+
 
                     <x-nav-link :href="route('perfil-show', Auth::user()->id)" :active="request()->routeIs('perfil')">
                         <ion-icon name="person-outline"class="nav-icon"></ion-icon>

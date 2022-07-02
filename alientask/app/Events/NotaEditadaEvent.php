@@ -14,7 +14,6 @@ class NotaEditadaEvent extends NotaEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $type;
     public $type_title;
     
     /**
@@ -22,10 +21,9 @@ class NotaEditadaEvent extends NotaEvent
      *
      * @return void
      */
-    public function __construct($user, $type, $type_title)
+    public function __construct($user, $type_title)
     {
         parent::__construct($user);
-        $this->type = $type;
         $this->type_title = $type_title;
     }
 

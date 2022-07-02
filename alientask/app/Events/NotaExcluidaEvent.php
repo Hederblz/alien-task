@@ -14,17 +14,15 @@ class NotaExcluidaEvent extends NotaEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $type;
     public $type_title;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user, $type, $type_title)
+    public function __construct($user, $type_title)
     {
         parent::__construct($user);
-        $this->type = $type;
         $this->type_title = $type_title;
     }
 

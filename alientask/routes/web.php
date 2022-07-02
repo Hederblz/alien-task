@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\EtiquetaController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\NotaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TarefaController;
@@ -36,9 +37,12 @@ Route::middleware('auth')->group(function()
     Route::prefix('etiquetas')->group(base_path(path: 'routes/etiquetas.php'));
     Route::prefix('perfil')->group(base_path(path: 'routes/perfil.php'));
 
-    Route::get('/timer', function(){
+    Route::get('/timer', function() {
         return view('timer');
     })->name('timer');
+
+    Route::get('/historico', [LogController::class, 'index'])
+    ->name('historico-index');
 });
 
 require __DIR__ . '/auth.php';

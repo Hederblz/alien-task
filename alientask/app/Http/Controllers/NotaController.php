@@ -59,7 +59,7 @@ class NotaController extends Controller
         $nota->etiquetas = $request->etiquetas;
         $nota->user_id = $user->id;
         $nota->save();
-        NotaCriadaEvent::dispatch($user, 'criou', 'nota', $nota->titulo);
+        NotaCriadaEvent::dispatch($user, $nota->titulo);
         return redirect()->route('notas-index')
        ->with('msg', 'Nota criada com sucesso.');
     }
@@ -120,7 +120,7 @@ class NotaController extends Controller
         $nota->conteudo = $request->conteudo;
         $nota->etiquetas = $request->etiquetas;
         $nota->update();
-        NotaEditadaEvent::dispatch($user, 'editou', 'nota', $nota->titulo);
+        NotaEditadaEvent::dispatch($user, $nota->titulo);
         return redirect()->route('notas-index')->with('msg', "Nota $nota->titulo atualizada com sucesso.");
     }
 
@@ -137,7 +137,7 @@ class NotaController extends Controller
         if(!$nota->trancada)
         {
             $nota->delete();
-            NotaExcluidaEvent::dispatch($user, 'excluiu', 'nota', $nota->titulo);
+            NotaExcluidaEvent::dispatch($user, $nota->titulo);
             return redirect()->route('notas-index')->with('msg', 'Nota excluída com sucesso!');
         }
         else
