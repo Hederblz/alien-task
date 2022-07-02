@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TarefaConcluidaEvent;
+use App\Events\TarefaCriadaEvent;
+use App\Events\TarefaEditadaEvent;
+use App\Events\TarefaExcluidaEvent;
 use App\Models\Tarefa;
 use App\Models\User;
 use DateTime;
@@ -49,7 +53,7 @@ class TarefaController extends Controller
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->user_id = $user->id;
         $tarefa->save();
-        $this->incrementarTarefaCriada($user->id);
+        TarefaCriadaEvent::dispatch($user, $tarefa->titulo);
         return redirect()->route('tarefas-index')->with('msg', 'Tarefa criada com sucesso!');
     }
 
@@ -95,7 +99,7 @@ class TarefaController extends Controller
         $tarefa->data_final_prevista = $request->data_final_prevista;
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->update();
-        $this->incrementarTarefaEditada($user->id);
+        TarefaEditadaEvent::dispatch($user, $tarefa->titulo);
         return redirect()->route('tarefas-index')->with('msg', 'Tarefa atualizada com sucesso!');
     }
 
@@ -112,7 +116,7 @@ class TarefaController extends Controller
         if(!$tarefa->trancada)
         {
             $tarefa->delete();
-            $this->incrementarTarefaExcluida($user->id);
+            TarefaExcluidaEvent::dispatch($user, $tarefa->titulo);
             return redirect()->route('tarefas-index')
             ->with('msg', "Tarefa excluída com sucesso.");
         }
@@ -132,7 +136,7 @@ class TarefaController extends Controller
        {
         $tarefa->concluida = 1;
         $tarefa->data_conclusao = date('Y-m-d');
-        $this->incrementarTarefaConcluida($user->id);
+        TarefaConcluidaEvent::dispatch($user, $tarefa->titulo);
        }
        else
        {
@@ -159,36 +163,6 @@ class TarefaController extends Controller
             return redirect()->route('tarefas-index')->with('msg', 'Tarefa ' . $tarefa->titulo . ' destrancada.');
         }
 
-    }
-
-    //ATRIBUTES
-
-    public function incrementarTarefaCriada($id)
-    {
-        $user = User::findOrFail($id);
-        $user->tarefas_criadas++;
-        $user->update();
-    }
-
-    public function incrementarTarefaEditada($id)
-    {
-        $user = User::findOrFail($id);
-        $user->tarefas_editadas++;
-        $user->update();
-    }
-
-    public function incrementarTarefaConcluida($id)
-    {
-        $user = User::findOrFail($id);
-        $user->tarefas_concluidas++;
-        $user->update();
-    }
-
-    public function incrementarTarefaExcluida($id)
-    {
-        $user = User::findOrFail($id);
-        $user->tarefas_excluidas++;
-        $user->update();
     }
 
 }

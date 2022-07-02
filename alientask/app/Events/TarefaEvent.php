@@ -2,12 +2,12 @@
 
 namespace App\Events;
 
-class NotaEvent
+class TarefaEvent
 {
     public $user;
 
     public function __construct($user)
     {
-        $this->user = $user;
+        $this->user = $user;        
     }
 }

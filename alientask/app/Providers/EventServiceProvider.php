@@ -6,12 +6,17 @@ use App\Events\CrudEvent;
 use App\Events\NotaCriadaEvent;
 use App\Events\NotaEditadaEvent;
 use App\Events\NotaExcluidaEvent;
+use App\Events\TarefaConcluidaEvent;
+use App\Events\TarefaCriadaEvent;
+use App\Events\TarefaEditadaEvent;
+use App\Events\TarefaExcluidaEvent;
 use App\Events\UserEvent;
 use App\Http\Controllers\LogController;
 use App\Listeners\NotaCriada;
 use App\Listeners\NotaListener;
 use App\Listeners\RegisterUserLog;
 use App\Listeners\RegistrarNota;
+use App\Listeners\TarefaListener;
 use App\Models\Log;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -39,9 +44,15 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Event::listen(TarefaCriadaEvent::class, [TarefaListener::class, 'handle']);
+        Event::listen(TarefaEditadaEvent::class, [TarefaListener::class, 'handle']);
+        Event::listen(TarefaExcluidaEvent::class, [TarefaListener::class, 'handle']);
+        Event::listen(TarefaConcluidaEvent::class, [TarefaListener::class, 'handle']);
+
         Event::listen(NotaEditadaEvent::class, [NotaListener::class, 'handle']);        
         Event::listen(NotaCriadaEvent::class, [NotaListener::class, 'handle']);   
         Event::listen(NotaExcluidaEvent::class, [NotaListener::class, 'handle']);
+        
     }
 
     /**
