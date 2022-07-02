@@ -30,9 +30,8 @@ class NotaListener
      */
     public function handle(NotaEvent $event)
     {
-        
+        $user = $event->user;
         if($event instanceof NotaCriadaEvent) {
-            $user = $event->user;
             Log::create([
                 'action' => 'criou',
                 'type' => $event->type,
@@ -44,7 +43,6 @@ class NotaListener
         }
 
         if ($event instanceOf NotaEditadaEvent) {
-            $user = $event->user;
             Log::create([
                 'action' => 'editou',
                 'type' => $event->type,
@@ -56,7 +54,6 @@ class NotaListener
         }
 
         if($event instanceof NotaExcluidaEvent) {
-            $user = $event->user;
             Log::create([
                 'action' => 'excluiu',
                 'type' => $event->type,

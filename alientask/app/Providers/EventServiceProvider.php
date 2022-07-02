@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Events\CrudEvent;
+use App\Events\EtiquetaCriadaEvent;
+use App\Events\EtiquetaEditadaEvent;
+use App\Events\EtiquetaExcluidaEvent;
 use App\Events\NotaCriadaEvent;
 use App\Events\NotaEditadaEvent;
 use App\Events\NotaExcluidaEvent;
@@ -12,6 +15,7 @@ use App\Events\TarefaEditadaEvent;
 use App\Events\TarefaExcluidaEvent;
 use App\Events\UserEvent;
 use App\Http\Controllers\LogController;
+use App\Listeners\EtiquetaListener;
 use App\Listeners\NotaCriada;
 use App\Listeners\NotaListener;
 use App\Listeners\RegisterUserLog;
@@ -53,6 +57,9 @@ class EventServiceProvider extends ServiceProvider
         Event::listen(NotaCriadaEvent::class, [NotaListener::class, 'handle']);   
         Event::listen(NotaExcluidaEvent::class, [NotaListener::class, 'handle']);
         
+        Event::listen(EtiquetaCriadaEvent::class, [EtiquetaListener::class, 'handle']);
+        Event::listen(EtiquetaEditadaEvent::class, [EtiquetaListener::class, 'handle']);
+        Event::listen(EtiquetaExcluidaEvent::class, [EtiquetaListener::class, 'handle']);
     }
 
     /**

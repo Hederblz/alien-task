@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EtiquetaCriadaEvent;
+use App\Events\EtiquetaEditadaEvent;
+use App\Events\EtiquetaExcluidaEvent;
 use App\Models\Etiqueta;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,7 +48,7 @@ class EtiquetaController extends Controller
         $etiqueta->cor = $request->cor;
         $etiqueta->user_id = $user->id;
         $etiqueta->save();
-        $this->incrementarEtiquetaCriada($user->id);
+        EtiquetaCriadaEvent::dispatch($user, $etiqueta->titulo);
         return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
     }
@@ -87,7 +90,7 @@ class EtiquetaController extends Controller
         $etiqueta->titulo = $request->titulo;
         $etiqueta->cor = $request->cor;
         $etiqueta->update();
-        $this->incrementarEtiquetaEditada($user->id);        
+        EtiquetaEditadaEvent::dispatch($user, $etiqueta->titulo);
         return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' alterada com sucesso!');
     }
@@ -103,7 +106,7 @@ class EtiquetaController extends Controller
         $user = Auth::user();
         $etiqueta = Etiqueta::findOrFail($id);
         $etiqueta->delete();
-        $this->incrementarEtiquetaExcluida($user->id);
+        EtiquetaExcluidaEvent::dispatch($user, $etiqueta->titulo);
         return redirect()->back()
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' excluída com sucesso!');
     }
@@ -116,31 +119,9 @@ class EtiquetaController extends Controller
         $etiqueta->cor = $request->cor;
         $etiqueta->user_id = $user->id;
         $etiqueta->save();
-        $this->incrementarEtiquetaCriada($user->id);
+        EtiquetaCriadaEvent::dispatch($user, $etiqueta->titulo);
         return redirect()->back()
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
     }
-
-    // ATRIBUTES
-
-    public function incrementarEtiquetaCriada($id)
-    {
-        $user = User::findOrFail($id);
-        $user->etiquetas_criadas++;
-        $user->update();
-    }
-
-    public function incrementarEtiquetaEditada($id)
-    {
-        $user = User::findOrFail($id);
-        $user->etiquetas_editadas++;
-        $user->update();
-    }
-
-    public function incrementarEtiquetaExcluida($id)
-    {
-        $user = User::findOrFail($id);
-        $user->etiquetas_excluidas++;
-        $user->update();
-    }
+    
 }
