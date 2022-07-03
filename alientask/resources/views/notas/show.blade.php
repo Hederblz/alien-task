@@ -14,9 +14,15 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2>Visualizando nota '{{$nota->titulo}}'</h2>
                     <div class="container" id="note">
+                        @if ($nota->markdown)
                         <x-markdown theme="github-light" style="font-size: clamp(1em, 1.5em, 2em)">
                             {{$nota->conteudo}}
                         </x-markdown>
+                        @else
+                        <p>
+                            {{$nota->conteudo}}
+                        </p>
+                        @endif
                     </div>
                     <div class="row" id="labels-row">
                        <h4>Etiquetas</h4>

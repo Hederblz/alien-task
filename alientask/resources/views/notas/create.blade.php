@@ -18,6 +18,8 @@
                     <div class="form-group">
                         <label for="titulo">Título(opcional)</label>
                         <input type="text" name="titulo" id="titulo" class="form-control">
+                        <label for="ismarkdown">Markdown(para espécimes avançados):</label>
+                        <input type="checkbox" name="markdown" id="ismarkdown" value="1" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -26,8 +28,8 @@
                                 <textarea name="conteudo" id="conteudo" rows="10" class="form-control d-flex" style="resize: none"></textarea>
                             </div>
                             <x-markdown theme="github-light" 
-                            style="font-size: clamp(1em, 1.5em, 2em); max-height:auto; overflow: scroll; margin: .5rem;"
-                            id="preview" class="col shadow">
+                            style="font-size: clamp(1em, 1.5em, 2em); max-height:auto; overflow: scroll; margin: .5rem; display:none;"
+                            id="preview" class="col shadow form-control">
                             </x-markdown>
                         </div>
                     </div>

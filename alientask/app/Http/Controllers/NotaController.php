@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isNull;
+
 class NotaController extends Controller
 {
     /**
@@ -57,6 +59,7 @@ class NotaController extends Controller
         }
         $nota->conteudo = $request->conteudo;
         $nota->etiquetas = $request->etiquetas;
+        $nota->markdown = $request->markdown;
         $nota->user_id = $user->id;
         $nota->save();
         NotaCriadaEvent::dispatch($user, $nota->titulo);

@@ -12,4 +12,8 @@ $(document).ready(function () {
 
         $("#preview").html(html);
     });
+
+    $("#ismarkdown").on("click", function (){
+        $("#preview").toggle();
+    })
 });
