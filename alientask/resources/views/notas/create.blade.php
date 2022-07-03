@@ -25,8 +25,10 @@
                                 <label for="conteudo">Conteúdo</label>
                                 <textarea name="conteudo" id="conteudo" rows="10" class="form-control d-flex" style="resize: none"></textarea>
                             </div>
-                            <div class="col container" id="preview">
-                            </div>
+                            <x-markdown theme="github-light" 
+                            style="font-size: clamp(1em, 1.5em, 2em); max-height:auto; overflow: scroll; margin: .5rem;"
+                            id="preview" class="col shadow">
+                            </x-markdown>
                         </div>
                     </div>
 

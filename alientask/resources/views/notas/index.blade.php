@@ -49,7 +49,9 @@
                             </div>
                             @endif
                                 <h5 class="card-title">{{$nota->titulo}}</h5>
-                                <p class="card-text">{{$nota->conteudo}}</p>
+                                <x-markdown style="font-size: clamp(.8em, 1em, .5em)">
+                                    {{$nota->conteudo}}
+                                </x-markdown>
                                 <div class="row">
 
                                     <div class="col">

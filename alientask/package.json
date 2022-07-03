@@ -21,6 +21,7 @@
         "tailwindcss": "^3.0.18"
     },
     "dependencies": {
+        "shiki": "^0.10.1",
         "showdown": "^2.1.0"
     }
 }

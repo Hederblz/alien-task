@@ -11,6 +11,5 @@ $(document).ready(function () {
         const html = converter.makeHtml(value);
 
         $("#preview").html(html);
-    })
-
+    });
 });

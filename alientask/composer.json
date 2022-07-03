@@ -10,7 +10,8 @@
         "inertiajs/inertia-laravel": "^0.6.2",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "spatie/laravel-markdown": "^2.2"
     },
     "require-dev": {
         "doctrine/dbal": "^3.3",
