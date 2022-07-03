@@ -20,8 +20,19 @@
                         <input type="text" name="titulo" id="titulo" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="conteudo">Conteúdo</label>
-                        <textarea name="conteudo" id="conteudo" rows="10" class="form-control" style="resize: none"></textarea>
+                        <div class="row">
+
+                            <div class="col">
+                                <label for="conteudo">Conteúdo</label>
+                                <textarea name="conteudo" id="conteudo" rows="10" class="form-control d-flex" style="resize: none"></textarea>
+                            </div>
+
+                            <div class="col">
+                                <div id="preview" class="container d-flex">
+                                    <h2>preview</h2>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         @if ($etiquetas->count() > 0)
@@ -39,4 +50,7 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script src="/js/showdown.js"></script>
+    <script src="/js/markdown.js"></script>
 </x-app-layout>
