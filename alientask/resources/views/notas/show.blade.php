@@ -13,7 +13,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2>Visualizando nota '{{$nota->titulo}}'</h2>
-                    <div class="container">
+                    <div class="container" id="note">
                         <p style="font-size: clamp(1em, 1.5em, 2em)">
                             {{$nota->conteudo}}
                         </p>
@@ -48,4 +48,6 @@
     }
 </style>
 <script src="/js/jquery.js"></script>
+<script src="/js/showdown.js"></script>
+<script src="/js/markdown.js"></script>
 </x-app-layout>

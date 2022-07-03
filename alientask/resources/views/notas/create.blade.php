@@ -21,19 +21,15 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-
                             <div class="col">
                                 <label for="conteudo">Conteúdo</label>
                                 <textarea name="conteudo" id="conteudo" rows="10" class="form-control d-flex" style="resize: none"></textarea>
                             </div>
-
-                            <div class="col">
-                                <div id="preview" class="container d-flex">
-                                    <h2>preview</h2>
-                                </div>
+                            <div class="col container" id="preview">
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group">
                         @if ($etiquetas->count() > 0)
                             @foreach ($etiquetas as $etiqueta)

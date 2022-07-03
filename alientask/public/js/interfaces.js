@@ -15,6 +15,9 @@ $(document).ready(function() {
         $(".alert").slideUp();
     });
 
+    //Markdown controller
+
+    //Welcome slides cotroller;
    var imgOne = '/img/icons/taken-animate.svg';
    var imgTwo = '/img/icons/calendar-animate.svg';
    var imgThree = '/img/icons/alien-scientist-animate.svg';
