@@ -15,5 +15,7 @@ $(document).ready(function () {
 
     $("#ismarkdown").on("click", function (){
         $("#preview").toggle();
-    })
+    });
+
+    
 });
