@@ -127,7 +127,18 @@
                 </div>
             </div>
         </div>
+        <div class="timer d-flex">
+            <div class="row text-center">
+                <h2 id="counter">00:00:00</h2>
+            </div>
+            <div class="col d-flex">
+                <button class="btn btn-success" id="start" onclick="startCron()"><ion-icon name="play-outline"></ion-icon></button>
+                <button class="btn btn-warning" id="pause" onclick=pauseCron()><ion-icon name="pause-outline"></ion-icon></button>
+                <button class="btn btn-danger" id="zerar" onclick="stopCron()"><ion-icon name="refresh-outline"></ion-icon></button>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/interfaces.js"></script>
+    <script src="/js/timer.js"></script>
 </x-app-layout>

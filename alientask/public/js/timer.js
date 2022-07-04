@@ -32,8 +32,9 @@
     
     function timer()
     {
-        if(seconds == 60)
+        if(seconds == 59)
         {
+            minutes++;
             seconds = 0;
         }
         if(minutes == 60)

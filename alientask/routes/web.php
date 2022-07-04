@@ -9,6 +9,7 @@ use App\Http\Controllers\TarefaController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::middleware('auth')->group(function()
 
     Route::get('/historico', [LogController::class, 'index'])
     ->name('historico-index');
+    Route::get('/perfilindex', function() {return view('user.index');})->name('perfil');
 });
 
 require __DIR__ . '/auth.php';

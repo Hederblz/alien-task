@@ -15,7 +15,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
 
-                    <button type="button" class="btn btn-outline-danger"  data-toggle="modal" data-target="#exampleModal">DELETAR</button>
+                    <button type="button" class="btn btn-outline-danger"  data-toggle="modal" data-target="#exampleModal">EXCLUIR</button>
 
                 
 
@@ -34,10 +34,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <form action="{{route('user-destroy',Auth::user()->id)}}" method="POST">
+        <form action="{{route('perfil-destroy',Auth::user()->id)}}" method="POST">
                         @method('DELETE')                            
                         @csrf
-                        <button type="submit" class="btn btn-outline-danger" id="destroy">DELETAR</button>
+                        <button type="submit" class="btn btn-outline-danger" id="destroy">EXCLUIR</button>
          </form>
       </div>
     </div>
