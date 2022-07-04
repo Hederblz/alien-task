@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label for="titulo">Título(opcional)</label>
                         <input type="text" name="titulo" id="titulo" class="form-control">
-                        <label for="ismarkdown">Markdown(para espécimes avançados):</label>
+                        <label for="ismarkdown">Markdown(para usuários avançados):</label>
                         <input type="checkbox" name="markdown" id="ismarkdown" value="1" autocomplete="off">
                     </div>
                     <div class="form-group">
