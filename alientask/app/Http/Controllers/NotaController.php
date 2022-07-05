@@ -49,17 +49,10 @@ class NotaController extends Controller
     {
         $user = Auth::user();
         $nota = new Nota();
-        if(empty($request->titulo))
-        {
-            $nota->titulo = 'Nota sem titulo';
-        }
-        else
-        {
-            $nota->titulo = $request->titulo;
-        }
+        $nota->titulo = $request->titulo ? $request->titulo : 'Nota sem titulo';
         $nota->conteudo = $request->conteudo;
         $nota->etiquetas = $request->etiquetas;
-        $nota->markdown = $request->markdown;
+        $nota->markdown = $request->markdown ? $request->markdown : 0;
         $nota->user_id = $user->id;
         $nota->save();
         NotaCriadaEvent::dispatch($user, $nota->titulo);
