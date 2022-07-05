@@ -34,19 +34,21 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <form action="{{route('perfil-destroy',Auth::user()->id)}}" method="POST">
-                        @method('DELETE')                            
-                        @csrf
-                        <button type="submit" class="btn btn-outline-danger" id="destroy">EXCLUIR</button>
+        <form action="{{route('perfil-destroy',Auth::user()->id)}}" method="POST" id="delete-user">
+          @csrf
+          <label for="password">Digite sua senha:</label>
+          <input type="password" name="password" id="password" class="form-control">
+          <button type="submit" class="btn btn-outline-danger" id="destroy">EXCLUIR</button>
+          @method('DELETE')                            
          </form>
       </div>
     </div>
   </div>
-</div>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
                
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/interfaces.js"></script>

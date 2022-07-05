@@ -8,4 +8,4 @@ Route::get('/profileshow/{id}', [ProfileController::class, 'show'])->name('perfi
 Route::get('/profileconfigs/{id}', [ProfileController::class, 'configs'])->name('perfil-configs');
 Route::get('/profileupdate/{id}', [ProfileController::class, 'updateData'])->name('perfil-updateData');
 Route::get('/profilestatistics/{id}', [ProfileController::class, 'statistics'])->name('perfil-statistics');
-Route::delete('/perfildestroy/{id}', [RegisteredUserController::class, 'destroy'])->name('perfil-destroy');
+Route::delete('/perfildestroy', [RegisteredUserController::class, 'destroy'])->name('perfil-destroy');

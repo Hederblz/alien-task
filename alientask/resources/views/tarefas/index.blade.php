@@ -10,6 +10,16 @@
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+            <form action="{{route('tarefas-index')}}" method="get" class="d-flex" id="search-title">
+                @csrf
+                <div class="form-group">
+                    <label for="search">Buscar por titulo:</label>
+                    <input type="text" name="search" id="search" class="search-input">
+                </div>
+                <button type="submit" class="btn btn-secondary" id="add"><ion-icon name="search-outline"></ion-icon></button>
+            </form>
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-gray-200" id="main">
                     
@@ -19,11 +29,13 @@
                         <ion-icon name="close-circle-outline" class="shadow" id="close"></ion-icon>
                     </div>
                     @endif
+                    
 
                     <h2>Suas Tarefas</h2>
                     <a href="{{route('tarefas-create')}}" class="btn" id="add">
                         <ion-icon name="add-outline"></ion-icon> Criar tarefa
                     </a>
+
                     
                     @if ($tarefas->count() > 0)
                     @foreach ($tarefas as $tarefa)
@@ -106,7 +118,7 @@
                                 </div>
     
                                 <div class="col">
-                                    <form action="{{route('tarefas-destroy', $tarefa->id)}}" method="post">
+                                    <form action="{{route('tarefas-destroy', $tarefa->id)}}" method="post" class="confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>

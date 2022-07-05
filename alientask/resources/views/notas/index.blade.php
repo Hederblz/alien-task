@@ -75,7 +75,7 @@
                                     </div>
         
                                     <div class="col">
-                                        <form action="{{route('notas-destroy', $nota->id)}}" method="post">
+                                        <form action="{{route('notas-destroy', $nota->id)}}" method="post" class="confirm">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>

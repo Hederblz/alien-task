@@ -78,14 +78,19 @@ class RegisteredUserController extends Controller
         return redirect('user.show')->with('msg', 'Senha alterada com sucesso!');
     }
 
-    public function destroy($id){
+    public function destroy(Request $request)
+    {
+        $user = Auth::user();
+        if(Hash::check($request->password, $user->password))
+        {
+            User::findOrFail($user->id)->delete();
 
-        if(!$user = User::find($id))
-            return redirect()->route('perfil');
-
-        $user->delete();
-
-        return redirect('/')->with('msg', 'Conta excluída com sucesso!');
+            return redirect('/')->with('msg', 'Conta excluída com sucesso.');
+        }
+        else
+        {
+            return redirect()->back()->with('msg', 'Senha incorreta.');
+        }
     }
     
 }

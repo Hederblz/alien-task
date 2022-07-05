@@ -8,7 +8,6 @@ use App\Events\TarefaEditadaEvent;
 use App\Events\TarefaExcluidaEvent;
 use App\Models\Tarefa;
 use App\Models\User;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
@@ -22,8 +21,13 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        $tarefas = Auth::user()->tarefas;
-        return view('tarefas.index', ['tarefas' => $tarefas]);
+        $search = request('search');
+
+        $tarefas = $search ? Tarefa::where([
+            ['titulo', 'like', '%'.$search.'%']
+        ])->get() : Auth::user()->tarefas;
+
+        return view('tarefas.index', ['tarefas' => $tarefas, 'search' => $search]);
     }
 
     /**
@@ -63,7 +67,7 @@ class TarefaController extends Controller
      * @param  \App\Models\Tarefa  $tarefa
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
        //
     }

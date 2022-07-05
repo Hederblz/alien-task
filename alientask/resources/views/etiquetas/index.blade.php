@@ -30,7 +30,7 @@
                                 
                                     <a href="{{route('etiquetas-edit', $etiqueta->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>            
 
-                                    <form action="{{route('etiquetas-destroy', $etiqueta->id)}}" method="post">
+                                    <form action="{{route('etiquetas-destroy', $etiqueta->id)}}" method="post" class="confirm">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></button>
