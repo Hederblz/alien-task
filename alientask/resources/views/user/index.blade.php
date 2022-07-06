@@ -15,7 +15,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
 
 
-                    <button type="button" class="btn btn-outline-danger"  data-toggle="modal" data-target="#exampleModal">EXCLUIR</button>
+                    <button type="button" class="btn btn-outline-danger"  data-toggle="modal" data-target="#exampleModal">Excluir</button>
 
                 
 
@@ -32,13 +32,12 @@
       <div class="modal-body">
         Tem certeza que você quer excluir a sua conta?
       </div>
+      <form action="{{route('perfil-destroy',Auth::user()->id)}}" method="POST" id="delete-user" style="margin: auto;">
+        @csrf
+        <input type="password" name="password" id="password" class="inputSenha" placeholder="Digite sua senha">
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <form action="{{route('perfil-destroy',Auth::user()->id)}}" method="POST" id="delete-user">
-          @csrf
-          <label for="password">Digite sua senha:</label>
-          <input type="password" name="password" id="password" class="form-control">
-          <button type="submit" class="btn btn-outline-danger" id="destroy">EXCLUIR</button>
+          <button type="submit" class="btn btn-outline-danger" id="destroy">Excluir</button>
           @method('DELETE')                            
          </form>
       </div>

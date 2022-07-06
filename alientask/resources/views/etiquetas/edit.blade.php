@@ -15,13 +15,15 @@
                         <form action="{{route('etiquetas-update', $etiqueta->id)}}" method="post">
                             @csrf
                             @method('PATCH')
+                            <div class="d-flex">
                             <div class="form-group">
                                 <label for="titulo">Título</label>
                                 <input type="text" name="titulo" id="titulo" class="form-control" value="{{$etiqueta->titulo}}" required>
                             </div>
                             <div class="form-group">
                                 <label for="cor">Cor</label>
-                                <input type="color" name="cor" value="{{$etiqueta->cor}}" id="cor" class="form-control">
+                                <input type="color" name="cor" value="{{$etiqueta->cor}}" id="cor">
+                            </div>
                             </div>
                             <button type="submit" class="btn" id="add">Atualizar</button>
                         </form>

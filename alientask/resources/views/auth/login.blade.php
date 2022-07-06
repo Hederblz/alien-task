@@ -55,7 +55,7 @@
             </div>
             
             <div class="row justify-content-center align-items-center">
-            <a class="btn btn-success w-50" href="{{ route('register') }}">
+            <a class="btn w-50" href="{{ route('register') }}" style="background-color:#9f00e4; color:white">
                         {{ __('Criar uma conta') }}
                     </a>
             </div>

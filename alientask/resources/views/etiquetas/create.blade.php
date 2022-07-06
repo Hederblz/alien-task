@@ -13,13 +13,15 @@
                     <h2>Criar etiqueta</h2>
                     <form action="{{route('etiquetas-store')}}" method="post">
                     @csrf
+                    <div class="d-flex">
                     <div class="form-group">
                         <label for="titulo">Título</label>
                         <input type="text" name="titulo" id="titulo" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="cor">Cor</label>
-                        <input type="color" name="cor" id="cor" class="form-control">
+                        <input type="color" name="cor" id="cor">
+                    </div>
                     </div>
                     <button type="submit" class="btn" id="add">Criar etiqueta</button>
                     </form>

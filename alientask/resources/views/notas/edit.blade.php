@@ -25,16 +25,25 @@
                     <textarea class="form-control" name="conteudo" id="conteudo" rows="10" required style="resize: none;">{{$nota->conteudo}}</textarea>
                 </div>
                 <div class="form-group">
-                    <h2>Etiquetas</h2>
+                <details>
+                    <summary style="font-size: 1.5em">Etiquetas</summary>
+                    @if ($etiquetas->count() > 0)
                     @foreach ($etiquetas as $etiqueta)
                     @php
-                $jsonDecode = json_decode($etiqueta)   
-               @endphp
-               <div class="row form-group">
-                   <label id="checklabel" for="etiquetas" style="background: {{$etiqueta['cor']}}; color: #FFF; padding: .5rem;">{{$etiqueta['titulo']}}</label>
-                   <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
+                     $jsonDecode = json_decode($etiqueta)   
+                    @endphp
+                    <div class="row form-group">
+                        <div class="col d-flex shadow" id="label-check" style="background: {{$etiqueta->cor}}">
+                            <input type="checkbox" name="etiquetas[]" id="etiqueta" value="{{$etiqueta}}">
+                            <label for="etiquetas" style="color: #FFF;">{{$etiqueta['titulo']}}</label>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                        <p>Você não possui etiquetas.</p>
+                    @endif
+                    </details>
                 </div>
-                @endforeach
                 <button type="submit" class="btn btn-success">Alterar</button>
             </div>
         </form>

@@ -28,7 +28,9 @@
                     <input type="date" name="data_final_prevista" id="data_final_prevista" class="form-control" value="{{$tarefa->data_final_prevista}}">
                 </div>
                 <div class="form-group">
-                    <h2>Etiquetas</h2>
+                    <details>
+                            <summary style="font-size: 1.5em">Etiquetas</summary>
+                    @if ($etiquetas->count() > 0)
                     @foreach ($etiquetas as $etiqueta)
                     @php
                      $jsonDecode = json_decode($etiqueta)   
@@ -40,6 +42,10 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                        <p>Você não possui etiquetas.</p>
+                    @endif
+                    </details>
                 </div>
                 <button type="submit" class="btn btn-success">Alterar</button>
                 </form>

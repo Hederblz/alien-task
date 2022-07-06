@@ -35,17 +35,45 @@
                     </div>
 
                     <div class="form-group">
-                        @if ($etiquetas->count() > 0)
-                            @foreach ($etiquetas as $etiqueta)
-                            <div class="row form-group">
-                                <label for="etiqueta" style="background-color: {{$etiqueta->cor}}; color: #FFF;">{{$etiqueta->titulo}}</label>
-                                <input type="checkbox" name="etiquetas[]" id="etiqueta" class="form-control" value="{{$etiqueta}}">
-                            </div>
-                            @endforeach
-                        @endif
+                    <details>
+                    <summary style="font-size: 1.5em">Etiquetas</summary>
+                    @if ($etiquetas->count() > 0)
+                    @foreach ($etiquetas as $etiqueta)
+                    @php
+                     $jsonDecode = json_decode($etiqueta)   
+                    @endphp
+                    <div class="row form-group">
+                        <div class="col d-flex shadow" id="label-check" style="background: {{$etiqueta->cor}}">
+                            <input type="checkbox" name="etiquetas[]" id="etiqueta" value="{{$etiqueta}}">
+                            <label for="etiquetas" style="color: #FFF;">{{$etiqueta['titulo']}}</label>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                        <p>Você não possui etiquetas.</p>
+                    @endif
+                    </details>
                     </div>
                     <button type="submit" class="btn btn-secondary" id="add">Criar nota</button>
                     </form>
+                    <hr>
+                    <div class="container-fluid">
+                        <h2>Criar etiqueta</h2>
+                        <form action="{{route('etiquetas-simple-store')}}" method="post">
+                            @csrf
+                            <div class="d-flex">
+                            <div class="form-group">
+                                <label for="titulo">Título</label>
+                                <input type="text" name="titulo" id="titulo" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cor">Cor</label>
+                                <input type="color" name="cor" id="cor">
+                            </div>
+                            </div>
+                            <button type="submit" class="btn" id="add">Criar etiqueta</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
