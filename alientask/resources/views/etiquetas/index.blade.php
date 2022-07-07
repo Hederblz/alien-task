@@ -28,9 +28,9 @@
                               <div class="shadow text-center col" id="label" style="background-color: {{$etiqueta->cor}}; color:#FFF;">
                                 <b>{{$etiqueta->titulo}}</b>
                                 
-                                    <a href="{{route('etiquetas-edit', $etiqueta->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
+                                    <a href="{{route('etiquetas-edit', $etiqueta->id)}}" class="btn btn-warning" style="margin: .2rem;"><ion-icon name="create-outline"></ion-icon></a>
                                     
-                                    <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal"><ion-icon name="trash-outline"></ion-icon></button>
+                                    <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal" style="margin: .2rem;"><ion-icon name="trash-outline"></ion-icon></button>
 
                               </div>
                           @endforeach

@@ -1409,7 +1409,7 @@ ion-icon
   border-radius: 16px;
   padding: .5rem;
   display: flex;
-  width: auto;
+  max-width: 10rem;
 }
 
 #label-check
@@ -1431,23 +1431,12 @@ label
   #task-label-field
   {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(3, 1fr); 
   }
   
 }
 
-#card
-{
-  margin: .5rem;
-  max-height: 15rem;
-}
 
-.card-text
-{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
 
 #search-title
 {
@@ -1458,4 +1447,54 @@ label
 {
   max-width: 25rem;
   border-radius: 16px;
+}
+
+.button
+{
+  padding: .5rem .2rem .5rem .2rem;
+  border-radius: 8px;
+  margin: .5rem;
+  text-align: center;
+  color: #FFF;
+}
+
+#purple
+{
+  color: #FFF;
+  background: #9400D3;
+}
+
+#gray
+{
+  background: #6b7280;
+}
+
+#yellow
+{
+  background: #CDAD00;
+}
+
+#red
+{
+  background: #CD0000;
+}
+
+#labels-row
+{
+  justify-content: center;
+}
+
+#note
+{
+  width: auto;
+  margin: .5rem;
+  text-overflow: ellipsis;
+}
+
+.card-text
+{
+ max-width: 150ch;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
 }

@@ -114,7 +114,7 @@
             
             <x-responsive-nav-link :href="route('notas-index')" :active="request()->routeIs('notas-index')" class="link">
                 <ion-icon name="document-outline" class="nav-icon"></ion-icon>
-                {{ __('Nota') }}
+                {{ __('Notas') }}
             </x-responsive-nav-link>
             
             <x-responsive-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')" class="link">

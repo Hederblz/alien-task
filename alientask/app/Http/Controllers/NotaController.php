@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-// use App\Events\CrudEvent;
 use App\Events\NotaCriadaEvent;
 use App\Events\NotaEditadaEvent;
 use App\Events\NotaExcluidaEvent;
-use App\Events\UserEvent;
 use App\Exceptions\InvalidNoteException;
 use App\Models\Nota;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\isNull;
@@ -149,14 +146,16 @@ class NotaController extends Controller
         if(!$nota->trancada)
         {
             $nota->trancada = 1;
+            $nota->update();
+            return redirect()->route('notas-index')->with('msg', "Nota '$nota->titulo' trancada.");
         }
         else
         {
             $nota->trancada = 0;
+            $nota->update();
+            return redirect()->route('notas-index')->with('msg', "Nota '$nota->titulo' destrancada.");
         }
-        $nota->update();
 
-        return redirect()->route('notas-index');
     }
 
 }

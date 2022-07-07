@@ -28,15 +28,17 @@
                     @endif
 
                     <h2>Suas notas</h2>
-                    <a href="{{route('notas-create')}}" class="btn" id="add">
+                    <a href="{{route('notas-create')}}" class="btn" id="purple" style="margin: .5rem;">
                         <ion-icon name="add-outline"></ion-icon> Criar nota
                     </a>
-                    <div class="row">
-                        @if($notas->count() > 0)
+                    @if($notas->count() > 0)
+                    <div class="row d-flex">
+
                         @foreach ($notas as $nota)
-                        <div class="card shadow" id="card" style="max-width: 25rem">
-                            <div class="card-body">
-                                @if ($nota->etiquetas)
+
+                        <div class="row shadow p-3 mb-5 rounded bg-light" id="note">
+
+                            @if ($nota->etiquetas)
                             <div class="row" id="labels-row">
                                 @foreach ($nota->etiquetas as $etiqueta)
                                 @php
@@ -48,18 +50,25 @@
                                 @endforeach
                             </div>
                             @endif
+
                                 <h5 class="card-title">{{$nota->titulo}}</h5>
-                                <x-markdown style="font-size: clamp(.8em, 1em, .5em)">
+                                @if ($nota->markdown)
+                                <x-markdown class="cad-text">
                                     {{$nota->conteudo}}
                                 </x-markdown>
-                                <div class="row">
+                                @else
+                                <p class="card-text">
+                                    {{$nota->conteudo}}
+                                </p>
+                                @endif
+                                <div class="row d-flex align-middle">
 
-                                    <div class="col">
-                                        <a href="{{route('notas-show', $nota->id)}}" class="btn btn-secondary" id="add"><ion-icon name="reader-outline"></ion-icon></a>
-                                    </div>
+                                    <form class="col">
+                                        @csrf
+                                        <a href="{{route('notas-show', $nota->id)}}" class="btn btn-secondary" id="purple"><ion-icon name="reader-outline"></ion-icon></a>
+                                    </form>
 
-                                    <div class="col">
-                                        <form action="{{route('notas-trancar', $nota->id)}}" method="post">
+                                        <form action="{{route('notas-trancar', $nota->id)}}" method="post" class="col">
                                             @csrf
                                             @method('PATCH')
                                             @if (!$nota->trancada)
@@ -68,17 +77,15 @@
                                             <button type="submit" class="btn btn-secondary"><ion-icon name="lock-closed-outline"></ion-icon></button>
                                             @endif
                                         </form>
-                                    </div>
 
-                                    <div class="col">
+                                    <form class="col">
                                         <a href="{{route('notas-edit', $nota->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
-                                    </div>
+                                    </form>
         
-                                    <div class="col">
+                                    <form class="col">
                                     <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal"><ion-icon name="trash-outline"></ion-icon></button>
-                                    </div>
+                                    </form>
                                 </div>
-                            </div>
                         </div>
                         @endforeach
                         @else
