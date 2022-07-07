@@ -39,29 +39,6 @@
                     @if ($tarefas->count() > 0)
                     @foreach ($tarefas as $tarefa)
                         <div class="row shadow mt-5" id="task">
-                            @php
-                                $dataFinalPrevista = \Carbon\Carbon::parse($tarefa->data_final_prevista);
-                                $dataConclusao = \Carbon\Carbon::parse($tarefa->data_conclusao);
-                                $hoje = \Carbon\Carbon::parse(date('d-m-Y'));
-                                $amanha = \Carbon\Carbon::parse(date('d-m-Y', strtotime('+1 day')));
-                                $intervalo = $dataConclusao->diff($dataFinalPrevista);
-                            @endphp
-                            @if (strtotime($dataFinalPrevista) == strtotime($hoje) && !$tarefa->concluida)
-                            <div class="container alert" id="msg">
-                                <span class="msg">A data final para essa tarefa é Hoje!</span>
-                                <ion-icon name="close-circle-outline" class="shadow" id="closealert"></ion-icon>
-                            </div>
-                            @elseif(strtotime($dataFinalPrevista) == strtotime($amanha) && !$tarefa->concluida)
-                            <div class="container alert" id="msg">
-                                <span class="msg">A data final para essa tarefa é Amanhã!</span>
-                                <ion-icon name="close-circle-outline" class="shadow" id="closealert"></ion-icon>
-                            </div>
-                            @elseif(strtotime($dataConclusao) > strtotime($dataFinalPrevista) && !$tarefa->concluida)
-                            <div class="container alert" id="msg">
-                                <span class="msg">Esta tarefa está atrasada em {{$intervalo->m}} meses, e {{$intervalo->d}} dias!</span>
-                                <ion-icon name="close-circle-outline" class="shadow" id="closealert"></ion-icon>
-                            </div>
-                            @endif
                             <div class="col" id="text">
                                 @if ($tarefa->etiquetas)
                                 <div class="row" id="task-label-field">

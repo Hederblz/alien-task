@@ -22,10 +22,10 @@
                     <a href="{{route('etiquetas-create')}}" class="btn" id="add">
                         <ion-icon name="add-outline"></ion-icon> Criar etiqueta
                     </a>
-                    <div class="container-fluid" id="labels-row">
+                    <div class="container-fluid row" id="labels-row">
                       @if ($etiquetas->count() > 0)
                           @foreach ($etiquetas as $etiqueta)
-                              <div class="shadow text-center" id="label" style="background-color: {{$etiqueta->cor}}; color:#FFF;">
+                              <div class="shadow text-center col" id="label" style="background-color: {{$etiqueta->cor}}; color:#FFF;">
                                 <b>{{$etiqueta->titulo}}</b>
                                 
                                     <a href="{{route('etiquetas-edit', $etiqueta->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
