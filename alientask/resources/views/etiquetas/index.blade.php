@@ -40,7 +40,7 @@
                             <h4>Hora de classificar os afazeres</h4>
                           </div>
                           <div class="row d-flex text-center">
-                              <p>Você não possui etiquetas. <a href="#" class="btn" id="add"><ion-icon name="add-outline"></ion-icon>  Criar etiqueta</a></p>
+                              <p>Você não possui etiquetas. <a href="{{route('etiquetas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon>  Criar etiqueta</a></p>
                           </div>
                       @endif
                 </div>

@@ -52,11 +52,6 @@
                         <ion-icon name="book-outline" class="nav-icon"></ion-icon>
                         {{ __('Histórico') }}
                     </x-nav-link>
-
-                    <x-nav-link :href="route('perfil')" :active="request()->routeIs('perfil')" class="link">
-                        <ion-icon name="person-outline"class="nav-icon"></ion-icon>
-                        {{ __('Perfil') }}
-                    </x-nav-link>
                 </div>
             </div>
 
@@ -80,10 +75,15 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             
+                            <x-dropdown-link :href="route('perfil', Auth::user()->id)" class="link">
+                            <ion-icon name="person-outline"class="nav-icon"></ion-icon>
+                                {{ __('Pefil') }}
+                            </x-dropdown-link>
                             
                             <x-dropdown-link :href="route('logout')"
                             onclick="event.preventDefault();
                                                 this.closest('form').submit();" class="link">
+                            <ion-icon name="exit-outline" class="nav-icon"></ion-icon>
                                 {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
@@ -137,10 +137,6 @@
                 {{ __('Histórico') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('perfil-show', Auth::user()->id)" :active="request()->routeIs('perfil-show')" class="align-middle d-flex" class="link">
-                <ion-icon name="person-outline"class="nav-icon"></ion-icon>
-                {{ __('Perfil') }}
-            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
