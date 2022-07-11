@@ -111,17 +111,11 @@
                 </div>
             </div>
         </div>
-        <div class="timer d-flex">
-            <div class="row text-center"style="margin-top:5px">
-                <h2 id="counter">00:00:00</h2>
-            </div>
-            <div class="col d-flex">
-                <button class="btn btn-success" id="start" onclick="startCron()"><ion-icon name="play-outline"></ion-icon></button>
-                <button class="btn btn-warning" id="pause" onclick=pauseCron()><ion-icon name="pause-outline"></ion-icon></button>
-                <button class="btn btn-danger" id="zerar" onclick="stopCron()"><ion-icon name="refresh-outline"></ion-icon></button>
-            </div>
+
+        <div class="timer-logo d-flex align-middle justify-content-center" id="timer-logo">
+            <ion-icon name="time-outline"></ion-icon>
         </div>
-    </div>
+
 
                         <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
