@@ -13,8 +13,20 @@
 
             <form action="{{route('tarefas-index')}}" method="get" class="d-flex" id="search-title">
                 @csrf
-                <div class="form-group" style="margin-right:5px; margin-bottom:5px;">
-                    <input type="text" name="search" id="search" class="search-input" placeholder="Buscar">
+                <div class="form-group d-flex" style="margin-right:5px; margin-bottom:5px;">
+
+                    <input type="text" name="search" id="search" class="search-input form-control" placeholder="Buscar">
+
+                    <select name="attributeSwitch" size="1" class="form-select" id="attributeswitch" style="margin: .5rem;">
+                        <option value="created_at">Data de criação</option>
+                        <option value="updated_at">Data de atualização</option>
+                        <option value="data_conclusao">Data de conclusão</option>
+                        <option value="data_final_prevista">Data final prevista</option>
+                    </select>
+                    <select name="orderSwitch" size="1" class="form-select" id="orderSwitch" style="margin: .5rem;">
+                        <option value="ASC">Ordem ascendente</option>
+                        <option value="DESC">Ordem descendente</option>
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-secondary" id="add" style="margin-bottom:10px;"><ion-icon name="search-outline"></ion-icon></button>
             </form>
@@ -29,12 +41,10 @@
                     </div>
                     @endif
                     
-
                     <h2>Suas Tarefas</h2>
                     <a href="{{route('tarefas-create')}}" class="btn" id="add">
                         <ion-icon name="add-outline"></ion-icon> Criar tarefa
                     </a>
-
                     
                     @if ($tarefas->count() > 0)
                     @foreach ($tarefas as $tarefa)
@@ -57,7 +67,9 @@
                                 <h3>{{$tarefa->titulo}}</h3>
                                 <p>{{$tarefa->descricao}}</p>
                                 <div class="row">
-                                <span>Data final prevista: {{\Carbon\Carbon::parse($tarefa->data_final_prevista)->format('d-m-Y')}}</span>
+                                    @if ($tarefa->data_final_prevista)
+                                    <span>Data final prevista: {{\Carbon\Carbon::parse($tarefa->data_final_prevista)->format('d-m-Y')}}</span>
+                                    @endif
                                 @if($tarefa->concluida)
                                 <span>Data de conclusão: {{\Carbon\Carbon::parse($tarefa->data_conclusao)->format('d-m-Y')}}</span>
                                 @endif
@@ -101,7 +113,7 @@
                         @endforeach
                         @else
                         <div class="row d-flex justify-content-center text-center">
-                            <img src="/img/icons/outer-space-animate.svg" alt="Sem tarefas" class="img-fluid" style="width: 800px;filter: drop-shadow(4px 4px 4px #000);">
+                            <img src="/img/icons/outer-space-animate.svg" alt="Sem tarefas" class="img-fluid" style="width: 700px;filter: drop-shadow(4px 4px 4px #000);">
                             <h4>Não vamos nos acomodar.</h4>
                         </div>
                         <div class="row d-flex text-center">
@@ -111,12 +123,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="timer-logo d-flex align-middle justify-content-center" id="timer-logo">
-            <ion-icon name="time-outline"></ion-icon>
-        </div>
-
-
                         <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -146,7 +152,6 @@
   </div>
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/interfaces.js"></script>
-    <script src="/js/timer.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

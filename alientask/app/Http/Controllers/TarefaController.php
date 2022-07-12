@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 
 class TarefaController extends Controller
 {
@@ -22,10 +23,15 @@ class TarefaController extends Controller
     public function index()
     {
         $search = request('search');
-
-        $tarefas = $search ? Tarefa::where([
-            ['titulo', 'like', '%'.$search.'%']
-        ])->get() : Auth::user()->tarefas;
+        $attributeSwitch = request('attributeSwitch');
+        $orderSwitch = request('orderSwitch');
+        
+        $tarefas = $search ? DB::table('tarefas')
+        ->where('user_id', Auth::user()->id)
+        ->where('titulo', 'like', '%'.$search.'%')
+        ->orderBy($attributeSwitch, $orderSwitch)
+        ->get()
+        : Auth::user()->tarefas;
 
         return view('tarefas.index', ['tarefas' => $tarefas, 'search' => $search]);
     }
@@ -59,17 +65,6 @@ class TarefaController extends Controller
         $tarefa->save();
         TarefaCriadaEvent::dispatch($user, $tarefa->titulo);
         return redirect()->route('tarefas-index')->with('msg', 'Tarefa criada com sucesso!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tarefa  $tarefa
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-       //
     }
 
     /**

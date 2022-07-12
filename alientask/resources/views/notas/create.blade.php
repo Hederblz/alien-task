@@ -75,10 +75,17 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="timer-logo d-flex align-middle justify-content-center" id="timer-logo">
+                    <ion-icon name="time-outline"></ion-icon>
+                </div>
+
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>    
     <script src="/js/showdown.js"></script>
     <script src="/js/markdown.js"></script>
+    <script type="text/javascript" src="/js/interfaces.js"></script>
+    <script src="/js/timer.js"></script>
 </x-app-layout>

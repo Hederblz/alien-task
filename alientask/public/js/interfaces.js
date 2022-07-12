@@ -81,7 +81,7 @@ $(document).ready(function() {
    <div class="col d-flex">
        <button class="btn btn-success" id="start" onclick="startCron()"><ion-icon name="play-outline"></ion-icon></button>
        <button class="btn btn-warning" id="pause" onclick=pauseCron()><ion-icon name="pause-outline"></ion-icon></button>
-       <button class="btn btn-danger" id="zerar" onclick="stopCron()"><ion-icon name="refresh-outline"></ion-icon></button>
+       <button class="btn btn-danger" id="zerar" onclick="stopCron()"><ion-icon name="stop-outline"></ion-icon></button>
    </div>
 </div>
 </div>`);
