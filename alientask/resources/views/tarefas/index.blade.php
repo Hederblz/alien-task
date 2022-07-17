@@ -21,7 +21,6 @@
                         <option value="created_at">Data de criação</option>
                         <option value="updated_at">Data de atualização</option>
                         <option value="data_conclusao">Data de conclusão</option>
-                        <option value="data_final_prevista">Data final prevista</option>
                     </select>
                     <select name="orderSwitch" size="1" class="form-select" id="orderSwitch" style="margin: .5rem;">
                         <option value="ASC">Ordem ascendente</option>
@@ -82,9 +81,9 @@
                                         @csrf
                                         @method('PATCH')
                                         @if (!$tarefa->concluida)
-                                        <button type="submit" class="btn btn-success"><ion-icon name="checkbox-outline"></ion-icon></button>
+                                        <button type="submit" class="btn btn-success"><ion-icon name="checkmark-outline"></ion-icon></button>
                                         @else
-                                        <button type="submit" class="btn btn-danger"><ion-icon name="close-circle-outline"></ion-icon></button>
+                                        <button type="submit" class="btn btn-danger"><ion-icon name="close-outline"></ion-icon></button>
                                         @endif
                                        </form>
                                 </div>

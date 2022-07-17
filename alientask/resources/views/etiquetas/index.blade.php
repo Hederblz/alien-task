@@ -36,7 +36,7 @@
                           @endforeach
                           @else
                           <div class="row d-flex justify-content-center text-center">
-                            <img src="/img/icons/alien-labels-animate.svg" alt="Não há etiquetas" class="img-fluid" style="width: 800px">
+                            <img src="/img/icons/alien-labels-animate.svg" alt="Não há etiquetas" class="img-fluid" style="width: 700px">
                             <h4>Hora de classificar os afazeres</h4>
                           </div>
                           <div class="row d-flex text-center">

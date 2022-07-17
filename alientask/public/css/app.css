@@ -1427,7 +1427,7 @@ ion-icon
   border-radius: 16px;
   padding: .5rem;
   display: flex;
-  max-width: 10rem;
+  max-width: max-content;
 }
 
 #label-check
@@ -1453,8 +1453,6 @@ label
   }
   
 }
-
-
 
 #search-title
 {

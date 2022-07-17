@@ -16,12 +16,15 @@
                     <div class="container">
                         <div class="row">
                             <div class="col">
+                                <h4>Relatório de tarefas</h4>
                                 <div id="piecharttask"></div>
                             </div>
                             <div class="col">
+                                <h4>Relatório de notas</h4>
                                 <div id="piechartnote"></div>
                             </div>
                             <div class="col">
+                                <h4>Relatório de etiquetas</h4>
                                 <div id="piechartlabel"></div>
                             </div>
                         </div>
@@ -66,27 +69,21 @@
         ]);
 
         var taskOptions = {
-          title: 'Relatório de tarefas',
           width: 300,
           height: 200,
           colors: ['#9400D3', '#A020F0', '#DDA0DD', '#9370DB'],
-          is3D: true
         };
 
         var noteOptions = {
-            title: 'Relatório de notas',
             width: 300,
             height: 200,
             colors: ['#BA55D3', '#9400D3', '#A020F0', '#9370DB'],
-            is3D: true
         }
 
         var labelOptions = {
-            title: 'Relatório de etiquetas',
             width: 300,
             height: 200,
             colors: ['#DA70D6', '#CD00CD', '#BA55D3', '#8A2BE2'],
-            is3D:true
         }
 
         var chartTask = new google.visualization.PieChart(document.getElementById('piecharttask'));
