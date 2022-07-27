@@ -11,13 +11,26 @@ class Log extends Model
 
     protected $fillable = [
         'action',
-        'type',
-        'type_title',
         'user_id'
     ];
 
-    public function user() {
+    public function dono()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function tarefas()
+    {
+        return $this->morphTo(Tarefa::class, 'loggable');
+    }
+
+    public function notas()
+    {
+        return $this->morphTo(Nota::class, 'loggable');
+    }
+
+    public function etiquetas()
+    {
+        return $this->morphTo(Etiqueta::class, 'loggable');
+    }
 }
