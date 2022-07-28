@@ -18,8 +18,8 @@
                     @if ($logs->count() > 0)
                         <ul class="list-group">
                             @foreach ($logs as $log)
-                                <li class="list-group-item shadow" id="list"><p>Você {{$log->action}} uma {{$log->type}} com titulo 
-                                    <b>"{{$log->type_title}}"</b> em {{$log->created_at->format('d/m/Y')}}</p></li>
+                                <li class="list-group-item shadow" id="list"><p>Você {{$log->action}} uma {{$log->loggable_type}} com titulo 
+                                    <b>"{{$log->loggable_title}}"</b> em {{$log->created_at->format('d/m/Y')}} às {{$log->created_at->format('H:i')}}</p></li>
                             @endforeach
 
                         </ul>

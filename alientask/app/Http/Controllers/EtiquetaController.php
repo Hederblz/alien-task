@@ -48,7 +48,8 @@ class EtiquetaController extends Controller
         $etiqueta->cor = $request->cor;
         $etiqueta->user_id = $user->id;
         $etiqueta->save();
-        EtiquetaCriadaEvent::dispatch($user, $etiqueta->titulo);
+
+        EtiquetaCriadaEvent::dispatch($user, $etiqueta);
         return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
     }
@@ -90,7 +91,8 @@ class EtiquetaController extends Controller
         $etiqueta->titulo = $request->titulo;
         $etiqueta->cor = $request->cor;
         $etiqueta->update();
-        EtiquetaEditadaEvent::dispatch($user, $etiqueta->titulo);
+
+        EtiquetaEditadaEvent::dispatch($user, $etiqueta);
         return redirect()->route('etiquetas-index')
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' alterada com sucesso!');
     }
@@ -106,7 +108,8 @@ class EtiquetaController extends Controller
         $user = Auth::user();
         $etiqueta = Etiqueta::findOrFail($id);
         $etiqueta->delete();
-        EtiquetaExcluidaEvent::dispatch($user, $etiqueta->titulo);
+
+        EtiquetaExcluidaEvent::dispatch($user, $etiqueta);
         return redirect()->back()
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' excluída com sucesso!');
     }
@@ -119,7 +122,8 @@ class EtiquetaController extends Controller
         $etiqueta->cor = $request->cor;
         $etiqueta->user_id = $user->id;
         $etiqueta->save();
-        EtiquetaCriadaEvent::dispatch($user, $etiqueta->titulo);
+
+        EtiquetaExcluidaEvent::dispatch($user, $etiqueta);
         return redirect()->back()
         ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
     }

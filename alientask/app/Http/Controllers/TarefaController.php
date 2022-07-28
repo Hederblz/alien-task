@@ -63,7 +63,8 @@ class TarefaController extends Controller
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->user_id = $user->id;
         $tarefa->save();
-        TarefaCriadaEvent::dispatch($user, $tarefa->titulo);
+
+        TarefaCriadaEvent::dispatch($user, $tarefa);
         return redirect()->route('tarefas-index')->with('msg', 'Tarefa criada com sucesso!');
     }
 
@@ -98,7 +99,8 @@ class TarefaController extends Controller
         $tarefa->data_final_prevista = $request->data_final_prevista;
         $tarefa->etiquetas = $request->etiquetas;
         $tarefa->update();
-        TarefaEditadaEvent::dispatch($user, $tarefa->titulo);
+
+        TarefaEditadaEvent::dispatch($user, $tarefa);
         return redirect()->route('tarefas-index')->with('msg', 'Tarefa atualizada com sucesso!');
     }
 
@@ -115,7 +117,8 @@ class TarefaController extends Controller
         if(!$tarefa->trancada)
         {
             $tarefa->delete();
-            TarefaExcluidaEvent::dispatch($user, $tarefa->titulo);
+
+            TarefaExcluidaEvent::dispatch($user, $tarefa);
             return redirect()->route('tarefas-index')
             ->with('msg', "Tarefa excluída com sucesso.");
         }
@@ -135,7 +138,8 @@ class TarefaController extends Controller
        {
         $tarefa->concluida = 1;
         $tarefa->data_conclusao = date('Y-m-d');
-        TarefaConcluidaEvent::dispatch($user, $tarefa->titulo);
+
+        TarefaConcluidaEvent::dispatch($user, $tarefa);
        }
        else
        {

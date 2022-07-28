@@ -21,7 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'telefone',
+        'tarefas_criadas',
+        'tarefas_editadas',
+        'tarefas_excluidas',
+        'tarefas_concluidas',
+        'notas_criadas',
+        'notas_editadas',
+        'notas_excluidas',
+        'etiquetas_criadas',
+        'etiquetas_editadas',
+        'etiquetas_excluidas'
     ];
 
     /**
@@ -57,8 +66,9 @@ class User extends Authenticatable
         return $this->hasMany(Etiqueta::class, 'user_id');
     }
 
-    public function logs() {
-        return $this->hasMany(Log::class, 'user_id')->orderBy('created_at', 'DESC');
+    public function logs()
+    {
+        return $this->hasMany(Log::class, 'user_id');
     }
 
 }

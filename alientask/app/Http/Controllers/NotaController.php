@@ -10,8 +10,6 @@ use App\Models\Nota;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use function PHPUnit\Framework\isNull;
-
 class NotaController extends Controller
 {
     /**
@@ -52,7 +50,7 @@ class NotaController extends Controller
         $nota->markdown = $request->markdown ? $request->markdown : 0;
         $nota->user_id = $user->id;
         $nota->save();
-        NotaCriadaEvent::dispatch($user, $nota->titulo);
+        NotaCriadaEvent::dispatch($user, $nota);
         return redirect()->route('notas-index')
        ->with('msg', 'Nota criada com sucesso.');
     }
@@ -63,7 +61,7 @@ class NotaController extends Controller
      * @param  \App\Models\Nota  $nota
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
         try{
             $nota = Nota::findOrFail($id);
@@ -98,12 +96,11 @@ class NotaController extends Controller
      * @param  \App\Models\Nota  $nota
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nota $nota,$id)
+    public function update(Request $request, $id)
     {
         $user = Auth::user();
         $nota = Nota::findOrFail($id);
-        if(empty($request->titulo))
-        {
+        if(empty($request->titulo)) {
             $nota->titulo = 'Nota sem titulo';
         }
         else
@@ -113,7 +110,7 @@ class NotaController extends Controller
         $nota->conteudo = $request->conteudo;
         $nota->etiquetas = $request->etiquetas;
         $nota->update();
-        NotaEditadaEvent::dispatch($user, $nota->titulo);
+        NotaEditadaEvent::dispatch($user, $nota);
         return redirect()->route('notas-index')->with('msg', "Nota $nota->titulo atualizada com sucesso.");
     }
 
@@ -130,7 +127,7 @@ class NotaController extends Controller
         if(!$nota->trancada)
         {
             $nota->delete();
-            NotaExcluidaEvent::dispatch($user, $nota->titulo);
+            NotaExcluidaEvent::dispatch($user, $nota);
             return redirect()->route('notas-index')->with('msg', 'Nota excluída com sucesso!');
         }
         else

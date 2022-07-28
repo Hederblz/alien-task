@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->string('action');
+            $table->string('loggable_title');
             $table->morphs('loggable');
             $table->foreignId('user_id');
             $table->timestamps();
