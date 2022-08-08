@@ -53,7 +53,7 @@ class TarefaController extends Controller
         $tarefa->save();
 
         TarefaCriadaEvent::dispatch($user, $tarefa);
-        return redirect()->route('tarefas-index')->with('msg', 'Tarefa criada com sucesso.');
+        return redirect()->route('tarefas-indice')->with('msg', 'Tarefa criada com sucesso.');
     }
 
     /**
@@ -89,7 +89,7 @@ class TarefaController extends Controller
         $tarefa->update();
 
         TarefaEditadaEvent::dispatch($user, $tarefa);
-        return redirect()->route('tarefas-index')->with('msg', 'Tarefa atualizada com sucesso.');
+        return redirect()->route('tarefas-indice')->with('msg', 'Tarefa atualizada com sucesso.');
     }
 
     /**
@@ -107,12 +107,12 @@ class TarefaController extends Controller
             $tarefa->delete();
 
             TarefaExcluidaEvent::dispatch($user, $tarefa);
-            return redirect()->route('tarefas-index')
+            return redirect()->route('tarefas-indice')
             ->with('msg', "Tarefa excluída com sucesso.");
         }
         else
         {
-            return redirect()->route('tarefas-index')
+            return redirect()->route('tarefas-indice')
             ->with('msg', "Não foi possivel excluir a tarefa $tarefa->titulo pois etá trancada.");
         }
         
@@ -127,7 +127,7 @@ class TarefaController extends Controller
        TarefaConcluidaEvent::dispatch($user, $tarefa);
        $tarefa->update();
 
-       return redirect()->route('tarefas-index');
+       return redirect()->route('tarefas-indice');
     }
 
     public function desfazerConclusao($id)
@@ -139,7 +139,7 @@ class TarefaController extends Controller
        TarefaConcluidaEvent::dispatch($user, $tarefa);
        $tarefa->update();
 
-       return redirect()->route('tarefas-index');
+       return redirect()->route('tarefas-indice');
     }
 
     public function trancar($id)
@@ -147,7 +147,7 @@ class TarefaController extends Controller
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->trancada = 1;
         $tarefa->update();
-        return redirect()->route('tarefas-index')->with('msg', 'Tarefa trancada com sucesso.');
+        return redirect()->route('tarefas-indice')->with('msg', 'Tarefa trancada com sucesso.');
     }
 
     public function destrancar($id)
@@ -155,7 +155,7 @@ class TarefaController extends Controller
         $tarefa = Tarefa::findOrFail($id);
         $tarefa->trancada = 0;
         $tarefa->update();
-        return redirect()->route('tarefas-index')->with('msg', 'Tarefa destrancada com sucesso.');
+        return redirect()->route('tarefas-indice')->with('msg', 'Tarefa destrancada com sucesso.');
     }
 
 }

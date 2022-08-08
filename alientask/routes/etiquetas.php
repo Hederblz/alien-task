@@ -10,7 +10,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/criar', 'create')->name('etiquetas-criar');
         Route::post('/armazenar', 'store')->name('etiquetas-armazenar');
         Route::post('/armazenarSimples', 'simplestore')->name('etiquetas-armazenarSimples');
-        Route::get('/editar/{id}', 'edit')->name('etquetas-editar');
+        Route::get('/editar/{id}', 'edit')->name('etiquetas-editar');
         Route::patch('/atualizar/{id}', 'update')->name('etiquetas-atualizar');
         Route::delete('/excluir/{id}', 'destroy')->name('etiquetas-exluir');
     });

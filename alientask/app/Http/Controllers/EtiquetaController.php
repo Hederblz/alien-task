@@ -50,7 +50,7 @@ class EtiquetaController extends Controller
         $etiqueta->save();
 
         EtiquetaCriadaEvent::dispatch($user, $etiqueta);
-        return redirect()->route('etiquetas-index')
+        return redirect()->route('etiquetas-indice')
         ->with('msg', 'Etiqueta criada com sucesso!');
     }
 
@@ -93,7 +93,7 @@ class EtiquetaController extends Controller
         $etiqueta->update();
 
         EtiquetaEditadaEvent::dispatch($user, $etiqueta);
-        return redirect()->route('etiquetas-index')
+        return redirect()->route('etiquetas-indice')
         ->with('msg', 'Etiqueta alterada com sucesso!');
     }
     

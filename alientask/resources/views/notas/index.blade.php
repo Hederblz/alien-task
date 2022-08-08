@@ -68,15 +68,23 @@
                                         <a href="{{route('notas-exibir', $nota->id)}}" class="btn btn-secondary" id="purple"><ion-icon name="reader-outline"></ion-icon></a>
                                     </form>
 
+                                    @if (!$nota->trancada)
+
                                         <form action="{{route('notas-trancar', $nota->id)}}" method="post" class="col">
                                             @csrf
                                             @method('PATCH')
-                                            @if (!$nota->trancada)
                                             <button type="submit" class="btn btn-secondary"><ion-icon name="lock-open-outline"></ion-icon></button>
-                                            @else
-                                            <button type="submit" class="btn btn-secondary"><ion-icon name="lock-closed-outline"></ion-icon></button>
-                                            @endif
                                         </form>
+
+                                    @else
+                                    
+                                        <form action="{{route('notas-destrancar', $nota->id)}}" method="post" class="col">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn btn-secondary"><ion-icon name="lock-closed-outline"></ion-icon></button>
+                                        </form>
+                                        
+                                    @endif
 
                                     <form class="col">
                                         <a href="{{route('notas-editar', $nota->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>

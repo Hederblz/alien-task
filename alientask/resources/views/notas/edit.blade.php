@@ -45,8 +45,8 @@
                     </details>
                 </div>
                 <button type="submit" class="btn btn-success">Alterar</button>
+                </form>
             </div>
-        </form>
     </div>
 </div>
 </div>

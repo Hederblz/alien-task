@@ -51,7 +51,7 @@ class NotaController extends Controller
         $nota->user_id = $user->id;
         $nota->save();
         NotaCriadaEvent::dispatch($user, $nota);
-        return redirect()->route('notas-index')
+        return redirect()->route('notas-indice')
        ->with('msg', 'Nota criada com sucesso.');
     }
 
@@ -108,7 +108,7 @@ class NotaController extends Controller
             $nota->etiquetas = $request->etiquetas;
             $nota->update();
             NotaEditadaEvent::dispatch($user, $nota);
-            return redirect()->route('notas-index')->with('msg', "Nota atualizada com sucesso.");
+            return redirect()->route('notas-indice')->with('msg', "Nota atualizada com sucesso.");
 
         } else {
 
@@ -130,11 +130,11 @@ class NotaController extends Controller
         {
             $nota->delete();
             NotaExcluidaEvent::dispatch($user, $nota);
-            return redirect()->route('notas-index')->with('msg', 'Nota excluída com sucesso!');
+            return redirect()->route('notas-indice')->with('msg', 'Nota excluída com sucesso!');
         }
         else
         {
-            return redirect()->route('notas-index')
+            return redirect()->route('notas-indice')
             ->with('msg', 'Não foi possível excluir esta nota pois está trancada.');
         }
     }
@@ -144,7 +144,7 @@ class NotaController extends Controller
         $nota = Nota::findOrFail($id);
         $nota->trancada = 1;
         $nota->update();
-        return redirect()->route('notas-index')->with('msg', "Nota trancada com sucesso.");
+        return redirect()->route('notas-indice')->with('msg', "Nota trancada com sucesso.");
     }
     
     public function destrancar($id)
@@ -152,7 +152,7 @@ class NotaController extends Controller
         $nota = Nota::findOrFail($id);
         $nota->trancada = 0;
         $nota->update();
-        return redirect()->route('notas-index')->with('msg', "Nota destrancada com sucesso.");
+        return redirect()->route('notas-indice')->with('msg', "Nota destrancada com sucesso.");
     }
 
 }

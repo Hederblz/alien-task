@@ -12,7 +12,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200" id="main">
+
                     <h2>Criar tarefa</h2>
+                    
                     <form action="{{route('tarefas-armazenar')}}" method="post">
                     @csrf
                     <div class="form-group">
@@ -51,7 +53,7 @@
                     <hr>
                     <div class="container-fluid">
                         <h2>Criar etiqueta</h2>
-                        <form action="{{route('etiquetas-simple-store')}}" method="post">
+                        <form action="{{route('etiquetas-armazenarSimples')}}" method="post">
                             @csrf
                             <div class="d-flex">
                             <div class="form-group">

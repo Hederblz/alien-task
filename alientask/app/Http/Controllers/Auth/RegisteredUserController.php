@@ -96,7 +96,7 @@ class RegisteredUserController extends Controller
     public function show()
     {
         $user = Auth::user();
-        return view('profiles.show', compact('user'));
+        return view('user.index', compact('user'));
     }
     
 }

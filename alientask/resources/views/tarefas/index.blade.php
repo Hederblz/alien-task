@@ -58,27 +58,43 @@
 
                             <div class="row d-flex align-middle">
                                 <div class="col">
+                                   @if (!$tarefa->concluida)
+
                                     <form action="{{route('tarefas-concluir', $tarefa->id)}}" method="post">
+                                     @csrf
+                                     @method('PATCH')
+                                     <button type="submit" class="btn btn-success"><ion-icon name="checkmark-outline"></ion-icon></button>
+                                    </form>
+
+                                    @else
+
+                                    <form action="{{route('tarefas-desfazerConclusao', $tarefa->id)}}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        @if (!$tarefa->concluida)
-                                        <button type="submit" class="btn btn-success"><ion-icon name="checkmark-outline"></ion-icon></button>
-                                        @else
                                         <button type="submit" class="btn btn-danger"><ion-icon name="close-outline"></ion-icon></button>
-                                        @endif
                                        </form>
+                                    
+                                   @endif
                                 </div>
 
                                 <div class="col">
+                                    @if (!$tarefa->trancada)
+
                                     <form action="{{route('tarefas-trancar', $tarefa->id)}}" method="post">
                                         @csrf
                                         @method('PATCH')
-                                        @if (!$tarefa->trancada)
                                         <button type="submit" class="btn btn-secondary"><ion-icon name="lock-open-outline"></ion-icon></button>
-                                        @else
-                                        <button type="submit" class="btn btn-secondary"><ion-icon name="lock-closed-outline"></ion-icon></button>
-                                        @endif
                                     </form>
+
+                                    @else
+
+                                    <form action="{{route('tarefas-destrancar', $tarefa->id)}}" method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn btn-secondary"><ion-icon name="lock-closed-outline"></ion-icon></button>
+                                    </form>
+
+                                    @endif
                                 </div>
 
                                 <div class="col">
@@ -97,7 +113,7 @@
                             <h4>Não vamos nos acomodar.</h4>
                         </div>
                         <div class="row d-flex text-center">
-                            <p>Você ainda não possui tarefas.  <a href="{{route('tarefas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar tarefa</a></p>
+                            <p>Você ainda não possui tarefas.  <a href="{{route('tarefas-criar')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar tarefa</a></p>
                         </div>
                         @endif
                 </div>

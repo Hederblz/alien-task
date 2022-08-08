@@ -12,7 +12,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/armazenar', 'store')->name('notas-armazenar');
         Route::get('/exibir/{id}', 'show')->name('notas-exibir');
         Route::get('/editar/{id}', 'edit')->name('notas-editar');
-        Route::patch('/atualizar/{id}')->name('notas-atualizar');
+        Route::patch('/atualizar/{id}', 'update')->name('notas-atualizar');
         Route::delete('/excluir/{id}', 'destroy')->name('notas-excluir');
         Route::patch('/trancar/{id}', 'trancar')->name('notas-trancar');
         Route::patch('/destrancar/{id}', 'destrancar')->name('notas-destrancar');

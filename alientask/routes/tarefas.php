@@ -14,10 +14,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/excluir/{id}', 'destroy')->name('tarefas-excluir');
         Route::patch('/trancar/{id}', 'trancar')->name('tarefas-trancar');
         Route::patch('/destrancar/{id}', 'destrancar')->name('tarefas-destrancar');
-        Route::patch('/concluir/{id}', 'check')->name('tarefas-concluir');
-        Route::patch('/desfazerConclusao/{id}', 'desfazerCoclusao')->name('tarefas-desfazerConclusao');
-        Route::get('/timer', function () {
-            return view('timer');
-        })->name('perfil-timer');
+        Route::patch('/concluir/{id}', 'concluir')->name('tarefas-concluir');
+        Route::patch('/desfazerConclusao/{id}', 'desfazerConclusao')->name('tarefas-desfazerConclusao');
     });
+
+    Route::get('/timer', function () {
+        return view('timer');
+    })->name('perfil-timer');
 });

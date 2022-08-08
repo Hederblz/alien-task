@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group">
                         <label for="cor">Cor</label>
-                        <input type="color" name="cor" id="cor">
+                        <input type="color" name="cor" id="cor" value="#9400D3">
                     </div>
                     </div>
                     <button type="submit" class="btn" id="add">Criar etiqueta</button>

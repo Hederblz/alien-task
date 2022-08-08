@@ -20,6 +20,10 @@ class Tarefa extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'etiquetas' => 'array'
+    ];
+
     public function dono()
     {
         return $this->belongsTo(User::class, 'user_id');
