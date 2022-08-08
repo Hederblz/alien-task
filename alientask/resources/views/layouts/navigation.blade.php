@@ -23,22 +23,22 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     
-                    <x-nav-link :href="route('tarefas-index')" :active="request()->routeIs('tarefas-index')" class="link">
+                    <x-nav-link :href="route('tarefas-indice')" :active="request()->routeIs('tarefas-indice')" class="link">
                         <ion-icon name="checkbox-outline" class="nav-icon"></ion-icon>
                         {{ __('Tarefas') }}
                     </x-nav-link>
                     
-                    <x-nav-link :href="route('notas-index')" :active="request()->routeIs('notas-index')" class="link">
+                    <x-nav-link :href="route('notas-indice')" :active="request()->routeIs('notas-indice')" class="link">
                         <ion-icon name="document-outline" class="nav-icon"></ion-icon>
                         {{ __('Notas') }}
                     </x-nav-link>
                     
-                    <x-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')" class="link">
+                    <x-nav-link :href="route('etiquetas-indice')" :active="request()->routeIs('etiquetas-indice')" class="link">
                         <ion-icon name="bookmark-outline" class="nav-icon"></ion-icon>
                         {{ __('Etiquetas') }}
                     </x-nav-link>
                     
-                    <x-nav-link :href="route('timer')" :active="request()->routeIs('timer')" class="link">
+                    <x-nav-link :href="route('perfil-timer')" :active="request()->routeIs('perfil-timer')" class="link">
                         <ion-icon name="time-outline" class="nav-icon"></ion-icon>
                         {{ __('Temporizador') }}
                     </x-nav-link>
@@ -48,7 +48,7 @@
                         {{ __('Painel de estatisticas') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('historico-index')" :active="request()->routeIs('historico-index')" class="link">
+                    <x-nav-link :href="route('perfil-historico')" :active="request()->routeIs('perfil-historico')" class="link">
                         <ion-icon name="book-outline" class="nav-icon"></ion-icon>
                         {{ __('Histórico') }}
                     </x-nav-link>
@@ -75,7 +75,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             
-                            <x-dropdown-link :href="route('perfil', Auth::user()->id)" class="link">
+                            <x-dropdown-link :href="route('perfil-exibir', Auth::user()->id)" class="link">
                             <ion-icon name="person-outline"class="nav-icon"></ion-icon>
                                 {{ __('Pefil') }}
                             </x-dropdown-link>
@@ -107,22 +107,22 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             
-            <x-responsive-nav-link :href="route('tarefas-index')" :active="request()->routeIs('tarefas-index')" class="link">
+            <x-responsive-nav-link :href="route('tarefas-indice')" :active="request()->routeIs('tarefas-indice')" class="link">
                 <ion-icon name="checkbox-outline" class="nav-icon"></ion-icon>
                 {{ __('Tarefas') }}
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link :href="route('notas-index')" :active="request()->routeIs('notas-index')" class="link">
+            <x-responsive-nav-link :href="route('notas-indice')" :active="request()->routeIs('notas-indice')" class="link">
                 <ion-icon name="document-outline" class="nav-icon"></ion-icon>
                 {{ __('Notas') }}
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link :href="route('etiquetas-index')" :active="request()->routeIs('etiquetas-index')" class="link">
+            <x-responsive-nav-link :href="route('etiquetas-indice')" :active="request()->routeIs('etiquetas-indice')" class="link">
                 <ion-icon name="bookmark-outline" class="nav-icon"></ion-icon>
                 {{ __('Etiquetas') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('timer')" :active="request()->routeIs('timer')" class="link">
+            <x-responsive-nav-link :href="route('perfil-timer')" :active="request()->routeIs('perfil-timer')" class="link">
                 <ion-icon name="time-outline" class="nav-icon"></ion-icon>
                 {{ __('Temporizador') }}
             </x-responsive-nav-link>
@@ -132,7 +132,7 @@
                 {{ __('Painel de estatisticas') }}
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="align-middle d-flex link">
+            <x-responsive-nav-link :href="route('perfil-historico')" :active="request()->routeIs('perfil-historico')" class="align-middle d-flex link">
                 <ion-icon name="book-outline"></ion-icon>
                 {{ __('Histórico') }}
             </x-responsive-nav-link>

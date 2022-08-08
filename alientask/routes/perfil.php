@@ -1,11 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\LogController;
 
-Route::get('/profileshow/{id}', [ProfileController::class, 'show'])->name('perfil-show');
-Route::get('/profileconfigs/{id}', [ProfileController::class, 'configs'])->name('perfil-configs');
-Route::get('/profileupdate/{id}', [ProfileController::class, 'updateData'])->name('perfil-updateData');
-Route::get('/profilestatistics/{id}', [ProfileController::class, 'statistics'])->name('perfil-statistics');
-Route::delete('/perfildestroy', [RegisteredUserController::class, 'destroy'])->name('perfil-destroy');
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::controller(RegisteredUserController::class)->group(function () {
+        Route::patch('/atualizar', 'updateData')->name('perfil-atualizar');
+        Route::patch('/alterarSenha', 'updatePassword')->name('perfil-alterarSenha');
+        Route::delete('/excluir/{id}', 'destroy')->name('perfil-excluir');
+        Route::get('/status', 'stats')->name('dashboard');
+        Route::get('/exibir', 'show')->name('perfil-exibir');
+    });
+    
+    Route::get('/historico', [LogController::class, 'index'])->name('perfil-historico');
+
+});

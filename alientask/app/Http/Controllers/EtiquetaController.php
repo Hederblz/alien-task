@@ -51,7 +51,7 @@ class EtiquetaController extends Controller
 
         EtiquetaCriadaEvent::dispatch($user, $etiqueta);
         return redirect()->route('etiquetas-index')
-        ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
+        ->with('msg', 'Etiqueta criada com sucesso!');
     }
 
     /**
@@ -60,7 +60,7 @@ class EtiquetaController extends Controller
      * @param  \App\Models\Etiqueta  $etiqueta
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -94,7 +94,7 @@ class EtiquetaController extends Controller
 
         EtiquetaEditadaEvent::dispatch($user, $etiqueta);
         return redirect()->route('etiquetas-index')
-        ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' alterada com sucesso!');
+        ->with('msg', 'Etiqueta alterada com sucesso!');
     }
     
     /**
@@ -111,7 +111,7 @@ class EtiquetaController extends Controller
 
         EtiquetaExcluidaEvent::dispatch($user, $etiqueta);
         return redirect()->back()
-        ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' excluída com sucesso!');
+        ->with('msg', 'Etiqueta excluída com sucesso!');
     }
 
     public function simpleStore(Request $request)
@@ -125,7 +125,7 @@ class EtiquetaController extends Controller
 
         EtiquetaExcluidaEvent::dispatch($user, $etiqueta);
         return redirect()->back()
-        ->with('msg', 'Etiqueta ' . $etiqueta->titulo . ' criada com sucesso!');
+        ->with('msg', 'Etiqueta criada com sucesso!');
     }
     
 }

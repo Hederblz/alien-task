@@ -7,10 +7,8 @@ use App\Events\TarefaCriadaEvent;
 use App\Events\TarefaEditadaEvent;
 use App\Events\TarefaExcluidaEvent;
 use App\Models\Tarefa;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class TarefaController extends Controller
@@ -22,18 +20,8 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        $search = request('search');
-        $attributeSwitch = request('attributeSwitch');
-        $orderSwitch = request('orderSwitch');
-        
-        $tarefas = $search ? DB::table('tarefas')
-        ->where('user_id', Auth::user()->id)
-        ->where('titulo', 'like', '%'.$search.'%')
-        ->orderBy($attributeSwitch, $orderSwitch)
-        ->get()
-        : Auth::user()->tarefas;
-
-        return view('tarefas.index', ['tarefas' => $tarefas, 'search' => $search]);
+        $tarefas = Auth::user()->tarefas;
+        return view('tarefas.index', ['tarefas' => $tarefas]);
     }
 
     /**
@@ -65,7 +53,7 @@ class TarefaController extends Controller
         $tarefa->save();
 
         TarefaCriadaEvent::dispatch($user, $tarefa);
-        return redirect()->route('tarefas-index')->with('msg', 'Tarefa criada com sucesso!');
+        return redirect()->route('tarefas-index')->with('msg', 'Tarefa criada com sucesso.');
     }
 
     /**
@@ -101,7 +89,7 @@ class TarefaController extends Controller
         $tarefa->update();
 
         TarefaEditadaEvent::dispatch($user, $tarefa);
-        return redirect()->route('tarefas-index')->with('msg', 'Tarefa atualizada com sucesso!');
+        return redirect()->route('tarefas-index')->with('msg', 'Tarefa atualizada com sucesso.');
     }
 
     /**
@@ -130,21 +118,25 @@ class TarefaController extends Controller
         
     }
     
-    public function check($id)
+    public function concluir($id)
     {
        $user = Auth::user();
        $tarefa = Tarefa::findOrFail($id);
-       if(!$tarefa->concluida)
-       {
-        $tarefa->concluida = 1;
-        $tarefa->data_conclusao = date('Y-m-d');
+       $tarefa->concluida = 1;
+       $tarefa->data_conclusao = date('Y-m-d');
+       TarefaConcluidaEvent::dispatch($user, $tarefa);
+       $tarefa->update();
 
-        TarefaConcluidaEvent::dispatch($user, $tarefa);
-       }
-       else
-       {
-        $tarefa->concluida = 0;
-       }
+       return redirect()->route('tarefas-index');
+    }
+
+    public function desfazerConclusao($id)
+    {
+        $user = Auth::user();
+       $tarefa = Tarefa::findOrFail($id);
+       $tarefa->concluida = 0;
+       $tarefa->data_conclusao = null;
+       TarefaConcluidaEvent::dispatch($user, $tarefa);
        $tarefa->update();
 
        return redirect()->route('tarefas-index');
@@ -153,19 +145,17 @@ class TarefaController extends Controller
     public function trancar($id)
     {
         $tarefa = Tarefa::findOrFail($id);
-        if(!$tarefa->trancada)
-        {
-            $tarefa->trancada = 1;
-            $tarefa->update();
-            return redirect()->route('tarefas-index')->with('msg', 'Tarefa ' . $tarefa->titulo . ' trancada.');
-        }
-        else
-        {
-            $tarefa->trancada = 0;
-            $tarefa->update();
-            return redirect()->route('tarefas-index')->with('msg', 'Tarefa ' . $tarefa->titulo . ' destrancada.');
-        }
+        $tarefa->trancada = 1;
+        $tarefa->update();
+        return redirect()->route('tarefas-index')->with('msg', 'Tarefa trancada com sucesso.');
+    }
 
+    public function destrancar($id)
+    {
+        $tarefa = Tarefa::findOrFail($id);
+        $tarefa->trancada = 0;
+        $tarefa->update();
+        return redirect()->route('tarefas-index')->with('msg', 'Tarefa destrancada com sucesso.');
     }
 
 }

@@ -19,7 +19,7 @@
                     @endif
 
                     <h2>Suas etiquetas</h2>
-                    <a href="{{route('etiquetas-create')}}" class="btn" id="add">
+                    <a href="{{route('etiquetas-criar')}}" class="btn" id="add">
                         <ion-icon name="add-outline"></ion-icon> Criar etiqueta
                     </a>
                     <div class="container-fluid row" id="labels-row">
@@ -28,7 +28,7 @@
                               <div class="shadow text-center col" id="label" style="background-color: {{$etiqueta->cor}}; color:#FFF;">
                                 <b>{{$etiqueta->titulo}}</b>
                                 
-                                    <a href="{{route('etiquetas-edit', $etiqueta->id)}}" class="btn btn-warning" style="margin: .2rem;"><ion-icon name="create-outline"></ion-icon></a>
+                                    <a href="{{route('etiquetas-editar', $etiqueta->id)}}" class="btn btn-warning" style="margin: .2rem;"><ion-icon name="create-outline"></ion-icon></a>
                                     
                                     <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal" style="margin: .2rem;"><ion-icon name="trash-outline"></ion-icon></button>
 
@@ -40,7 +40,7 @@
                             <h4>Hora de classificar os afazeres</h4>
                           </div>
                           <div class="row d-flex text-center">
-                              <p>Você não possui etiquetas. <a href="{{route('etiquetas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon>  Criar etiqueta</a></p>
+                              <p>Você não possui etiquetas. <a href="{{route('etiquetas-criar')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon>  Criar etiqueta</a></p>
                           </div>
                       @endif
                 </div>
@@ -62,7 +62,7 @@
         Tem certeza que você quer excluir essa etiqueta?
       </div>
       @if ($etiquetas->count() > 0)
-            <form action="{{route('etiquetas-destroy', $etiqueta->id)}}" method="post" class="confirm">
+            <form action="{{route('etiquetas-exluir', $etiqueta->id)}}" method="post" class="confirm">
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer">

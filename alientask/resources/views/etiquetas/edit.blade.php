@@ -12,7 +12,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2>Criar etiqueta</h2>
                     <div class="container-fluid">
-                        <form action="{{route('etiquetas-update', $etiqueta->id)}}" method="post">
+                        <form action="{{route('etiquetas-atualizar', $etiqueta->id)}}" method="post">
                             @csrf
                             @method('PATCH')
                             <div class="d-flex">

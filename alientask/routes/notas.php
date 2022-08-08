@@ -3,13 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotaController;
 
-Route::get('/notasindex', [NotaController::class, 'index'])->name('notas-index');
-Route::get('/notasshow/{id}', [NotaController::class, 'show'])->name('notas-show');
-Route::get('/notascreate', [NotaController::class, 'create'])->name('notas-create');
-Route::get('/notasshow/{id}', [NotaController::class, 'show'])->name('notas-show');
-Route::get('/notasedit/{id}', [NotaController::class, 'edit'])->name('notas-edit');
 
-Route::post('/notasstore', [NotaController::class, 'store'])->name('notas-store');
-Route::patch('/notasupdate/{id}', [NotaController::class, 'update'])->name('notas-update');
-Route::patch('/notastrancar/{id}', [NotaController::class, 'trancar'])->name('notas-trancar');
-Route::delete('/notasdestroy/{id}', [NotaController::class, 'destroy'])->name('notas-destroy');
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::controller(NotaController::class)->group(function () {
+        Route::get('/indice', 'index')->name('notas-indice');
+        Route::get('/criar', 'create')->name('notas-criar');
+        Route::post('/armazenar', 'store')->name('notas-armazenar');
+        Route::get('/exibir/{id}', 'show')->name('notas-exibir');
+        Route::get('/editar/{id}', 'edit')->name('notas-editar');
+        Route::patch('/atualizar/{id}')->name('notas-atualizar');
+        Route::delete('/excluir/{id}', 'destroy')->name('notas-excluir');
+        Route::patch('/trancar/{id}', 'trancar')->name('notas-trancar');
+        Route::patch('/destrancar/{id}', 'destrancar')->name('notas-destrancar');
+    });
+
+});

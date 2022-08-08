@@ -13,7 +13,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2>Criar nota</h2>
-                    <form action="{{route('notas-store')}}" method="post">
+                    <form action="{{route('notas-armazenar')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="titulo">Título(opcional)</label>
@@ -59,7 +59,7 @@
                     <hr>
                     <div class="container-fluid">
                         <h2>Criar etiqueta</h2>
-                        <form action="{{route('etiquetas-simple-store')}}" method="post">
+                        <form action="{{route('etiquetas-armazenarSimples')}}" method="post">
                             @csrf
                             <div class="d-flex">
                             <div class="form-group">

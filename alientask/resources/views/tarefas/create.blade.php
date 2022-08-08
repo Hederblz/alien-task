@@ -13,7 +13,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200" id="main">
                     <h2>Criar tarefa</h2>
-                    <form action="{{route('tarefas-store')}}" method="post">
+                    <form action="{{route('tarefas-armazenar')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="titulo">Título</label>

@@ -28,7 +28,7 @@
                     @endif
 
                     <h2>Suas notas</h2>
-                    <a href="{{route('notas-create')}}" class="btn" id="purple" style="margin: .5rem;">
+                    <a href="{{route('notas-criar')}}" class="btn" id="purple" style="margin: .5rem;">
                         <ion-icon name="add-outline"></ion-icon> Criar nota
                     </a>
                     @if($notas->count() > 0)
@@ -65,7 +65,7 @@
 
                                     <form class="col">
                                         @csrf
-                                        <a href="{{route('notas-show', $nota->id)}}" class="btn btn-secondary" id="purple"><ion-icon name="reader-outline"></ion-icon></a>
+                                        <a href="{{route('notas-exibir', $nota->id)}}" class="btn btn-secondary" id="purple"><ion-icon name="reader-outline"></ion-icon></a>
                                     </form>
 
                                         <form action="{{route('notas-trancar', $nota->id)}}" method="post" class="col">
@@ -79,7 +79,7 @@
                                         </form>
 
                                     <form class="col">
-                                        <a href="{{route('notas-edit', $nota->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
+                                        <a href="{{route('notas-editar', $nota->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
                                     </form>
         
                                     <form class="col">
@@ -94,7 +94,7 @@
                             <h4>Melhor anotar para não esquecer.</h4>
                         </div>
                         <div class="row d-flex text-center">
-                            <p>Você ainda não possui notas.  <a href="{{route('notas-create')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar nota</a></p>
+                            <p>Você ainda não possui notas.  <a href="{{route('notas-criar')}}" class="btn" id="add"><ion-icon name="add-outline"></ion-icon> Criar nota</a></p>
                         </div>
                     @endif
                 </div>
@@ -116,7 +116,7 @@
         Tem certeza que você quer excluir essa nota?
       </div>
         @if ($notas->count() > 0)
-            <form action="{{route('notas-destroy', $nota->id)}}" method="post" class="confirm">
+            <form action="{{route('notas-excluir', $nota->id)}}" method="post" class="confirm">
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer">

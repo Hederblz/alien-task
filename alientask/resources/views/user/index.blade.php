@@ -32,7 +32,7 @@
       <div class="modal-body">
         Tem certeza que você quer excluir a sua conta?
       </div>
-      <form action="{{route('perfil-destroy',Auth::user()->id)}}" method="POST" id="delete-user" style="margin: auto;">
+      <form action="{{route('perfil-excluir', Auth::user()->id)}}" method="POST" id="delete-user" style="margin: auto;">
         @csrf
         <input type="password" name="password" id="password" class="inputSenha" placeholder="Digite sua senha">
       <div class="modal-footer">

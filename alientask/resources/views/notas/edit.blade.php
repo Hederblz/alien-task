@@ -13,7 +13,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2>Editando nota '{{$nota->titulo}}'</h2>
-                <form action="{{route('notas-update', $nota->id)}}" method="POST">
+                <form action="{{route('notas-atualizar', $nota->id)}}" method="POST">
                 @method('PATCH')
                 @csrf
                 <div class="form-group">

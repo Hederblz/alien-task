@@ -57,7 +57,6 @@ class RegisteredUserController extends Controller
     public function updateData(Request $request){
         $user = Auth::user()->id;
         $user->name = $request->name;
-        $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->update();
 
@@ -73,9 +72,9 @@ class RegisteredUserController extends Controller
         return redirect('user.show')->with('msg', 'Senha alterada com sucesso!');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        $user = Auth::user();
+        $user = User::findOrFail($id);
         if(Hash::check($request->password, $user->password))
         {
             User::findOrFail($user->id)->delete();
@@ -86,6 +85,18 @@ class RegisteredUserController extends Controller
         {
             return redirect()->back()->with('msg', 'Senha incorreta.');
         }
+    }
+
+    public function stats()
+    {
+        $user = Auth::user();
+        return view('dashboard', compact('user'));
+    }
+
+    public function show()
+    {
+        $user = Auth::user();
+        return view('profiles.show', compact('user'));
     }
     
 }

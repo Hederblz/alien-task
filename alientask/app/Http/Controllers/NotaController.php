@@ -100,18 +100,20 @@ class NotaController extends Controller
     {
         $user = Auth::user();
         $nota = Nota::findOrFail($id);
-        if(empty($request->titulo)) {
-            $nota->titulo = 'Nota sem titulo';
+
+        if($request->conteudo) {
+
+            $nota->titulo = $request->titulo ? $request->titulo : 'Nota sem titulo';
+            $nota->conteudo = $request->conteudo;
+            $nota->etiquetas = $request->etiquetas;
+            $nota->update();
+            NotaEditadaEvent::dispatch($user, $nota);
+            return redirect()->route('notas-index')->with('msg', "Nota atualizada com sucesso.");
+
+        } else {
+
+            return redirect()->back()->with('msg', "Não é possivel salvar uma nota sem conteúdo.");
         }
-        else
-        {
-            $nota->titulo = $request->titulo;
-        }
-        $nota->conteudo = $request->conteudo;
-        $nota->etiquetas = $request->etiquetas;
-        $nota->update();
-        NotaEditadaEvent::dispatch($user, $nota);
-        return redirect()->route('notas-index')->with('msg', "Nota $nota->titulo atualizada com sucesso.");
     }
 
     /**
@@ -133,26 +135,24 @@ class NotaController extends Controller
         else
         {
             return redirect()->route('notas-index')
-            ->with('msg', 'Não foi possível excluir a nota ' . $nota->titulo . ' pois está trancada.');
+            ->with('msg', 'Não foi possível excluir esta nota pois está trancada.');
         }
     }
 
     public function trancar($id)
     {
         $nota = Nota::findOrFail($id);
-        if(!$nota->trancada)
-        {
-            $nota->trancada = 1;
-            $nota->update();
-            return redirect()->route('notas-index')->with('msg', "Nota '$nota->titulo' trancada.");
-        }
-        else
-        {
-            $nota->trancada = 0;
-            $nota->update();
-            return redirect()->route('notas-index')->with('msg', "Nota '$nota->titulo' destrancada.");
-        }
-
+        $nota->trancada = 1;
+        $nota->update();
+        return redirect()->route('notas-index')->with('msg', "Nota trancada com sucesso.");
+    }
+    
+    public function destrancar($id)
+    {
+        $nota = Nota::findOrFail($id);
+        $nota->trancada = 0;
+        $nota->update();
+        return redirect()->route('notas-index')->with('msg', "Nota destrancada com sucesso.");
     }
 
 }

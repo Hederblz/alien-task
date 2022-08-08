@@ -11,25 +11,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <form action="{{route('tarefas-index')}}" method="get" class="d-flex" id="search-title">
-                @csrf
-                <div class="form-group d-flex" style="margin-right:5px; margin-bottom:5px;">
-
-                    <input type="text" name="search" id="search" class="search-input form-control" placeholder="Buscar">
-
-                    <select name="attributeSwitch" size="1" class="form-select" id="attributeswitch" style="margin: .5rem;">
-                        <option value="created_at">Data de criação</option>
-                        <option value="updated_at">Data de atualização</option>
-                        <option value="data_conclusao">Data de conclusão</option>
-                    </select>
-                    <select name="orderSwitch" size="1" class="form-select" id="orderSwitch" style="margin: .5rem;">
-                        <option value="ASC">Ordem ascendente</option>
-                        <option value="DESC">Ordem descendente</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-secondary" id="add" style="margin-bottom:10px;"><ion-icon name="search-outline"></ion-icon></button>
-            </form>
-
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 border-b border-gray-200" id="main">
                     
@@ -41,7 +22,7 @@
                     @endif
                     
                     <h2>Suas Tarefas</h2>
-                    <a href="{{route('tarefas-create')}}" class="btn" id="add">
+                    <a href="{{route('tarefas-criar')}}" class="btn" id="add">
                         <ion-icon name="add-outline"></ion-icon> Criar tarefa
                     </a>
                     
@@ -77,7 +58,7 @@
 
                             <div class="row d-flex align-middle">
                                 <div class="col">
-                                    <form action="{{route('tarefas-check', $tarefa->id)}}" method="post">
+                                    <form action="{{route('tarefas-concluir', $tarefa->id)}}" method="post">
                                         @csrf
                                         @method('PATCH')
                                         @if (!$tarefa->concluida)
@@ -101,7 +82,7 @@
                                 </div>
 
                                 <div class="col">
-                                    <a href="{{route('tarefas-edit', $tarefa->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
+                                    <a href="{{route('tarefas-editar', $tarefa->id)}}" class="btn btn-warning"><ion-icon name="create-outline"></ion-icon></a>
                                 </div>
     
                                 <div class="col">
@@ -136,7 +117,7 @@
         Tem certeza que você quer excluir essa tarefa?
       </div>
         @if ($tarefas->count() > 0)
-                <form action="{{route('tarefas-destroy', $tarefa->id)}}" method="post">
+                <form action="{{route('tarefas-excluir', $tarefa->id)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer">
